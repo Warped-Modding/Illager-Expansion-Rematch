@@ -1,7 +1,8 @@
 {
-  "item.sandbox.enderite_ingot": "Enderite Ingot",
-  "item.sandbox.enderite_helmet": "Enderite Helmet",
-  "item.sandbox.enderite_chestplate": "Enderite Chestplate",
-  "item.sandbox.enderite_leggings": "Enderite Leggings",
-  "item.sandbox.enderite_boots": "Enderite Boots"
+  "item.sandbox.endergon_ingot": "Endergon Ingot",
+  "item.sandbox.endergon_helmet": "Endergon Helmet",
+  "item.sandbox.endergon_chestplate": "Endergon Chestplate",
+  "item.sandbox.endergon_leggings": "Endergon Leggings",
+  "item.sandbox.endergon_boots": "Endergon Boots",
+  "block.sandbox.endergon_ore": "Endergon Ore"
 }
