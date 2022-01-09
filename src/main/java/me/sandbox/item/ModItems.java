@@ -29,6 +29,8 @@ public class ModItems {
             new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> ENDERGON_BOOTS = ITEMS.register("endergon_boots", () ->
             new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> ENDERGON_REFUSE = ITEMS.register("endergon_refuse",
+            () -> new Item(new Item.Properties().group(ItemGroup.MATERIALS)));
 
 
 
