@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 
 public enum ModArmorMaterial implements IArmorMaterial {
 
-    ENDERITE( "enderite",40, new int[] { 2, 5, 6, 2 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 3.5f, 0.2f,() -> {
+    ENDERITE( "enderite",40, new int[] { 4, 9, 6, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 3.5f, 0.2f,() -> {
         return Ingredient.fromItems(ModItems.ENDERITE_INGOT.get());
     });
 
