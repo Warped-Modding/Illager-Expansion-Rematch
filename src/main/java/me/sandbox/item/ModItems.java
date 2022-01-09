@@ -19,16 +19,18 @@ public class ModItems {
 
     //Register Items here
 
-    public static final RegistryObject<Item> ENDERITE_INGOT = ITEMS.register("enderite_ingot",
+    public static final RegistryObject<Item> ENDERGON_INGOT = ITEMS.register("endergon_ingot",
             () -> new Item(new Item.Properties().group(ItemGroup.MATERIALS)));
-    public static final RegistryObject<Item> ENDERITE_HELMET = ITEMS.register("enderite_helmet", () ->
-            new ArmorItem(ModArmorMaterial.ENDERITE, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> ENDERITE_CHESTPLATE = ITEMS.register("enderite_chestplate", () ->
-            new ArmorItem(ModArmorMaterial.ENDERITE, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> ENDERITE_LEGGINGS = ITEMS.register("enderite_leggings", () ->
-            new ArmorItem(ModArmorMaterial.ENDERITE, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> ENDERITE_BOOTS = ITEMS.register("enderite_boots", () ->
-            new ArmorItem(ModArmorMaterial.ENDERITE, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> ENDERGON_HELMET = ITEMS.register("endergon_helmet", () ->
+            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> ENDERGON_CHESTPLATE = ITEMS.register("endergon_chestplate", () ->
+            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> ENDERGON_LEGGINGS = ITEMS.register("endergon_leggings", () ->
+            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> ENDERGON_BOOTS = ITEMS.register("endergon_boots", () ->
+            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> ENDERGON_REFUSE = ITEMS.register("endergon_refuse",
+            () -> new Item(new Item.Properties().group(ItemGroup.MATERIALS)));
 
 
 
