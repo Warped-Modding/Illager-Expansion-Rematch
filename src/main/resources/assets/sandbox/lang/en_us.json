@@ -1,3 +1,7 @@
 {
-  "item.sandbox.enderite_ingot": "Enderite Ingot"
+  "item.sandbox.enderite_ingot": "Enderite Ingot",
+  "item.sandbox.enderite_helmet": "Enderite Helmet",
+  "item.sandbox.enderite_chestplate": "Enderite Chestplate",
+  "item.sandbox.enderite_leggings": "Enderite Leggings",
+  "item.sandbox.enderite_boots": "Enderite Boots"
 }
