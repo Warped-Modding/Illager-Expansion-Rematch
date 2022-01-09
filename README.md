@@ -1,3 +1,3 @@
-# Sandbox-Features-Datapack
+# Sandbox-Features
 
-Datapack & Resource pack!
+Upcoming mod for the Sandbox server!
