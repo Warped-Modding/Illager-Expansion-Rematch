@@ -1,6 +1,7 @@
 package me.sandbox.item;
 
 import me.sandbox.Sandbox;
+import me.sandbox.entity.ModEntityTypes;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
@@ -31,6 +32,10 @@ public class ModItems {
             new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> ENDERGON_REFUSE = ITEMS.register("endergon_refuse",
             () -> new Item(new Item.Properties().group(ItemGroup.MATERIALS)));
+    public static final RegistryObject<Item> LOST_MINER_SPAWN_EGG = ITEMS.register("lost_miner_spawn_egg",
+            () -> new ModSpawnEggItem(ModEntityTypes.LOST_MINER, 0xCAC6C1, 0x755A37,
+                    new Item.Properties().group(ItemGroup.MISC)));
+
 
 
 

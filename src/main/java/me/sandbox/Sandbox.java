@@ -1,7 +1,10 @@
 package me.sandbox;
 
 import me.sandbox.block.ModBlocks;
+import me.sandbox.entity.ModEntityTypes;
+import me.sandbox.entity.render.LostMinerRenderer;
 import me.sandbox.item.ModItems;
+import me.sandbox.util.ModSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -9,6 +12,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -36,6 +40,8 @@ public class Sandbox {
 
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModEntityTypes.register(eventBus);
+        ModSoundEvents.register(eventBus);
 
         eventBus.addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -53,6 +59,7 @@ public class Sandbox {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.LOST_MINER.get(), LostMinerRenderer :: new);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

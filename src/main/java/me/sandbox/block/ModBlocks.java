@@ -24,6 +24,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> ENDERGON_ORE = registerBlock("endergon_ore",
             () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
                     .harvestLevel(4).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(8f)));
+    public static final RegistryObject<Block> CURD_BLOCK = registerBlock("curd_block",
+            () -> new Block(AbstractBlock.Properties.create(Material.WOOL)));
 
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block) {

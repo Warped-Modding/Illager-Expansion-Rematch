@@ -5,5 +5,7 @@
   "item.sandbox.endergon_leggings": "Endergon Leggings",
   "item.sandbox.endergon_boots": "Endergon Boots",
   "block.sandbox.endergon_ore": "Endergon Ore",
-  "item.sandbox.endergon_refuse": "Endergon Refuse"
+  "item.sandbox.endergon_refuse": "Endergon Refuse",
+  "block.sandbox.curd_block": "Curd Block",
+  "item.sandbox.lost_miner_spawn_egg": "Lost Miner Spawn Egg"
 }
