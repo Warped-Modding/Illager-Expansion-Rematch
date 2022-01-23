@@ -2,50 +2,41 @@ package me.sandbox.entity.custom;
 
 import me.sandbox.entity.ModEntityTypes;
 import me.sandbox.util.ModSoundEvents;
-import net.minecraft.client.audio.Sound;
-import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.AbstractSkeletonEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.SkeletonEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.passive.WolfEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 
 
-public class LostMinerEntity extends AbstractSkeletonEntity {
+public class LostMinerEntity extends AbstractSkeleton {
 
 
-    public LostMinerEntity(EntityType<? extends LostMinerEntity> entityType, World world) {
+    public LostMinerEntity(EntityType<? extends LostMinerEntity> entityType, Level world) {
         super(entityType, world);
     }
-    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-        return AbstractSkeletonEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 26.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D);
+    public static AttributeSupplier.Builder CreateAttributes() {
+        return Skeleton.createAttributes()
+                .add(Attributes.MAX_HEALTH, 26F)
+                .add(Attributes.ATTACK_DAMAGE, 6.0F)
+                .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.STONE_PICKAXE));
+    protected void populateDefaultEquipmentSlots(DifficultyInstance p_34172_) {
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_PICKAXE));
     }
 
     @Override
     protected SoundEvent getStepSound() {
-        return SoundEvents.ENTITY_SKELETON_STEP;
+        return SoundEvents.SKELETON_STEP;
     }
 
     protected SoundEvent getDeathSound() {

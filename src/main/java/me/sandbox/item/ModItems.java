@@ -2,14 +2,19 @@ package me.sandbox.item;
 
 import me.sandbox.Sandbox;
 import me.sandbox.entity.ModEntityTypes;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Supplier;
 
 public class ModItems {
     
@@ -21,20 +26,19 @@ public class ModItems {
     //Register Items here
 
     public static final RegistryObject<Item> ENDERGON_INGOT = ITEMS.register("endergon_ingot",
-            () -> new Item(new Item.Properties().group(ItemGroup.MATERIALS)));
-    public static final RegistryObject<Item> ENDERGON_HELMET = ITEMS.register("endergon_helmet", () ->
-            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> ENDERGON_CHESTPLATE = ITEMS.register("endergon_chestplate", () ->
-            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> ENDERGON_LEGGINGS = ITEMS.register("endergon_leggings", () ->
-            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> ENDERGON_BOOTS = ITEMS.register("endergon_boots", () ->
-            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS)));
     public static final RegistryObject<Item> ENDERGON_REFUSE = ITEMS.register("endergon_refuse",
-            () -> new Item(new Item.Properties().group(ItemGroup.MATERIALS)));
-    public static final RegistryObject<Item> LOST_MINER_SPAWN_EGG = ITEMS.register("lost_miner_spawn_egg",
-            () -> new ModSpawnEggItem(ModEntityTypes.LOST_MINER, 0xCAC6C1, 0x755A37,
-                    new Item.Properties().group(ItemGroup.MISC)));
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS)));
+
+    public static final RegistryObject<Item> ENDERGON_HELMET = ITEMS.register("endergon_helmet", () ->
+            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlot.HEAD, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
+    public static final RegistryObject<Item> ENDERGON_CHESTPLATE = ITEMS.register("endergon_chestplate", () ->
+            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlot.CHEST, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
+    public static final RegistryObject<Item> ENDERGON_LEGGINGS = ITEMS.register("endergon_leggings", () ->
+            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlot.LEGS, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
+    public static final RegistryObject<Item> ENDERGON_BOOTS = ITEMS.register("endergon_boots", () ->
+            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlot.FEET, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
+
 
 
 
