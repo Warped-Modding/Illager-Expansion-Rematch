@@ -1,5 +1,5 @@
 {
- "variants": {
-   "": { "model": "sandbox:block/endergon_ore" }
- }
+  "variants": {
+    "": { "model": "sandbox:block/endergon_ore" }
+  }
 }

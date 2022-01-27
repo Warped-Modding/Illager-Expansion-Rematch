@@ -1,11 +1,5 @@
 {
-  "item.sandbox.endergon_ingot": "Endergon Ingot",
-  "item.sandbox.endergon_helmet": "Endergon Helmet",
-  "item.sandbox.endergon_chestplate": "Endergon Chestplate",
-  "item.sandbox.endergon_leggings": "Endergon Leggings",
-  "item.sandbox.endergon_boots": "Endergon Boots",
-  "block.sandbox.endergon_ore": "Endergon Ore",
   "item.sandbox.endergon_refuse": "Endergon Refuse",
-  "block.sandbox.curd_block": "Curd Block",
-  "item.sandbox.lost_miner_spawn_egg": "Lost Miner Spawn Egg"
+  "item.sandbox.endergon_ingot": "Endergon Ingot",
+  "block.sandbox.endergon_ore": "Endergon Ore"
 }

@@ -1,96 +1,29 @@
 package me.sandbox;
 
-import me.sandbox.block.ModBlocks;
-import me.sandbox.entity.ModEntityTypes;
-import me.sandbox.entity.render.LostMinerRenderer;
-import me.sandbox.item.ModItems;
-import me.sandbox.util.ModSoundEvents;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fmlserverevents.FMLServerStartingEvent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import me.sandbox.block.BlockRegistry;
+import me.sandbox.entity.EntityRegistry;
+import me.sandbox.item.ItemRegistry;
+import me.sandbox.sounds.SoundRegistry;
+import net.fabricmc.api.ModInitializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.stream.Collectors;
-
-// The value here should match an entry in the META-INF/mods.toml file
-@Mod("sandbox")
-public class Sandbox {
-
+public class Sandbox implements ModInitializer {
     public static final String MOD_ID = "sandbox";
+    // This logger is used to write text to the console and the log file.
+    // It is considered best practice to use your mod id as the logger's name.
+    // That way, it's clear which mod wrote info, warnings, and errors.
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
+    @Override
+    public void onInitialize() {
+        // This code runs as soon as Minecraft is in a mod-load-ready state.
+        // However, some things (like resources) may still be uninitialized.
+        // Proceed with mild caution.
 
-    public Sandbox() {
-        // Register the setup method for modloading
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        ModItems.register(eventBus);
-        ModBlocks.register(eventBus);
-        ModEntityTypes.register(eventBus);
-        ModSoundEvents.register(eventBus);
-
-        eventBus.addListener(this::setup);
-        // Register the enqueueIMC method for modloading
-        eventBus.addListener(this::enqueueIMC);
-        // Register the processIMC method for modloading
-        eventBus.addListener(this::processIMC);
-        // Register the doClientStuff method for modloading
-
-        // Register ourselves for server and other game events we are interested in
-        MinecraftForge.EVENT_BUS.register(this);
-    }
-
-    private void setup(final FMLCommonSetupEvent event) {
-        // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
-
-    }
-
-
-    private void enqueueIMC(final InterModEnqueueEvent event) {
-        // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("sandbox", "helloworld", () -> {
-            LOGGER.info("Hello world from the MDK");
-            return "Hello world";
-        });
-    }
-
-    private void processIMC(final InterModProcessEvent event) {
-        // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC {}", event.getIMCStream().
-                map(m -> m.getMessageSupplier().get()).
-                collect(Collectors.toList()));
-    }
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(FMLServerStartingEvent event) {
-        // do something when the server starts
-        LOGGER.info("HELLO from server starting");
-    }
-
-    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
-    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            // register a new block here
-            LOGGER.info("HELLO from Register Block");
-        }
+        ItemRegistry.registerModItems();
+        BlockRegistry.registerModBlocks();
+        SoundRegistry.registerSounds();
+        EntityRegistry.registerEntities();
     }
 }

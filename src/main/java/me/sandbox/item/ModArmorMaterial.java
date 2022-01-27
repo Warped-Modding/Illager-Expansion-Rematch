@@ -1,82 +1,87 @@
 package me.sandbox.item;
 
-import me.sandbox.Sandbox;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Lazy;
 
-import javax.swing.*;
 import java.util.function.Supplier;
 
-
 public enum ModArmorMaterial implements ArmorMaterial {
+    LEATHER("leather", 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.LEATHER)),
+    CHAIN("chainmail", 15, new int[]{1, 4, 5, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.IRON_INGOT)),
+    IRON("iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.IRON_INGOT)),
+    GOLD("gold", 7, new int[]{1, 3, 5, 2}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.GOLD_INGOT)),
+    DIAMOND("diamond", 33, new int[]{3, 6, 8, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0f, 0.0f, () -> Ingredient.ofItems(Items.DIAMOND)),
+    TURTLE("turtle", 25, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.SCUTE)),
+    NETHERITE("netherite", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 3.0f, 0.1f, () -> Ingredient.ofItems(Items.NETHERITE_INGOT)),
+    ENDERGON("endergon", 40, new int[]{4, 8, 9, 4}, 15, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 3.0f, 0.2f, () -> Ingredient.ofItems(ItemRegistry.ENDERGON_INGOT));
 
-    ENDERGON( "enderite",40, new int[] { 4, 9, 6, 4 }, 15, SoundEvents.ARMOR_EQUIP_GENERIC, 3.5f, 0.2f,() -> {
-        return Ingredient.of(ModItems.ENDERGON_INGOT.get());
-    });
-
-
-
-    private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
+    private static final int[] BASE_DURABILITY;
     private final String name;
     private final int durabilityMultiplier;
-    private final int[] slotProtections;
-    private final int enchantmentValue;
-    private final SoundEvent sound;
+    private final int[] protectionAmounts;
+    private final int enchantability;
+    private final SoundEvent equipSound;
     private final float toughness;
     private final float knockbackResistance;
-    private final LazyLoadedValue<Ingredient> repairIngredient;
+    private final Lazy<Ingredient> repairIngredientSupplier;
 
-    private ModArmorMaterial(String p_40474_, int p_40475_, int[] p_40476_, int p_40477_,
-                             SoundEvent p_40478_, float p_40479_, float p_40480_, Supplier<Ingredient> p_40481_) {
-        this.name = p_40474_;
-        this.durabilityMultiplier = p_40475_;
-        this.slotProtections = p_40476_;
-        this.enchantmentValue = p_40477_;
-        this.sound = p_40478_;
-        this.toughness = p_40479_;
-        this.knockbackResistance = p_40480_;
-        this.repairIngredient = new LazyLoadedValue<>(p_40481_);
+    private ModArmorMaterial(String name, int durabilityMultiplier, int[] protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredientSupplier) {
+        this.name = name;
+        this.durabilityMultiplier = durabilityMultiplier;
+        this.protectionAmounts = protectionAmounts;
+        this.enchantability = enchantability;
+        this.equipSound = equipSound;
+        this.toughness = toughness;
+        this.knockbackResistance = knockbackResistance;
+        this.repairIngredientSupplier = new Lazy<Ingredient>(repairIngredientSupplier);
     }
 
-    public int getDurabilityForSlot(EquipmentSlot pSlot) {
-        return HEALTH_PER_SLOT[pSlot.getIndex()] * this.durabilityMultiplier;
+    @Override
+    public int getDurability(EquipmentSlot slot) {
+        return BASE_DURABILITY[slot.getEntitySlotId()] * this.durabilityMultiplier;
     }
 
-    public int getDefenseForSlot(EquipmentSlot pSlot) {
-        return this.slotProtections[pSlot.getIndex()];
+    @Override
+    public int getProtectionAmount(EquipmentSlot slot) {
+        return this.protectionAmounts[slot.getEntitySlotId()];
     }
 
-    public int getEnchantmentValue() {
-        return this.enchantmentValue;
+    @Override
+    public int getEnchantability() {
+        return this.enchantability;
     }
 
+    @Override
     public SoundEvent getEquipSound() {
-        return this.sound;
+        return this.equipSound;
     }
 
+    @Override
     public Ingredient getRepairIngredient() {
-        return this.repairIngredient.get();
+        return this.repairIngredientSupplier.get();
     }
 
+    @Override
     public String getName() {
-        return Sandbox.MOD_ID + ":" + this.name;
+        return this.name;
     }
 
+    @Override
     public float getToughness() {
         return this.toughness;
     }
 
-    /**
-     * Gets the percentage of knockback resistance provided by armor of the material.
-     */
+    @Override
     public float getKnockbackResistance() {
         return this.knockbackResistance;
     }
-}
 
+    static {
+        BASE_DURABILITY = new int[]{13, 15, 16, 11};
+    }
+}

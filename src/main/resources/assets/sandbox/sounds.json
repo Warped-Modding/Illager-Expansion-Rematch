@@ -1,4 +1,11 @@
 {
+  "endergon_ore_break": {
+    "category": "blocks",
+    "subtitle": "sandbox.endergon_ore_break",
+    "sounds": [
+      "sandbox:endergon_ore_break"
+    ]
+  },
   "lost_miner_ambient": {
     "subtitle": "sandbox.lost_miner_ambient",
     "sounds": [
@@ -8,12 +15,12 @@
     ]
   },
   "lost_miner_hurt": {
-    "subtitle": "sandbox.lost_miner_hurt",
-    "sounds": [
-      "sandbox:lost_miner_hurt1",
-      "sandbox:lost_miner_hurt2",
-      "sandbox:lost_miner_hurt3",
-      "sandbox:lost_miner_hurt4"
+  "subtitle": "sandbox.lost_miner_hurt",
+  "sounds": [
+    "sandbox:lost_miner_hurt1",
+    "sandbox:lost_miner_hurt2",
+    "sandbox:lost_miner_hurt3",
+    "sandbox:lost_miner_hurt4"
     ]
   },
   "lost_miner_death": {
