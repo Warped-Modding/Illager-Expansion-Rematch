@@ -59,4 +59,5 @@ public class LostMinerEntity extends SkeletonEntity {
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_PICKAXE));
     }
 
+
 }
