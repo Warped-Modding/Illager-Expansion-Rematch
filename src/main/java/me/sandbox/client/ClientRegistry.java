@@ -1,7 +1,9 @@
 package me.sandbox.client;
 
 
+import me.sandbox.entity.BrewerEntity;
 import me.sandbox.entity.EntityRegistry;
+import me.sandbox.entity.renders.BrewerRender;
 import me.sandbox.entity.renders.LostMinerRender;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
