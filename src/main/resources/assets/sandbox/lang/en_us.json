@@ -1,5 +1,6 @@
 {
   "item.sandbox.endergon_refuse": "Endergon Refuse",
   "item.sandbox.endergon_ingot": "Endergon Ingot",
-  "block.sandbox.endergon_ore": "Endergon Ore"
+  "block.sandbox.endergon_ore": "Endergon Ore",
+  "item.sandbox.lost_candle": "Lost Candle"
 }
