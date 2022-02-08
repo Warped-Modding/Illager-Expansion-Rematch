@@ -17,6 +17,8 @@ public class ItemRegistry {
             new Item(new FabricItemSettings().group(ItemGroup.MISC)));
     public static final Item ENDERGON_INGOT = registerItem("endergon_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MISC)));
+    public static final Item ENDERGON_CONDUIT = registerItem("endergon_conduit",
+            new Item(new FabricItemSettings().group(ItemGroup.MISC)));
     public static final Item LOST_CANDLE = registerItem("lost_candle",
             new LostCandleItem(new FabricItemSettings().group(ItemGroup.TOOLS)));
 

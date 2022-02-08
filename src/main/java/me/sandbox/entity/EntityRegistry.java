@@ -1,7 +1,6 @@
 package me.sandbox.entity;
 
 import me.sandbox.Sandbox;
-import me.sandbox.entity.renders.BrewerRender;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -11,8 +10,8 @@ import net.minecraft.util.registry.Registry;
 
 public class EntityRegistry {
 
-    public static final EntityType<BrewerEntity> BREWER = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"brewer"),
-            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER,BrewerEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
+    public static final EntityType<ProvokerEntity> HEALER = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"provoker"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ProvokerEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
     );
 
     public static final EntityType<LostMinerEntity> LOST_MINER = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID, "lost_miner"),

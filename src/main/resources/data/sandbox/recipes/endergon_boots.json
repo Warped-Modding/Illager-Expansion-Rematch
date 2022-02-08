@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:netherite_boots"
+  },
+  "addition": {
+    "item": "sandbox:endergon_conduit"
+  },
+  "result": {
+    "item": "sandbox:endergon_boots"
+  }
+}

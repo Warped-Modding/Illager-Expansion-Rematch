@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "sandbox:endergon_refuse"
+    },
+    {
+      "item": "sandbox:endergon_refuse"
+    },
+    {
+      "item": "minecraft:netherite_ingot"
+    },
+    {
+      "item": "sandbox:endergon_refuse"
+    },
+    {
+      "item": "sandbox:endergon_refuse"
+    }
+  ],
+  "result": {
+    "item": "sandbox:endergon_ingot",
+    "count": 1
+  }
+}

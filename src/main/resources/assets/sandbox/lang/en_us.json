@@ -1,6 +1,17 @@
 {
   "item.sandbox.endergon_refuse": "Endergon Refuse",
   "item.sandbox.endergon_ingot": "Endergon Ingot",
+  "item.sandbox.lost_candle": "Lost Candle",
+  "item.sandbox.endergon_conduit": "§dEndergon Conduit",
+  "item.sandbox.endergon_helmet": "Endergon Helmet",
+  "item.sandbox.endergon_chestplate": "Endergon Chestplate",
+  "item.sandbox.endergon_leggings": "Endergon Leggings",
+  "item.sandbox.endergon_boots": "Endergon Boots",
+
+
   "block.sandbox.endergon_ore": "Endergon Ore",
-  "item.sandbox.lost_candle": "Lost Candle"
+
+
+  "entity.sandbox.provoker": "Provoker",
+  "entity.sandbox.lost_miner": "Lost Miner"
 }

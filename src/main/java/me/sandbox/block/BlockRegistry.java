@@ -15,7 +15,7 @@ import net.minecraft.util.registry.Registry;
 
 public class BlockRegistry {
     public static final Block endergon_ore = registerBlock("endergon_ore",
-            new Block(FabricBlockSettings.of(Material.METAL).sounds(ModBlockSoundGroup.ENDERGON_ORE).strength(6f).requiresTool()), ItemGroup.BUILDING_BLOCKS);
+            new Block(FabricBlockSettings.of(Material.STONE).sounds(ModBlockSoundGroup.ENDERGON_ORE).strength(6f).requiresTool()), ItemGroup.BUILDING_BLOCKS);
 
 
     private static Block registerBlock(String name, Block block, ItemGroup group) {
