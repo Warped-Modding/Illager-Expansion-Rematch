@@ -12,6 +12,11 @@ repositories {
     // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
+    maven { url 'https://jitpack.io' }
+    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+}
+loom {
+    accessWidenerPath = file("src/main/resources/sandbox.accesswidener")
 }
 
 dependencies {
@@ -22,6 +27,9 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    //Fabric ASM
+    modImplementation 'com.github.chocohead:fabric-asm:v2.3'
+    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.18:3.0.32'
 }
 
 processResources {

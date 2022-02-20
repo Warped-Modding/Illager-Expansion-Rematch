@@ -4,6 +4,8 @@
   "package": "me.sandbox.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "WoodlandMansionPiecesMixin",
+    "SurrenderedChargeMixin"
   ],
   "client": [
   ],

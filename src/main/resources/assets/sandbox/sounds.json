@@ -58,5 +58,39 @@
     "sounds": [
       "sandbox:lost_candle_gold"
     ]
+  },
+  "surrendered_hurt": {
+    "subtitle": "sandbox.surrendered",
+    "sounds": [
+      "sandbox:surrendered_hurt1",
+      "sandbox:surrendered_hurt2",
+      "sandbox:surrendered_hurt3"
+    ]
+  },
+  "surrendered_ambient": {
+    "subtitle": "sandbox.surrendered_hurt",
+    "sounds": [
+      "sandbox:surrendered_ambient1",
+      "sandbox:surrendered_ambient2",
+      "sandbox:surrendered_ambient3"
+    ]
+  },
+  "surrendered_charge": {
+    "subtitle": "sandbox.surrendered_charge",
+    "sounds": [
+      "sandbox:surrendered_charge"
+    ]
+  },
+  "surrendered_death": {
+    "subtitle": "sandbox.surrendered_death",
+    "sounds": [
+      "sandbox:surrendered_death"
+    ]
+  },
+  "necromancer_summon": {
+    "subtitle": "sandbox.necromancer_summon",
+    "sounds": [
+      "sandbox:necroraise"
+    ]
   }
 }

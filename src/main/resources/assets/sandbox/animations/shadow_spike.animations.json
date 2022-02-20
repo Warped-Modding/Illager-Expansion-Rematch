@@ -1,0 +1,34 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.shadow_spike.rise": {
+			"animation_length": 0.29167,
+			"bones": {
+				"first_segment": {
+					"scale": {
+						"0.0": [1, 0, 1],
+						"0.25": [1, 2.2, 1]
+					}
+				},
+				"third_segment": {
+					"scale": {
+						"0.0": [1, 0, 1],
+						"0.25": [1, 2.2, 1]
+					}
+				},
+				"second_segment": {
+					"scale": {
+						"0.0": [1, 0, 1],
+						"0.25": [1, 2, 1]
+					}
+				},
+				"fourth_segment": {
+					"scale": {
+						"0.0": [1, 0, 1],
+						"0.25": [1, 2.2, 1]
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:netherite_axe"
+  },
+  "addition": {
+    "item": "sandbox:endergon_conduit"
+  },
+  "result": {
+    "item": "sandbox:endergon_axe"
+  }
+}

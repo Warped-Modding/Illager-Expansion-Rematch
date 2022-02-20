@@ -19,6 +19,8 @@ import net.minecraft.entity.raid.RaiderEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.EntityTypeTags;
@@ -31,6 +33,7 @@ public class ProvokerEntity
         extends SpellcastingIllagerEntity implements RangedAttackMob {
     @Nullable
     private SheepEntity wololoTarget;
+    private int cooldown;
 
     public ProvokerEntity(EntityType<? extends ProvokerEntity> entityType, World world) {
         super((EntityType<? extends SpellcastingIllagerEntity>)entityType, world);
@@ -42,7 +45,7 @@ public class ProvokerEntity
         super.initGoals();
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new ProvokerEntity.LookAtTargetOrWololoTarget());
-        this.goalSelector.add(5, new BuffAllyGoal());
+        this.goalSelector.add(3, new BuffAllyGoal());
         this.goalSelector.add(4, new BowAttackGoal<ProvokerEntity>(this, 0.5, 20, 15.0f));
         this.goalSelector.add(8, new WanderAroundGoal(this, 0.6));
         this.goalSelector.add(9, new LookAtEntityGoal(this, PlayerEntity.class, 3.0f, 1.0f));
@@ -103,6 +106,7 @@ public class ProvokerEntity
 
     @Override
     protected void mobTick() {
+        --cooldown;
         super.mobTick();
     }
 
@@ -191,7 +195,7 @@ public class ProvokerEntity
             if (ProvokerEntity.this.getTarget() == null) {
                 return false;
             }
-            if (getTargets().stream().anyMatch(entity -> (EntityTypeTags.RAIDERS.contains(entity.getType())))) {
+            if (ProvokerEntity.this.cooldown < 0 && getTargets().stream().anyMatch(livingEntity -> (EntityTypeTags.RAIDERS.contains(livingEntity.getType())))) {
                 return true;
             }
             return false;
@@ -211,14 +215,19 @@ public class ProvokerEntity
             super.stop();
         }
         private void buff(LivingEntity entity) {
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 400, 1));
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 400, 0));
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 400, 1));
+            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 500, 1));
+            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 500, 0));
+            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 500, 1));
+            double x = entity.getX();
+            double y = entity.getY()+1;
+            double z = entity.getZ();
+            ((ServerWorld)world).spawnParticles(ParticleTypes.ANGRY_VILLAGER,x, y,z,10,0.4D, 0.4D,0.4D,0.15D);
 
         }
 
         @Override
         protected void castSpell() {
+            ProvokerEntity.this.cooldown = 300;
             getTargets().forEach(this::buff);
             }
 

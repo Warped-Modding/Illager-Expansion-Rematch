@@ -16,6 +16,11 @@ public class SoundRegistry {
     public static SoundEvent LOST_CANDLE_COAL = registerSoundEvent("lost_candle_coal");
     public static SoundEvent LOST_CANDLE_COPPER = registerSoundEvent("lost_candle_copper");
     public static SoundEvent LOST_CANDLE_GOLD = registerSoundEvent("lost_candle_gold");
+    public static SoundEvent SURRENDERED_AMBIENT = registerSoundEvent("surrendered_ambient");
+    public static SoundEvent SURRENDERED_HURT = registerSoundEvent("surrendered_hurt");
+    public static SoundEvent SURRENDERED_CHARGE = registerSoundEvent("surrendered_charge");
+    public static SoundEvent SURRENDERED_DEATH = registerSoundEvent("surrendered_death");
+    public static SoundEvent NECROMANCER_SUMMON = registerSoundEvent("necromancer_summon");
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = new Identifier(Sandbox.MOD_ID, name);

@@ -23,6 +23,9 @@
     ],
     "client": [
       "me.sandbox.client.ClientRegistry"
+    ],
+    "mm:early_risers": [
+      "me.sandbox.EarlyRiser"
     ]
   },
   "mixins": [
@@ -37,5 +40,6 @@
   },
   "suggests": {
     "another-mod": "*"
-  }
+  },
+  "accessWidener" : "sandbox.accesswidener"
 }

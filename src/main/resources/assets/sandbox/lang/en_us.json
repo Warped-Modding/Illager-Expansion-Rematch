@@ -7,11 +7,25 @@
   "item.sandbox.endergon_chestplate": "Endergon Chestplate",
   "item.sandbox.endergon_leggings": "Endergon Leggings",
   "item.sandbox.endergon_boots": "Endergon Boots",
+  "item.sandbox.endergon_sword": "Endergon Sword",
+  "item.sandbox.endergon_pickaxe": "Endergon Pickaxe",
+  "item.sandbox.endergon_shovel": "Endergon Shovel",
+  "item.sandbox.endergon_axe": "Endergon Axe",
+  "item.sandbox.endergon_hoe": "Endergon Hoe",
+
+
+  "item.sandbox.provoker_spawn_egg": "Provoker Spawn Egg",
+  "item.sandbox.lost_miner_spawn_egg": "Lost Miner Spawn Egg",
+  "item.sandbox.surrendered_spawn_egg": "Surrendered Spawn Egg",
+  "item.sandbox.necromancer_spawn_egg": "Necromancer Spawn Egg",
 
 
   "block.sandbox.endergon_ore": "Endergon Ore",
 
 
   "entity.sandbox.provoker": "Provoker",
-  "entity.sandbox.lost_miner": "Lost Miner"
+  "entity.sandbox.lost_miner": "Lost Miner",
+  "entity.sandbox.invoker": "Invoker",
+  "entity.sandbox.surrendered": "Surrendered",
+  "entity.sandbox.necromancer": "Necromancer"
 }
