@@ -11,7 +11,9 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
+import net.minecraft.client.particle.CrackParticle;
 import net.minecraft.client.particle.FlameParticle;
+import net.minecraft.item.Items;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.Identifier;
 
@@ -27,13 +29,15 @@ public class ClientRegistry implements ClientModInitializer {
         EntityRendererRegistry.register(EntityRegistry.MUSHROOMLING, MushroomlingRender::new);
         EntityRendererRegistry.register(EntityRegistry.NECROMANCER, NecromancerRender::new);
         EntityRendererRegistry.register(EntityRegistry.SKULLBOLT, SkullboltRender::new);
+        EntityRendererRegistry.register(EntityRegistry.BASHER, BasherRender::new);
+        EntityRendererRegistry.register(EntityRegistry.SORCERER, SorcererRender::new);
 
-        //particle texture
+        //particle texture (only needed if custom texture)!!
         ClientSpriteRegistryCallback.event(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE).register(((atlasTexture, registry) -> {
             registry.register(new Identifier(Sandbox.MOD_ID, "particle/poison_spore"));
         }));
 
-        //particle registry
+        //particle factory
         ParticleFactoryRegistry.getInstance().register(ParticleRegistry.POISON_SPORE, FlameParticle.Factory::new);
     }
 }

@@ -21,6 +21,11 @@ public class SoundRegistry {
     public static SoundEvent SURRENDERED_CHARGE = registerSoundEvent("surrendered_charge");
     public static SoundEvent SURRENDERED_DEATH = registerSoundEvent("surrendered_death");
     public static SoundEvent NECROMANCER_SUMMON = registerSoundEvent("necromancer_summon");
+    public static SoundEvent SORCERER_AMBIENT = registerSoundEvent("sorcerer_ambient");
+    public static SoundEvent SORCERER_HURT = registerSoundEvent("sorcerer_hurt");
+    public static SoundEvent SORCERER_DEATH = registerSoundEvent("sorcerer_death");
+    public static SoundEvent SORCERER_CAST = registerSoundEvent("sorcerer_cast");
+    public static SoundEvent SORCERER_COMPLETE_CAST = registerSoundEvent("sorcerer_complete_cast");
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = new Identifier(Sandbox.MOD_ID, name);

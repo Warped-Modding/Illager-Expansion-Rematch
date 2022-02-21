@@ -62,6 +62,10 @@ public class ItemRegistry {
             new SpawnEggItem(EntityRegistry.SURRENDERED,11260369,11858160, new Item.Settings().group(ItemGroup.MISC)));
     public static final Item NECROMANCER_SPAWN_EGG = registerItem("necromancer_spawn_egg",
             new SpawnEggItem(EntityRegistry.NECROMANCER,9541270,9585210, new Item.Settings().group(ItemGroup.MISC)));
+    public static final Item BASHER_SPAWN_EGG = registerItem("basher_spawn_egg",
+            new SpawnEggItem(EntityRegistry.BASHER,9541270,5985087, new Item.Settings().group(ItemGroup.MISC)));
+    public static final Item SORCERER_SPAWN_EGG = registerItem("sorcerer_spawn_egg",
+            new SpawnEggItem(EntityRegistry.SORCERER,9541270,10899592, new Item.Settings().group(ItemGroup.MISC)));
 
 
 

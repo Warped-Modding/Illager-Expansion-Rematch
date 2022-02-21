@@ -1,11 +1,13 @@
 package me.sandbox.entity;
 
+import me.sandbox.sounds.SoundRegistry;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.*;
@@ -29,13 +31,16 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ProvokerEntity
-        extends SpellcastingIllagerEntity implements RangedAttackMob {
+public class SorcererEntity
+        extends SpellcastingIllagerEntity {
     @Nullable
     private SheepEntity wololoTarget;
     private int cooldown;
+    private int buffcooldown;
+    private int damagedelay = 60;
+    private boolean isLevitating;
 
-    public ProvokerEntity(EntityType<? extends ProvokerEntity> entityType, World world) {
+    public SorcererEntity(EntityType<? extends SorcererEntity> entityType, World world) {
         super((EntityType<? extends SpellcastingIllagerEntity>)entityType, world);
         this.experiencePoints = 10;
     }
@@ -44,11 +49,12 @@ public class ProvokerEntity
     protected void initGoals() {
         super.initGoals();
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new ProvokerEntity.LookAtTargetOrWololoTarget());
-        this.goalSelector.add(3, new BuffAllyGoal());
-        this.goalSelector.add(4, new BowAttackGoal<ProvokerEntity>(this, 0.5, 20, 15.0f));
+        this.goalSelector.add(1, new SorcererEntity.LookAtTargetOrWololoTarget());
+        this.goalSelector.add(3, new LevitateTargetsGoal());
+        this.goalSelector.add(4, new FireResistanceGoal());
         this.goalSelector.add(8, new WanderAroundGoal(this, 0.6));
         this.goalSelector.add(9, new LookAtEntityGoal(this, PlayerEntity.class, 3.0f, 1.0f));
+        this.goalSelector.add(5, new FleeEntityGoal<PlayerEntity>(this, PlayerEntity.class, 8.0f, 0.6, 1.0));
         this.goalSelector.add(10, new LookAtEntityGoal(this, MobEntity.class, 8.0f));
         this.targetSelector.add(1, new RevengeGoal(this, RaiderEntity.class).setGroupRevenge(new Class[0]));
         this.targetSelector.add(2, new ActiveTargetGoal<PlayerEntity>((MobEntity)this, PlayerEntity.class, true).setMaxTimeWithoutVisibility(300));
@@ -66,23 +72,6 @@ public class ProvokerEntity
         }
         return attributeContainer;
     }
-    @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
-        return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
-    }
-    @Override
-    public void attack(LivingEntity target, float pullProgress) {
-        ItemStack itemStack = this.getArrowType(this.getStackInHand(ProjectileUtil.getHandPossiblyHolding(this, Items.BOW)));
-        PersistentProjectileEntity persistentProjectileEntity = ProjectileUtil.createArrowProjectile(this, itemStack, pullProgress);
-        double d = target.getX() - this.getX();
-        double e = target.getBodyY(0.3333333333333333) - persistentProjectileEntity.getY();
-        double f = target.getZ() - this.getZ();
-        double g = Math.sqrt(d * d + f * f);
-        persistentProjectileEntity.setVelocity(d, e + g * (double)0.2f, f, 1.6f, 14 - this.world.getDifficulty().getId() * 4);
-        this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0f, 1.0f / (this.getRandom().nextFloat() * 0.4f + 0.8f));
-        this.world.spawnEntity(persistentProjectileEntity);
-    }
 
     @Override
     protected void initDataTracker() {
@@ -96,7 +85,7 @@ public class ProvokerEntity
 
     @Override
     public SoundEvent getCelebratingSound() {
-        return SoundEvents.ENTITY_EVOKER_CELEBRATE;
+        return SoundRegistry.SORCERER_AMBIENT;
     }
 
     @Override
@@ -104,9 +93,31 @@ public class ProvokerEntity
         super.writeCustomDataToNbt(nbt);
     }
 
+    private List<LivingEntity> getTargets() {
+        return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(50), entity -> !(entity instanceof IllagerEntity) && !(entity instanceof SurrenderedEntity) && !(entity instanceof RavagerEntity) && entity.hasStatusEffect(StatusEffects.LEVITATION));
+    }
+    private void doDamage(LivingEntity entity) {
+        entity.addStatusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 0));
+        double x = entity.getX();
+        double y = entity.getY()+1;
+        double z = entity.getZ();
+        entity.pushAwayFrom(SorcererEntity.this);
+        ((ServerWorld)world).spawnParticles(ParticleTypes.WITCH,x, y,z,45,0.4D, 0.4D,0.4D,0.03D);
+    }
+
     @Override
     protected void mobTick() {
         --cooldown;
+        --buffcooldown;
+        if (isLevitating) {
+            --SorcererEntity.this.damagedelay;
+            if (damagedelay <= 0) {
+                getTargets().forEach(this::doDamage);
+                ((ServerWorld)world).spawnParticles(ParticleTypes.WITCH,this.getX(), this.getY()+1.5,this.getZ(),45,0.4D, 0.4D,0.4D,0.03D);
+                isLevitating = false;
+                damagedelay = 60;
+            }
+        }
         super.mobTick();
     }
 
@@ -132,17 +143,17 @@ public class ProvokerEntity
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_EVOKER_AMBIENT;
+        return SoundRegistry.SORCERER_AMBIENT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_EVOKER_DEATH;
+        return SoundRegistry.SORCERER_DEATH;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.ENTITY_EVOKER_HURT;
+        return SoundRegistry.SORCERER_HURT;
     }
 
     void setWololoTarget(@Nullable SheepEntity sheep) {
@@ -156,7 +167,7 @@ public class ProvokerEntity
 
     @Override
     protected SoundEvent getCastSpellSound() {
-        return SoundEvents.ENTITY_EVOKER_CAST_SPELL;
+        return SoundRegistry.SORCERER_COMPLETE_CAST;
     }
 
     @Override
@@ -167,9 +178,6 @@ public class ProvokerEntity
         if (this.isSpellcasting()) {
             return IllagerEntity.State.SPELLCASTING;
         }
-        if (this.isAttacking()) {
-            return IllagerEntity.State.BOW_AND_ARROW;
-        }
         return IllagerEntity.State.CROSSED;
     }
 
@@ -178,30 +186,92 @@ public class ProvokerEntity
 
         @Override
         public void tick() {
-            if (ProvokerEntity.this.getTarget() != null) {
-                ProvokerEntity.this.getLookControl().lookAt(ProvokerEntity.this.getTarget(), ProvokerEntity.this.getMaxHeadRotation(), ProvokerEntity.this.getMaxLookPitchChange());
-            } else if (ProvokerEntity.this.getWololoTarget() != null) {
-                ProvokerEntity.this.getLookControl().lookAt(ProvokerEntity.this.getWololoTarget(), ProvokerEntity.this.getMaxHeadRotation(), ProvokerEntity.this.getMaxLookPitchChange());
+            if (SorcererEntity.this.getTarget() != null) {
+                SorcererEntity.this.getLookControl().lookAt(SorcererEntity.this.getTarget(), SorcererEntity.this.getMaxHeadRotation(), SorcererEntity.this.getMaxLookPitchChange());
+            } else if (SorcererEntity.this.getWololoTarget() != null) {
+                SorcererEntity.this.getLookControl().lookAt(SorcererEntity.this.getWololoTarget(), SorcererEntity.this.getMaxHeadRotation(), SorcererEntity.this.getMaxLookPitchChange());
             }
         }
     }
 
-
-    public class BuffAllyGoal
+    public class LevitateTargetsGoal
             extends SpellcastingIllagerEntity.CastSpellGoal {
 
         @Override
         public boolean canStart() {
-            if (ProvokerEntity.this.getTarget() == null) {
+            if (SorcererEntity.this.getTarget() == null) {
                 return false;
             }
-            if (ProvokerEntity.this.cooldown < 0) {
+            if (SorcererEntity.this.cooldown < 0) {
                 return true;
             }
             return false;
         }
         private List<LivingEntity> getTargets() {
-            return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(12), entity ->  (entity instanceof IllagerEntity));
+            return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(14), entity -> !(entity instanceof IllagerEntity) && !(entity instanceof SurrenderedEntity));
+        }
+        @Override
+        public void stop() {
+            super.stop();
+        }
+        private void buff(LivingEntity entity) {
+            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 60, 1));
+            double x = entity.getX();
+            double y = entity.getY()+1;
+            double z = entity.getZ();
+            entity.pushAwayFrom(SorcererEntity.this);
+            ((ServerWorld)world).spawnParticles(ParticleTypes.SMOKE,x, y,z,10,0.2D, 0.2D,0.2D,0.015D);
+        }
+
+        @Override
+        protected void castSpell() {
+            SorcererEntity.this.cooldown = 220;
+            getTargets().forEach(this::buff);
+            isLevitating = true;
+
+
+        }
+
+        @Override
+        protected int getInitialCooldown() {
+            return 50;
+        }
+
+        @Override
+        protected int getSpellTicks() {
+            return 50;
+        }
+
+        @Override
+        protected int startTimeDelay() {
+            return 400;
+        }
+
+        @Override
+        protected SoundEvent getSoundPrepare() {
+            return SoundRegistry.SORCERER_CAST;
+        }
+
+        @Override
+        protected SpellcastingIllagerEntity.Spell getSpell() {
+            return Spell.FANGS;
+        }
+    }
+    public class FireResistanceGoal
+            extends SpellcastingIllagerEntity.CastSpellGoal {
+
+        @Override
+        public boolean canStart() {
+            if (SorcererEntity.this.getTarget() == null) {
+                return false;
+            }
+            if (SorcererEntity.this.buffcooldown < 0) {
+                return true;
+            }
+            return false;
+        }
+        private List<LivingEntity> getTargets() {
+            return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(12), entity -> (entity instanceof IllagerEntity));
         }
 
         @Override
@@ -209,21 +279,19 @@ public class ProvokerEntity
             super.stop();
         }
         private void buff(LivingEntity entity) {
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 240, 0));
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 240, 0));
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 240, 0));
+            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 450, 0));
             double x = entity.getX();
             double y = entity.getY()+1;
             double z = entity.getZ();
-            ((ServerWorld)world).spawnParticles(ParticleTypes.ANGRY_VILLAGER,x, y,z,10,0.4D, 0.4D,0.4D,0.15D);
+            ((ServerWorld)world).spawnParticles(ParticleTypes.FLAME,x, y,z,20,0.4D, 0.4D,0.4D,0.15D);
 
         }
 
         @Override
         protected void castSpell() {
-            ProvokerEntity.this.cooldown = 300;
+            SorcererEntity.this.buffcooldown = 400;
             getTargets().forEach(this::buff);
-            }
+        }
 
         @Override
         protected int getInitialCooldown() {
@@ -232,7 +300,7 @@ public class ProvokerEntity
 
         @Override
         protected int getSpellTicks() {
-            return 60;
+            return 40;
         }
 
         @Override
@@ -242,7 +310,7 @@ public class ProvokerEntity
 
         @Override
         protected SoundEvent getSoundPrepare() {
-            return SoundEvents.ENTITY_ILLUSIONER_PREPARE_BLINDNESS;
+            return SoundRegistry.SORCERER_CAST;
         }
 
         @Override

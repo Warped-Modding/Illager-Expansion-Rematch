@@ -18,6 +18,8 @@
   "item.sandbox.lost_miner_spawn_egg": "Lost Miner Spawn Egg",
   "item.sandbox.surrendered_spawn_egg": "Surrendered Spawn Egg",
   "item.sandbox.necromancer_spawn_egg": "Necromancer Spawn Egg",
+  "item.sandbox.basher_spawn_egg": "Basher Spawn Egg",
+  "item.sandbox.sorcerer_spawn_egg": "Sorcerer Spawn Egg",
 
 
   "block.sandbox.endergon_ore": "Endergon Ore",
@@ -27,5 +29,7 @@
   "entity.sandbox.lost_miner": "Lost Miner",
   "entity.sandbox.invoker": "Invoker",
   "entity.sandbox.surrendered": "Surrendered",
-  "entity.sandbox.necromancer": "Necromancer"
+  "entity.sandbox.necromancer": "Necromancer",
+  "entity.sandbox.basher": "Basher",
+  "entity.sandbox.sorcerer": "Sorcerer"
 }

@@ -92,5 +92,41 @@
     "sounds": [
       "sandbox:necroraise"
     ]
+  },
+  "sorcerer_ambient": {
+    "subtitle": "sandbox.sorcerer.ambient",
+    "sounds": [
+      "sandbox:sorcerer_idle1",
+      "sandbox:sorcerer_idle2",
+      "sandbox:sorcerer_idle3"
+    ]
+  },
+  "sorcerer_hurt": {
+    "subtitle": "sandbox.sorcerer.hurt",
+    "sounds": [
+      "sandbox:sorcerer_hurt1",
+      "sandbox:sorcerer_hurt2",
+      "sandbox:sorcerer_hurt3"
+    ]
+  },
+  "sorcerer_death": {
+    "subtitle": "sandbox.sorcerer.death",
+    "sounds": [
+      "sandbox:sorcerer_death1",
+      "sandbox:sorcerer_death2",
+      "sandbox:sorcerer_death3"
+    ]
+  },
+  "sorcerer_cast": {
+    "subtitle": "sandbox.sorcerer.cast",
+    "sounds": [
+      "sandbox:sorcerer_cast"
+    ]
+  },
+  "sorcerer_complete_cast": {
+    "subtitle": "sandbox.sorcerer.complete_cast",
+    "sounds": [
+      "sandbox:sorcerer_completecast"
+    ]
   }
 }

@@ -98,7 +98,7 @@ public class MushroomlingEntity extends TameableEntity implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData animationData) {
-        animationData.addAnimationController(new AnimationController<MushroomlingEntity>(this, "main", 10, this::mainpredicate));
+        animationData.addAnimationController(new AnimationController<MushroomlingEntity>(this, "main", 4, this::mainpredicate));
     }
 
     @Override

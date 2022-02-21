@@ -20,6 +20,12 @@ public class EntityRegistry {
     public static final EntityType<NecromancerEntity> NECROMANCER = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"necromancer"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, NecromancerEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
     );
+    public static final EntityType<BasherEntity> BASHER = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"basher"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, BasherEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
+    );
+    public static final EntityType<SorcererEntity> SORCERER = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"sorcerer"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SorcererEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
+    );
     public static final EntityType<SurrenderedEntity> SURRENDERED = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"surrendered"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SurrenderedEntity::new).fireImmune().dimensions(EntityDimensions.fixed(0.5f, 1.42f)).build()
     );

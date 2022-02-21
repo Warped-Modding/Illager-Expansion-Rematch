@@ -51,7 +51,7 @@ public class InvokerEntity
 
     public InvokerEntity(EntityType<? extends InvokerEntity> entityType, World world) {
         super((EntityType<? extends SpellcastingIllagerEntity>) entityType, world);
-        this.experiencePoints = 10;
+        this.experiencePoints = 80;
     }
 
     @Override
@@ -510,7 +510,7 @@ public class InvokerEntity
             return false;
         }
         private List<LivingEntity> getTargets() {
-            return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(8), entity -> !(entity instanceof IllagerEntity) && !(entity instanceof SurrenderedEntity));
+            return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(8), entity -> !(entity instanceof IllagerEntity) && !(entity instanceof SurrenderedEntity) && !(entity instanceof RavagerEntity));
         }
 
         @Override
