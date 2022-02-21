@@ -208,7 +208,7 @@ public class SorcererEntity
             return false;
         }
         private List<LivingEntity> getTargets() {
-            return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(14), entity -> !(entity instanceof IllagerEntity) && !(entity instanceof SurrenderedEntity));
+            return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(14), entity -> !(entity instanceof HostileEntity));
         }
         @Override
         public void stop() {
