@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:black_dye"
+    },
+    {
+      "tag": "sandbox:coloured_lights"
+    }
+  ],
+  "result": {
+    "item": "sandbox:black_light"
+  }
+}
