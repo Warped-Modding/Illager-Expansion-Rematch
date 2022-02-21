@@ -31,5 +31,8 @@
   "entity.sandbox.surrendered": "Surrendered",
   "entity.sandbox.necromancer": "Necromancer",
   "entity.sandbox.basher": "Basher",
-  "entity.sandbox.sorcerer": "Sorcerer"
+  "entity.sandbox.sorcerer": "Sorcerer",
+
+  "itemGroup.sandbox.sandboxmisc" : "SB Misc",
+  "itemGroup.sandbox.sandboxmobs" : "SB Mobs"
 }
