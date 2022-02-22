@@ -2,10 +2,7 @@ package me.sandbox.item;
 
 import me.sandbox.Sandbox;
 import me.sandbox.entity.EntityRegistry;
-import me.sandbox.item.custom.LostCandleItem;
-import me.sandbox.item.custom.ModAxeItem;
-import me.sandbox.item.custom.ModHoeItem;
-import me.sandbox.item.custom.ModPickaxeItem;
+import me.sandbox.item.custom.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -22,6 +19,12 @@ public class ItemRegistry {
             new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
     public static final Item ENDERGON_CONDUIT = registerItem("endergon_conduit",
             new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
+    public static final Item UNUSUAL_DUST = registerItem("unusual_dust",
+            new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
+    public static final Item ILLUSIONARY_DUST = registerItem("illusionary_dust",
+            new IllusionaryDustItem(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
+    public static final Item RAVAGER_HORN = registerItem("ravager_horn",
+            new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
 
     //TOOLS
     public static final Item LOST_CANDLE = registerItem("lost_candle",
