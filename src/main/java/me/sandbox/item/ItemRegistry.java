@@ -25,6 +25,11 @@ public class ItemRegistry {
             new IllusionaryDustItem(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
     public static final Item RAVAGER_HORN = registerItem("ravager_horn",
             new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
+    public static final Item GILDED_HORN = registerItem("gilded_horn",
+            new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
+    public static final Item HORN_OF_SIGHT = registerItem("horn_of_sight",
+            new HornOfSightItem(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
+
 
     //TOOLS
     public static final Item LOST_CANDLE = registerItem("lost_candle",

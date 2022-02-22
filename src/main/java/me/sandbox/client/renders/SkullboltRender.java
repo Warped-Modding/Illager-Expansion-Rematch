@@ -1,4 +1,4 @@
-package me.sandbox.entity.renders;
+package me.sandbox.client.renders;
 
 import me.sandbox.entity.SkullboltEntity;
 import net.minecraft.client.model.*;

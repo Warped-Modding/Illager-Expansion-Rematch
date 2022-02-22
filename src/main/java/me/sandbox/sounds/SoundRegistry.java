@@ -26,6 +26,7 @@ public class SoundRegistry {
     public static SoundEvent SORCERER_DEATH = registerSoundEvent("sorcerer_death");
     public static SoundEvent SORCERER_CAST = registerSoundEvent("sorcerer_cast");
     public static SoundEvent SORCERER_COMPLETE_CAST = registerSoundEvent("sorcerer_complete_cast");
+    public static SoundEvent HORN_OF_SIGHT = registerSoundEvent("horn_of_sight");
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = new Identifier(Sandbox.MOD_ID, name);

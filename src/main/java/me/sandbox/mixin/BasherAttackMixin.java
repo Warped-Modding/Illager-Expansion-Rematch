@@ -1,16 +1,11 @@
 package me.sandbox.mixin;
 
 import me.sandbox.entity.BasherEntity;
-import me.sandbox.entity.SurrenderedEntity;
-import me.sandbox.entity.renders.BasherRender;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.*;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.mob.IllagerEntity;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.Arm;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

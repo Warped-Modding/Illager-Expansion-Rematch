@@ -1,4 +1,4 @@
-package me.sandbox.entity.renders;
+package me.sandbox.client.renders;
 
 import me.sandbox.entity.InvokerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;

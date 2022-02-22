@@ -128,5 +128,11 @@
     "sounds": [
       "sandbox:sorcerer_completecast"
     ]
+  },
+  "horn_of_sight": {
+    "subtitle": "sandbox.horn_of_sight",
+    "sounds": [
+      "sandbox:horn_of_sight"
+    ]
   }
 }

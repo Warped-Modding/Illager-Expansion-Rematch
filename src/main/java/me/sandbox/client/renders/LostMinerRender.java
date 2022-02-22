@@ -1,4 +1,4 @@
-package me.sandbox.entity.renders;
+package me.sandbox.client.renders;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.SkeletonEntityRenderer;
