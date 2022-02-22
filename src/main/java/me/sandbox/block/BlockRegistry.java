@@ -1,5 +1,6 @@
 package me.sandbox.block;
 
+import me.sandbox.item.ModItemGroup;
 import me.sandbox.sounds.ModBlockSoundGroup;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -14,8 +15,18 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class BlockRegistry {
+
+    // Ores
     public static final Block endergon_ore = registerBlock("endergon_ore",
-            new Block(FabricBlockSettings.of(Material.STONE).sounds(ModBlockSoundGroup.ENDERGON_ORE).strength(6f).requiresTool()), ItemGroup.BUILDING_BLOCKS);
+            new Block(FabricBlockSettings.of(Material.STONE).sounds(ModBlockSoundGroup.ENDERGON_ORE).strength(6f).requiresTool()), ModItemGroup.SandBoxDecorations);
+
+    //Decoration Blocks
+
+    //Coloured Lights
+    public static final Block black_light = registerBlock("black_light",
+            new Block(FabricBlockSettings.of(Material.REDSTONE_LAMP).strength(0.2f).luminance(1)), ModItemGroup.SandBoxDecorations);
+
+
 
 
     private static Block registerBlock(String name, Block block, ItemGroup group) {

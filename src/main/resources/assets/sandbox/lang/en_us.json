@@ -26,6 +26,7 @@
 
 
   "block.sandbox.endergon_ore": "Endergon Ore",
+  "block.sandbox.black_light": "Black Light",
 
 
   "entity.sandbox.provoker": "Provoker",
@@ -36,6 +37,8 @@
   "entity.sandbox.basher": "Basher",
   "entity.sandbox.sorcerer": "Sorcerer",
 
+  "itemGroup.sandbox.sandboxdecor" : "SB Decor",
   "itemGroup.sandbox.sandboxmisc" : "SB Misc",
   "itemGroup.sandbox.sandboxmobs" : "SB Mobs"
+
 }
