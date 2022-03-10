@@ -8,9 +8,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ParticleRegistry {
-    public static final DefaultParticleType POISON_SPORE = FabricParticleTypes.simple();
+    public static final DefaultParticleType MAGIC_FLAME = FabricParticleTypes.simple();
 
     public static void registerParticles() {
-        Registry.register(Registry.PARTICLE_TYPE, new Identifier(Sandbox.MOD_ID, "poison_spore"), POISON_SPORE);
+        Registry.register(Registry.PARTICLE_TYPE, new Identifier(Sandbox.MOD_ID, "magic_flame"), MAGIC_FLAME);
     }
 }

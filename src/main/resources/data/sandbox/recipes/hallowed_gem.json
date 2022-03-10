@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#B#",
+    "RDR",
+    "#B#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "B": {
+      "item": "sandbox:unusual_dust"
+    },
+    "R": {
+      "item": "sandbox:illusionary_dust"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "sandbox:hallowed_gem",
+    "count": 1
+  }
+}

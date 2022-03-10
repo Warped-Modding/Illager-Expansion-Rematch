@@ -9,7 +9,6 @@ group = project.maven_group
 repositories {
 
     maven { url 'https://jitpack.io' }
-    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 
 
     }
@@ -28,7 +27,6 @@ repositories {
         //Fabric ASM
         modImplementation 'com.github.chocohead:fabric-asm:v2.3'
         include 'com.github.chocohead:fabric-asm:v2.3'
-        modImplementation 'software.bernie.geckolib:geckolib-fabric-1.18:3.0.32'
     }
 
     processResources {

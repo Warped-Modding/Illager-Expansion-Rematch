@@ -1,0 +1,57 @@
+{
+  "multipart": [
+    {
+      "apply": [
+        {
+          "model": "sandbox:block/magic_fire_floor"
+        }
+      ]
+    },
+    {
+      "apply": [
+        {
+          "model": "sandbox:block/magic_fire_side"
+        },
+        {
+          "model": "sandbox:block/magic_fire_side_alt"
+        }
+      ]
+    },
+    {
+      "apply": [
+        {
+          "model": "sandbox:block/magic_fire_side",
+          "y": 90
+        },
+        {
+          "model": "sandbox:block/magic_fire_side_alt",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "apply": [
+        {
+          "model": "sandbox:block/magic_fire_side",
+          "y": 180
+        },
+        {
+          "model": "sandbox:block/magic_fire_side_alt",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "apply": [
+        {
+          "model": "sandbox:block/magic_fire_side",
+          "y": 270
+        },
+        {
+          "model": "sandbox:block/magic_fire_side_alt",
+          "y": 270
+        }
+      ]
+    }
+  ]
+}

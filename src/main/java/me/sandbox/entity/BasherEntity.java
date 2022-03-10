@@ -11,7 +11,11 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.MobNavigation;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.mob.MobEntity;
@@ -43,6 +47,9 @@ import java.util.function.Predicate;
 
 public class BasherEntity
         extends IllagerEntity {
+    public int stunTick = 60;
+    public boolean isStunned = false;
+    private static final TrackedData<Boolean> STUNNED = DataTracker.registerData(BasherEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public BasherEntity(EntityType<? extends BasherEntity> entityType, World world) {
         super((EntityType<? extends IllagerEntity>) entityType, world);
@@ -68,11 +75,61 @@ public class BasherEntity
         if (!this.isAiDisabled() && NavigationConditions.hasMobNavigation(this)) {
             boolean bl = ((ServerWorld) this.world).hasRaidAt(this.getBlockPos());
             ((MobNavigation) this.getNavigation()).setCanPathThroughDoors(bl);
+            super.mobTick();
         }
-        super.mobTick();
+        if (!this.isAlive()) {
+            return;
+        }
+    }
+    @Override
+    public boolean canSee(Entity entity) {
+        if (this.getStunnedState()) {
+            return false;
+        }
+        return super.canSee(entity);
+    }
+    @Override
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        nbt.putBoolean("Stunned", this.isStunned);
+        super.writeCustomDataToNbt(nbt);
     }
 
+    @Override
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        this.setStunnedState(nbt.getBoolean("Stunned"));
+    }
+    @Override
+    protected void initDataTracker() {
+        this.dataTracker.startTracking(STUNNED, false);
+        super.initDataTracker();
+    }
+    public void setStunnedState(boolean isStunned) {
+        this.dataTracker.set(STUNNED, isStunned);
+    }
+    public boolean getStunnedState() {
+        return this.dataTracker.get(STUNNED);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!this.isAlive()) {
+            return;
+        }
+        if (this.getStunnedState()) {
+            --stunTick;
+            if (stunTick == 0) {
+                this.setStunnedState(false);
+            }
+        }
+    }
     private AttributeContainer attributeContainer;
+
+    @Override
+    protected boolean isImmobile() {
+        return super.isImmobile() || this.getStunnedState();
+    }
 
     @Override
     public AttributeContainer getAttributes() {
@@ -80,8 +137,8 @@ public class BasherEntity
             attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes()
                     .add(EntityAttributes.GENERIC_MAX_HEALTH, 28.0D)
                     .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.31D)
-                    .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0D)
-                    .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK,0.1D)
+                    .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0D)
+                    .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK,0.2D)
                     .build());
         }
         return attributeContainer;
@@ -114,8 +171,9 @@ public class BasherEntity
             if (attacker instanceof LivingEntity) {
                 ItemStack item = ((LivingEntity) attacker).getMainHandStack();
                 ItemStack basherItem = this.getMainHandStack();
-                if ((item.isOf(Items.DIAMOND_AXE) || item.isOf(Items.IRON_AXE) || item.isOf(Items.GOLDEN_AXE) || item.isOf(Items.NETHERITE_AXE) || item.isOf(Items.STONE_AXE) || item.isOf(Items.WOODEN_AXE) || item.isOf(ItemRegistry.ENDERGON_AXE)) && basherItem.isOf(Items.SHIELD)) {
-                    world.playSound(this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.HOSTILE, 1.0f, 1.0f, true);
+                if ((item.isOf(Items.DIAMOND_AXE) || item.isOf(Items.IRON_AXE) || item.isOf(Items.GOLDEN_AXE) || item.isOf(Items.NETHERITE_AXE) || item.isOf(Items.STONE_AXE) || item.isOf(Items.WOODEN_AXE) || item.isOf(ItemRegistry.ENDERGON_AXE)) && basherItem.isOf(Items.SHIELD) || (attacker instanceof IronGolemEntity && basherItem.isOf(Items.SHIELD))) {
+                    this.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.0f, 1.0f);
+                    this.setStunnedState(true);
                     if (world instanceof ServerWorld) {
                         ((ServerWorld) world).spawnParticles(new ItemStackParticleEffect(ParticleTypes.ITEM, basherItem), this.getX(), this.getY()+1.5, this.getZ(), 30, 0.3D, 0.2D, 0.3D, 0.003);
                     }
@@ -124,11 +182,11 @@ public class BasherEntity
                 }
             }
             if ((source.getSource()) instanceof PersistentProjectileEntity && hasShield) {
-                world.playSound(this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_SHIELD_BLOCK, SoundCategory.HOSTILE, 1.0f, 1.0f, true);
+                this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0f, 1.0f);
                 return false;
             }
             if ((source.getSource()) instanceof LivingEntity && !(canBlockMelee == 0) && hasShield) {
-                world.playSound(this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_SHIELD_BLOCK, SoundCategory.HOSTILE, 1.0f, 1.0f, true);
+                this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0f, 1.0f);
                 return false;
             }
         }

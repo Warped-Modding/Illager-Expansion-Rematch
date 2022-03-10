@@ -1,6 +1,6 @@
 package me.sandbox.client.renders;
 
-import me.sandbox.entity.SkullboltEntity;
+import me.sandbox.entity.projectile.SkullboltEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumer;

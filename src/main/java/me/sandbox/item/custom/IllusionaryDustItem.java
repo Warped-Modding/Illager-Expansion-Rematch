@@ -35,6 +35,6 @@ public class IllusionaryDustItem extends Item {
                 itemStack.decrement(1);
             }
         }
-        return TypedActionResult.pass(itemStack);
+        return TypedActionResult.success(itemStack);
     }
 }

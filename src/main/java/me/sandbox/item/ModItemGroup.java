@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 public class ModItemGroup {
 
     public static final ItemGroup SandBoxDecorations = FabricItemGroupBuilder.build(new Identifier(Sandbox.MOD_ID, "sandboxdecor"),
-            () -> new ItemStack(BlockRegistry.endergon_ore));
+            () -> new ItemStack(BlockRegistry.ENDERGON_ORE));
 
     public static final ItemGroup SandBoxMisc = FabricItemGroupBuilder.build(new Identifier(Sandbox.MOD_ID, "sandboxmisc"),
             () -> new ItemStack(ItemRegistry.ENDERGON_INGOT));

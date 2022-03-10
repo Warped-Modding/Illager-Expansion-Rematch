@@ -6,7 +6,8 @@
   "mixins": [
     "WoodlandMansionPiecesMixin",
     "SurrenderedChargeMixin",
-    "BasherAttackMixin"
+    "IllagerModelMixin",
+    "AnvilScreenHandlerMixin"
   ],
   "client": [
   ],

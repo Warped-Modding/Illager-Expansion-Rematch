@@ -1,46 +1,23 @@
 package me.sandbox.world.features;
 
 import me.sandbox.Sandbox;
-import me.sandbox.block.BlockRegistry;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.block.Blocks;
-import net.minecraft.structure.rule.BlockMatchRuleTest;
+import net.minecraft.structure.PlainsVillageData;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.decorator.CountPlacementModifier;
-import net.minecraft.world.gen.decorator.HeightRangePlacementModifier;
-import net.minecraft.world.gen.decorator.SquarePlacementModifier;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
+import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
+
 
 public class ModConfiguredFeatures {
+    public static ConfiguredStructureFeature<?,?> CONFIGURED_SORCERER_HUT = FeatureRegistry.SORCERER_HUT.configure(new StructurePoolFeatureConfig(() -> PlainsVillageData.STRUCTURE_POOLS,0));
+    public static ConfiguredStructureFeature<?,?> CONFIGURED_ILLAGER_FORT = FeatureRegistry.ILLAGER_FORT.configure(new StructurePoolFeatureConfig(() -> PlainsVillageData.STRUCTURE_POOLS,0));
+    public static ConfiguredStructureFeature<?,?> CONFIGURED_ILLUSIONER_TOWER = FeatureRegistry.ILLUSIONER_TOWER.configure(new StructurePoolFeatureConfig(() -> PlainsVillageData.STRUCTURE_POOLS,0));
 
-    //Endergon ore
-    private static ConfiguredFeature<?, ?> ENDERGON_ORE_CONFIGURED_FEATURE = Feature.ORE
-            .configure(new OreFeatureConfig(
-                    new BlockMatchRuleTest(Blocks.END_STONE),
-                    BlockRegistry.endergon_ore.getDefaultState(),
-                    3));
-    public static PlacedFeature ENDERGON_ORE_PLACED_FEATURE = ENDERGON_ORE_CONFIGURED_FEATURE.withPlacement(
-            CountPlacementModifier.of(9),
-            SquarePlacementModifier.of(),
-            HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(28)));
-
-
-
-    public static void registerFeatures() {
-        //Endergon Ore Register
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE,
-                new Identifier(Sandbox.MOD_ID, "endergon_ore"), ENDERGON_ORE_CONFIGURED_FEATURE);
-        Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(Sandbox.MOD_ID, "endergon_ore"),
-                ENDERGON_ORE_PLACED_FEATURE);
-        BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(), GenerationStep.Feature.UNDERGROUND_ORES,
-                RegistryKey.of(Registry.PLACED_FEATURE_KEY,
-                        new Identifier(Sandbox.MOD_ID, "endergon_ore")));
+    public static void registerConfiguredFeatures() {
+        Registry<ConfiguredStructureFeature<?,?>> registry = BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE;
+        Registry.register(registry, new Identifier(Sandbox.MOD_ID, "sorcerer_hut"), CONFIGURED_SORCERER_HUT);
+        Registry.register(registry, new Identifier(Sandbox.MOD_ID, "illager_fort"), CONFIGURED_ILLAGER_FORT);
+        Registry.register(registry, new Identifier(Sandbox.MOD_ID, "illusioner_tower"), CONFIGURED_ILLUSIONER_TOWER);
     }
-
 }

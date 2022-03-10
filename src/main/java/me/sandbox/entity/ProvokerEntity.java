@@ -60,7 +60,7 @@ public class ProvokerEntity
     public AttributeContainer getAttributes() {
         if (attributeContainer == null) {
             attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes()
-                    .add(EntityAttributes.GENERIC_MAX_HEALTH, 28.0D)
+                    .add(EntityAttributes.GENERIC_MAX_HEALTH, 23.0D)
                     .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.38D)
                     .build());
         }
@@ -209,9 +209,8 @@ public class ProvokerEntity
             super.stop();
         }
         private void buff(LivingEntity entity) {
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 240, 0));
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 240, 0));
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 240, 0));
+            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 120, 0));
+            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 120, 0));
             double x = entity.getX();
             double y = entity.getY()+1;
             double z = entity.getZ();

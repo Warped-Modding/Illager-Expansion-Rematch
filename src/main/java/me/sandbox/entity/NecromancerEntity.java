@@ -1,37 +1,27 @@
 package me.sandbox.entity;
 
+import me.sandbox.entity.projectile.SkullboltEntity;
 import me.sandbox.sounds.SoundRegistry;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileUtil;
-import net.minecraft.entity.projectile.WitherSkullEntity;
 import net.minecraft.entity.raid.RaiderEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.EntityTypeTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class NecromancerEntity
         extends SpellcastingIllagerEntity {
@@ -96,7 +86,6 @@ public class NecromancerEntity
     protected void mobTick() {
         super.mobTick();
         --cooldown;
-        System.out.println(cooldown);
     }
 
     @Override
@@ -184,11 +173,11 @@ public class NecromancerEntity
             if (!super.canStart()) {
                 return false;
             }
-            if (spellcount >= 5) {
+            if (spellcount >= 4) {
                 return false;
             }
             int i = NecromancerEntity.this.world.getTargets(ZombieEntity.class, this.closeVexPredicate, NecromancerEntity.this, NecromancerEntity.this.getBoundingBox().expand(16.0)).size();
-            return NecromancerEntity.this.random.nextInt(8) + 1 > i;
+            return NecromancerEntity.this.random.nextInt(5) + 1 > i;
         }
 
         @Override

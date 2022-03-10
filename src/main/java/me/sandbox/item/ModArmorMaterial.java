@@ -1,5 +1,6 @@
 package me.sandbox.item;
 
+import me.sandbox.sounds.SoundRegistry;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Items;
@@ -11,7 +12,7 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterial implements ArmorMaterial {
-    ENDERGON("endergon", 40, new int[]{4, 8, 9, 4}, 18, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 3.0f, 0.2f, () -> Ingredient.ofItems(ItemRegistry.ENDERGON_INGOT));
+    ENDERGON("endergon", 40, new int[]{4, 8, 9, 4}, 18, SoundRegistry.EQUIP_ENDERGON, 3.0f, 0.2f, () -> Ingredient.ofItems(ItemRegistry.ENDERGON_INGOT));
 
     private static final int[] BASE_DURABILITY;
     private final String name;

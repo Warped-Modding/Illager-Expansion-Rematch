@@ -134,5 +134,111 @@
     "sounds": [
       "sandbox:horn_of_sight"
     ]
+  },
+  "equip_endergon": {
+    "subtitle": "sandbox.equip_endergon",
+    "sounds": [
+      "sandbox:equip_endergon"
+    ]
+  },
+  "flamecaller_cast": {
+    "subtitle": "sandbox.flamecaller_cast",
+    "sounds": [
+      "sandbox:flamecaller_cast"
+    ]
+  },
+  "invoker_fangs": {
+    "subtitle": "sandbox.invoker_fangs",
+    "sounds": [
+      "sandbox:invoker_fangs"
+    ]
+  },
+  "invoker_hurt": {
+    "subtitle": "sandbox.invoker_hurt",
+    "sounds": [
+      "sandbox:invoker_hurt1",
+      "sandbox:invoker_hurt2"
+    ]
+  },
+  "invoker_ambient": {
+    "subtitle": "sandbox.invoker_ambient",
+    "sounds": [
+      "sandbox:invoker_idle1",
+      "sandbox:invoker_idle2",
+      "sandbox:invoker_idle3",
+      "sandbox:invoker_idle4"
+    ]
+  },
+  "invoker_death": {
+    "subtitle": "sandbox.invoker_death",
+    "sounds": [
+      "sandbox:invoker_death"
+    ]
+  },
+  "invoker_big_cast": {
+    "subtitle": "sandbox.invoker_big_cast",
+    "sounds": [
+      "sandbox:invoker_big_cast"
+    ]
+  },
+  "invoker_fangs_cast": {
+    "subtitle": "sandbox.invoker_fangs_cast",
+    "sounds": [
+      "sandbox:invoker_fangs_cast"
+    ]
+  },
+  "invoker_teleport_cast": {
+    "subtitle": "sandbox.invoker_teleport_cast",
+    "sounds": [
+      "sandbox:invoker_teleport_cast"
+    ]
+  },
+  "invoker_completecast": {
+    "subtitle": "sandbox.invoker_completecast",
+    "sounds": [
+      "sandbox:invoker_completecast"
+    ]
+  },
+  "invoker_summon_cast": {
+    "subtitle": "sandbox.invoker_summon_cast",
+    "sounds": [
+      "sandbox:invoker_summon_cast"
+    ]
+  },
+  "invoker_shield_create": {
+    "subtitle": "sandbox.invoker_shield_create",
+    "sounds": [
+      "sandbox:invoker_shield_create"
+    ]
+  },
+  "invoker_shield_break": {
+    "subtitle": "sandbox.invoker_shield_break",
+    "sounds": [
+      "sandbox:invoker_shield_break"
+    ]
+  },
+  "illager_brute_ambient": {
+    "subtitle": "sandbox.illager_brute_ambient",
+    "sounds": [
+      "sandbox:illager_brute_idle1",
+      "sandbox:illager_brute_idle2",
+      "sandbox:illager_brute_idle3",
+      "sandbox:illager_brute_idle4",
+      "sandbox:illager_brute_idle5"
+    ]
+  },
+  "illager_brute_hurt": {
+    "subtitle": "sandbox.illager_brute_hurt",
+    "sounds": [
+      "sandbox:illager_brute_hurt1",
+      "sandbox:illager_brute_hurt2",
+      "sandbox:illager_brute_hurt3"
+    ]
+  },
+  "illager_brute_death": {
+    "subtitle": "sandbox.illager_brute_death",
+    "sounds": [
+      "sandbox:illager_brute_death1"
+    ]
   }
 }

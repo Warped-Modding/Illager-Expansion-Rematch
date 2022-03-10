@@ -1,6 +1,12 @@
 package me.sandbox.entity;
 
+import me.sandbox.client.particle.ParticleRegistry;
 import me.sandbox.sounds.SoundRegistry;
+import me.sandbox.util.spellutil.SetMagicFireUtil;
+import me.sandbox.util.spellutil.SpellParticleUtil;
+import me.sandbox.util.spellutil.TeleportUtil;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -26,7 +32,9 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.EntityTypeTags;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
+import org.apache.logging.log4j.core.jmx.Server;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -36,9 +44,8 @@ public class SorcererEntity
     @Nullable
     private SheepEntity wololoTarget;
     private int cooldown;
-    private int buffcooldown;
-    private int damagedelay = 60;
-    private boolean isLevitating;
+    private int flamecooldown;
+    private boolean offenseSpell;
 
     public SorcererEntity(EntityType<? extends SorcererEntity> entityType, World world) {
         super((EntityType<? extends SpellcastingIllagerEntity>)entityType, world);
@@ -50,8 +57,8 @@ public class SorcererEntity
         super.initGoals();
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new SorcererEntity.LookAtTargetOrWololoTarget());
-        this.goalSelector.add(3, new LevitateTargetsGoal());
-        this.goalSelector.add(4, new FireResistanceGoal());
+        this.goalSelector.add(4, new CastTeleportGoal());
+        this.goalSelector.add(3, new ConjureFlamesGoal());
         this.goalSelector.add(8, new WanderAroundGoal(this, 0.6));
         this.goalSelector.add(9, new LookAtEntityGoal(this, PlayerEntity.class, 3.0f, 1.0f));
         this.goalSelector.add(5, new FleeEntityGoal<PlayerEntity>(this, PlayerEntity.class, 8.0f, 0.6, 1.0));
@@ -66,7 +73,7 @@ public class SorcererEntity
     public AttributeContainer getAttributes() {
         if (attributeContainer == null) {
             attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes()
-                    .add(EntityAttributes.GENERIC_MAX_HEALTH, 28.0D)
+                    .add(EntityAttributes.GENERIC_MAX_HEALTH, 26.0D)
                     .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.38D)
                     .build());
         }
@@ -107,20 +114,14 @@ public class SorcererEntity
 
     @Override
     protected void mobTick() {
-        --cooldown;
-        --buffcooldown;
-        if (isLevitating) {
-            --SorcererEntity.this.damagedelay;
-            if (damagedelay <= 0) {
-                getTargets().forEach(this::doDamage);
-                ((ServerWorld)world).spawnParticles(ParticleTypes.WITCH,this.getX(), this.getY()+1.5,this.getZ(),45,0.4D, 0.4D,0.4D,0.03D);
-                isLevitating = false;
-                damagedelay = 60;
-            }
-        }
         super.mobTick();
+        --cooldown;
+        --flamecooldown;
+        if (this.isSpellcasting() && offenseSpell) {
+            SpellParticleUtil spellParticleUtil = new SpellParticleUtil();
+            spellParticleUtil.setSpellParticles(this, world, ParticleRegistry.MAGIC_FLAME,1, 0.08D);
+        }
     }
-
     @Override
     public boolean isTeammate(Entity other) {
         if (other == null) {
@@ -194,52 +195,56 @@ public class SorcererEntity
         }
     }
 
-    public class LevitateTargetsGoal
+    public class CastTeleportGoal
             extends SpellcastingIllagerEntity.CastSpellGoal {
-
+        SorcererEntity sorcerer = SorcererEntity.this;
         @Override
         public boolean canStart() {
             if (SorcererEntity.this.getTarget() == null) {
                 return false;
             }
-            if (SorcererEntity.this.cooldown < 0) {
+            if (SorcererEntity.this.isSpellcasting()) {
+                return false;
+            }
+            if (SorcererEntity.this.cooldown < 0 && !(getTargets().isEmpty())) {
                 return true;
             }
             return false;
         }
         private List<LivingEntity> getTargets() {
-            return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(14), entity -> !(entity instanceof HostileEntity));
+            return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(8), entity -> (entity instanceof PlayerEntity) || (entity instanceof IronGolemEntity));
+        }
+        @Override
+        public boolean shouldContinue() {
+            return !getTargets().isEmpty();
         }
         @Override
         public void stop() {
             super.stop();
         }
-        private void buff(LivingEntity entity) {
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 60, 1));
-            double x = entity.getX();
-            double y = entity.getY()+1;
-            double z = entity.getZ();
-            entity.pushAwayFrom(SorcererEntity.this);
-            ((ServerWorld)world).spawnParticles(ParticleTypes.SMOKE,x, y,z,10,0.2D, 0.2D,0.2D,0.015D);
-        }
+
 
         @Override
         protected void castSpell() {
+            TeleportUtil teleportUtil = new TeleportUtil();
             SorcererEntity.this.cooldown = 220;
-            getTargets().forEach(this::buff);
-            isLevitating = true;
-
-
+            double x = sorcerer.getX();
+            double y = sorcerer.getY()+1;
+            double z = sorcerer.getZ();
+            if (sorcerer.world instanceof ServerWorld) {
+                ((ServerWorld) world).spawnParticles(ParticleTypes.WITCH, x, y, z, 30, 0.3D, 0.5D, 0.3D, 0.015D);
+            }
+            teleportUtil.doRandomTeleport(SorcererEntity.this);
         }
 
         @Override
         protected int getInitialCooldown() {
-            return 50;
+            return 30;
         }
 
         @Override
         protected int getSpellTicks() {
-            return 50;
+            return 30;
         }
 
         @Override
@@ -257,7 +262,7 @@ public class SorcererEntity
             return Spell.FANGS;
         }
     }
-    public class FireResistanceGoal
+    public class ConjureFlamesGoal
             extends SpellcastingIllagerEntity.CastSpellGoal {
 
         @Override
@@ -265,42 +270,42 @@ public class SorcererEntity
             if (SorcererEntity.this.getTarget() == null) {
                 return false;
             }
-            if (SorcererEntity.this.buffcooldown < 0) {
+            if (SorcererEntity.this.isSpellcasting()) {
+                return false;
+            }
+            if (SorcererEntity.this.flamecooldown < 0) {
+                offenseSpell = true;
                 return true;
             }
             return false;
-        }
-        private List<LivingEntity> getTargets() {
-            return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(12), entity -> (entity instanceof IllagerEntity));
         }
 
         @Override
         public void stop() {
             super.stop();
         }
-        private void buff(LivingEntity entity) {
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 450, 0));
-            double x = entity.getX();
-            double y = entity.getY()+1;
-            double z = entity.getZ();
-            ((ServerWorld)world).spawnParticles(ParticleTypes.FLAME,x, y,z,20,0.4D, 0.4D,0.4D,0.15D);
-
-        }
 
         @Override
         protected void castSpell() {
-            SorcererEntity.this.buffcooldown = 400;
-            getTargets().forEach(this::buff);
+            SetMagicFireUtil setMagicFireUtil = new SetMagicFireUtil();
+            LivingEntity target = SorcererEntity.this.getTarget();
+            setMagicFireUtil.setFire(target, SorcererEntity.this.world);
+            SorcererEntity.this.flamecooldown = 100;
+            offenseSpell = false;
+            target.damage(DamageSource.MAGIC, 3.0f);
+            if (world instanceof ServerWorld) {
+                ((ServerWorld) world).spawnParticles(ParticleRegistry.MAGIC_FLAME, target.getX(), target.getY()+1, target.getZ(), 30, 0.3D, 0.5D, 0.3D, 0.08D);
+            }
         }
 
         @Override
         protected int getInitialCooldown() {
-            return 40;
+            return 60;
         }
 
         @Override
         protected int getSpellTicks() {
-            return 40;
+            return 60;
         }
 
         @Override
@@ -315,7 +320,7 @@ public class SorcererEntity
 
         @Override
         protected SpellcastingIllagerEntity.Spell getSpell() {
-            return SpellcastingIllagerEntity.Spell.WOLOLO;
+            return Spell.FANGS;
         }
     }
 }

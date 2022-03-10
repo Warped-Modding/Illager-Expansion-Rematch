@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "sandbox:block/imbuing_table_side",
+    "north": "sandbox:block/imbuing_table_side",
+    "south": "sandbox:block/imbuing_table_side",
+    "east": "sandbox:block/imbuing_table_side",
+    "west": "sandbox:block/imbuing_table_side",
+    "up": "sandbox:block/imbuing_table_top",
+    "down": "sandbox:block/imbuing_table_bottom"
+  }
+}

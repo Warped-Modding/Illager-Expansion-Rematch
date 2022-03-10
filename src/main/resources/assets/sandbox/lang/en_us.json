@@ -17,6 +17,9 @@
   "item.sandbox.ravager_horn": "Ravager Horn",
   "item.sandbox.gilded_horn": "Gilded Horn",
   "item.sandbox.horn_of_sight": "Horn of Sight",
+  "item.sandbox.hallowed_gem": "Hallowed Gem",
+  "item.sandbox.hatchet": "Hatchet",
+  "item.sandbox.primal_essence": "§bPrimal Essence",
 
 
   "item.sandbox.provoker_spawn_egg": "Provoker Spawn Egg",
@@ -25,10 +28,15 @@
   "item.sandbox.necromancer_spawn_egg": "Necromancer Spawn Egg",
   "item.sandbox.basher_spawn_egg": "Basher Spawn Egg",
   "item.sandbox.sorcerer_spawn_egg": "Sorcerer Spawn Egg",
+  "item.sandbox.flamecaller_spawn_egg": "Flamecaller Spawn Egg",
+  "item.sandbox.archivist_spawn_egg": "Archivist Spawn Egg",
+  "item.sandbox.illager_brute_spawn_egg": "Illager Brute Spawn Egg",
+  "item.sandbox.marauder_spawn_egg": "Marauder Spawn Egg",
 
 
   "block.sandbox.endergon_ore": "Endergon Ore",
   "block.sandbox.black_light": "Black Light",
+  "block.sandbox.imbuing_table": "Imbuing Table",
 
 
   "entity.sandbox.provoker": "Provoker",
@@ -38,6 +46,10 @@
   "entity.sandbox.necromancer": "Necromancer",
   "entity.sandbox.basher": "Basher",
   "entity.sandbox.sorcerer": "Sorcerer",
+  "entity.sandbox.flamecaller": "Flamecaller",
+  "entity.sandbox.archivist": "Archivist",
+  "entity.sandbox.illager_brute": "Illager Brute",
+  "entity.sandbox.marauder": "Marauder",
 
   "itemGroup.sandbox.sandboxdecor" : "SB Decor",
   "itemGroup.sandbox.sandboxmisc" : "SB Misc",

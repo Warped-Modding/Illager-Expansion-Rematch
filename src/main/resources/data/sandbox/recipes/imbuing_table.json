@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#P#",
+    "OSO",
+    "#E#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:copper_block"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "O": {
+      "item": "minecraft:oak_planks"
+    },
+    "S": {
+      "item": "sandbox:primal_essence"
+    },
+    "E": {
+      "item": "minecraft:experience_bottle"
+    }
+  },
+  "result": {
+    "item": "sandbox:imbuing_table",
+    "count": 1
+  }
+}

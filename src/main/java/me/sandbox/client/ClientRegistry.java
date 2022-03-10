@@ -2,22 +2,30 @@ package me.sandbox.client;
 
 
 import me.sandbox.Sandbox;
+import me.sandbox.block.BlockRegistry;
+import me.sandbox.client.model.CapedIllagerEntityModel;
+import me.sandbox.client.model.InvokerFangsModel;
 import me.sandbox.client.particle.ParticleRegistry;
 import me.sandbox.client.renders.*;
 import me.sandbox.entity.EntityRegistry;
+import me.sandbox.gui.ImbuingTableScreen;
+import me.sandbox.gui.ModdedScreenHandler;
 import me.sandbox.item.ItemRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.client.particle.FlameParticle;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.Item;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
 
 @Environment(EnvType.CLIENT)
@@ -29,24 +37,35 @@ public class ClientRegistry implements ClientModInitializer {
         EntityRendererRegistry.register(EntityRegistry.PROVOKER, ProvokerRender::new);
         EntityRendererRegistry.register(EntityRegistry.INVOKER, InvokerRender::new);
         EntityRendererRegistry.register(EntityRegistry.SURRENDERED, SurrenderedRender::new);
-        EntityRendererRegistry.register(EntityRegistry.SHADOW_SPIKE, ShadowSpikeRender::new);
-        EntityRendererRegistry.register(EntityRegistry.MUSHROOMLING, MushroomlingRender::new);
         EntityRendererRegistry.register(EntityRegistry.NECROMANCER, NecromancerRender::new);
         EntityRendererRegistry.register(EntityRegistry.SKULLBOLT, SkullboltRender::new);
         EntityRendererRegistry.register(EntityRegistry.BASHER, BasherRender::new);
         EntityRendererRegistry.register(EntityRegistry.SORCERER, SorcererRender::new);
+        EntityRendererRegistry.register(EntityRegistry.FLAMECALLER, FlamecallerRender::new);
+        EntityRendererRegistry.register(EntityRegistry.ARCHIVIST, ArchivistRender::new);
+        EntityRendererRegistry.register(EntityRegistry.ILLAGER_BRUTE, IllagerBruteRender::new);
+        EntityRendererRegistry.register(EntityRegistry.MARAUDER, MarauderRender::new);
+        EntityRendererRegistry.register(EntityRegistry.INVOKER_FANGS, InvokerFangsRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.HATCHET, HatchetRender::new);
 
 
-        //particle texture (only needed if custom texture)!!
-        ClientSpriteRegistryCallback.event(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE).register(((atlasTexture, registry) -> {
-            registry.register(new Identifier(Sandbox.MOD_ID, "particle/poison_spore"));
-        }));
 
         //particle factory
-        ParticleFactoryRegistry.getInstance().register(ParticleRegistry.POISON_SPORE, FlameParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(ParticleRegistry.MAGIC_FLAME, FlameParticle.Factory::new);
 
         //pull registry
         registerPullPredicates(ItemRegistry.HORN_OF_SIGHT);
+
+        //Block client stuff
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.MAGIC_FIRE, RenderLayer.getCutout());
+
+        //Mob Layers
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.CAPED_ILLAGER, CapedIllagerEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INVOKER_SHIELD, CapedIllagerEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INVOKER_FANGS, InvokerFangsModel::getTexturedModelData);
+
+        //Screen Renders
+        ScreenRegistry.register(ModdedScreenHandler.IMBUING_TABLE_SCREEN_HANDLER, ImbuingTableScreen::new);
 
         }
         public void registerPullPredicates(Item item) {

@@ -92,8 +92,8 @@ public class SurrenderedEntity extends SkeletonEntity {
     public AttributeContainer getAttributes() {
         if (attributeContainer == null) {
             attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes()
-                    .add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
-                    .add(EntityAttributes.GENERIC_ATTACK_DAMAGE,7.0D)
+                    .add(EntityAttributes.GENERIC_MAX_HEALTH, 18.0D)
+                    .add(EntityAttributes.GENERIC_ATTACK_DAMAGE,5.0D)
                     .build());
         }
         return attributeContainer;
@@ -180,7 +180,7 @@ public class SurrenderedEntity extends SkeletonEntity {
             return false;
         }
         if (target instanceof LivingEntity) {
-            ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 30, 3), this);
+            ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 1), this);
         }
         return true;
     }
@@ -260,7 +260,7 @@ public class SurrenderedEntity extends SkeletonEntity {
         }
     }
 
-    class ChargeTargetGoal
+     class ChargeTargetGoal
             extends Goal {
         public ChargeTargetGoal() {
             this.setControls(EnumSet.of(Goal.Control.MOVE));

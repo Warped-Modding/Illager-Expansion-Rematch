@@ -1,5 +1,6 @@
 package me.sandbox.client.renders;
 
+import me.sandbox.entity.ArchivistEntity;
 import me.sandbox.entity.SorcererEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
