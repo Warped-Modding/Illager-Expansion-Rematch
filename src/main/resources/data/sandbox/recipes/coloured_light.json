@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "igi",
+    "gSg",
+    "igi"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:shroom_light"
+    },
+    "g": {
+      "item": "minecraft:glowstone"
+    },
+    "i": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "result": {
+    "item": "sandbox:colored_light"
+  }
+}
