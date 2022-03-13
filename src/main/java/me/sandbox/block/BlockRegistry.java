@@ -30,8 +30,20 @@ public class BlockRegistry {
     public static final Block IMBUING_TABLE = registerBlock("imbuing_table",
             new ImbuingTableBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.COPPER).strength(4f).requiresTool()), ModItemGroup.SandBoxDecorations);
     //Coloured Lights
+    public static final Block COLOR_LIGHT = registerBlock("color_light",
+            new Block(FabricBlockSettings.of(Material.REDSTONE_LAMP).strength(0.2f).luminance(16)), ModItemGroup.SandBoxDecorations);
+
     public static final Block BLACK_LIGHT = registerBlock("black_light",
             new Block(FabricBlockSettings.of(Material.REDSTONE_LAMP).strength(0.2f).luminance(1)), ModItemGroup.SandBoxDecorations);
+
+    public static final Block RED_LIGHT = registerBlock("red_light",
+            new Block(FabricBlockSettings.of(Material.REDSTONE_LAMP).strength(0.2f).luminance(8)), ModItemGroup.SandBoxDecorations);
+
+    public static final Block BLUE_LIGHT = registerBlock("blue_light",
+            new Block(FabricBlockSettings.of(Material.REDSTONE_LAMP).strength(0.2f).luminance(16)), ModItemGroup.SandBoxDecorations);
+
+    public static final Block SHADOW_LIGHT = registerBlock("shadow_light",
+            new Block(FabricBlockSettings.of(Material.REDSTONE_LAMP).strength(0.2f).luminance(-16)), ModItemGroup.SandBoxDecorations);
 
 
     public static final Block MAGIC_FIRE = registerBlock("magic_fire",
