@@ -35,7 +35,14 @@
 
 
   "block.sandbox.endergon_ore": "Endergon Ore",
+
+  "block.sandbox.color_light": "Colored Light",
   "block.sandbox.black_light": "Black Light",
+  "block.sandbox.blue_light": "Blue Light",
+  "block.sandbox.red_light": "Red Light",
+  "block.sandbox.shadow_light": "Shadow Light",
+
+
   "block.sandbox.imbuing_table": "Imbuing Table",
 
 
