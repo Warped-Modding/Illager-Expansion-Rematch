@@ -34,8 +34,8 @@ public class EntityRegistry {
     public static final EntityType<ArchivistEntity> ARCHIVIST = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"archivist"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ArchivistEntity::new).dimensions(EntityDimensions.fixed(0.74f, 1.92f)).build()
     );
-    public static final EntityType<IllagerBruteEntity> ILLAGER_BRUTE = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"illager_brute"),
-            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, IllagerBruteEntity::new).dimensions(EntityDimensions.fixed(0.5f, 2.48f)).build()
+    public static final EntityType<InquisitorEntity> ILLAGER_BRUTE = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"illager_brute"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, InquisitorEntity::new).dimensions(EntityDimensions.fixed(0.5f, 2.48f)).build()
     );
     public static final EntityType<MarauderEntity> MARAUDER = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"marauder"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, MarauderEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()

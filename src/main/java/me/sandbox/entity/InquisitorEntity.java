@@ -1,7 +1,6 @@
 package me.sandbox.entity;
 
 import com.google.common.collect.Maps;
-import me.sandbox.item.ItemRegistry;
 import me.sandbox.sounds.SoundRegistry;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.Enchantment;
@@ -9,7 +8,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.NavigationConditions;
-import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.MobNavigation;
 import net.minecraft.entity.attribute.AttributeContainer;
@@ -22,16 +20,11 @@ import net.minecraft.entity.mob.RavagerEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.entity.raid.RaiderEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.ItemStackParticleEffect;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -42,14 +35,12 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
-import java.util.Random;
-import java.util.function.Predicate;
 
-public class IllagerBruteEntity
+public class InquisitorEntity
         extends IllagerEntity{
     public boolean isUsingHatchet;
 
-    public IllagerBruteEntity(EntityType<? extends IllagerBruteEntity> entityType, World world) {
+    public InquisitorEntity(EntityType<? extends InquisitorEntity> entityType, World world) {
         super((EntityType<? extends IllagerEntity>) entityType, world);
         this.experiencePoints = 25;
     }
@@ -59,7 +50,7 @@ public class IllagerBruteEntity
         super.initGoals();
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(2, new IllagerEntity.LongDoorInteractGoal(this));
-        this.goalSelector.add(4, new IllagerBruteEntity.AttackGoal(this));
+        this.goalSelector.add(4, new InquisitorEntity.AttackGoal(this));
         this.targetSelector.add(1, new RevengeGoal(this, RaiderEntity.class).setGroupRevenge(new Class[0]));
         this.targetSelector.add(2, new ActiveTargetGoal<PlayerEntity>((MobEntity) this, PlayerEntity.class, true));
         this.targetSelector.add(3, new ActiveTargetGoal<MerchantEntity>((MobEntity) this, MerchantEntity.class, true));
@@ -189,7 +180,7 @@ public class IllagerBruteEntity
 
     class AttackGoal
             extends MeleeAttackGoal {
-        public AttackGoal(IllagerBruteEntity vindicator) {
+        public AttackGoal(InquisitorEntity vindicator) {
             super(vindicator, 1.0, false);
 
         }
