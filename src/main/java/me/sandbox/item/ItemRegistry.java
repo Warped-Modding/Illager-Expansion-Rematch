@@ -14,12 +14,6 @@ import org.lwjgl.system.CallbackI;
 public class ItemRegistry {
 
     //GENERAL ITEMS
-    public static final Item ENDERGON_REFUSE = registerItem("endergon_refuse",
-            new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
-    public static final Item ENDERGON_INGOT = registerItem("endergon_ingot",
-            new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
-    public static final Item ENDERGON_CONDUIT = registerItem("endergon_conduit",
-            new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
     public static final Item UNUSUAL_DUST = registerItem("unusual_dust",
             new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
     public static final Item ILLUSIONARY_DUST = registerItem("illusionary_dust",
@@ -37,36 +31,9 @@ public class ItemRegistry {
 
 
     //TOOLS
-    public static final Item LOST_CANDLE = registerItem("lost_candle",
-            new LostCandleItem(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
-    public static final Item ENDERGON_SWORD = registerItem("endergon_sword",
-            new SwordItem(ModToolMaterials.ENDERGON, 4, -2.4f,
-                    new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
-    public static final Item ENDERGON_AXE = registerItem("endergon_axe",
-            new ModAxeItem(ModToolMaterials.ENDERGON, 7, -3f,
-                    new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
-    public static final Item ENDERGON_HOE = registerItem("endergon_hoe",
-            new ModHoeItem(ModToolMaterials.ENDERGON, -4, 0f,
-                    new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
-    public static final Item ENDERGON_SHOVEL = registerItem("endergon_shovel",
-            new ShovelItem(ModToolMaterials.ENDERGON, 2, -3f,
-                    new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
-    public static final Item ENDERGON_PICKAXE = registerItem("endergon_pickaxe",
-            new ModPickaxeItem(ModToolMaterials.ENDERGON, 1, -2.8f,
-                    new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
     public static final Item HATCHET = registerItem("hatchet",
             new HatchetItem(new FabricItemSettings().maxDamage(250).group(ModItemGroup.SandBoxMisc)));
 
-
-    //ARMOR
-    public static final Item ENDERGON_HELMET = registerItem("endergon_helmet",
-            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlot.HEAD, new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
-    public static final Item ENDERGON_CHESTPLATE = registerItem("endergon_chestplate",
-            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlot.CHEST, new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
-    public static final Item ENDERGON_LEGGINGS = registerItem("endergon_leggings",
-            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlot.LEGS, new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
-    public static final Item ENDERGON_BOOTS = registerItem("endergon_boots",
-            new ArmorItem(ModArmorMaterial.ENDERGON, EquipmentSlot.FEET, new FabricItemSettings().group(ModItemGroup.SandBoxMisc).fireproof()));
 
     //SPAWN EGGS
     public static final Item PROVOKER_SPAWN_EGG = registerItem("provoker_spawn_egg",
@@ -79,8 +46,6 @@ public class ItemRegistry {
             new SpawnEggItem(EntityRegistry.BASHER,9541270,5985087, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
     public static final Item SORCERER_SPAWN_EGG = registerItem("sorcerer_spawn_egg",
             new SpawnEggItem(EntityRegistry.SORCERER,9541270,10899592, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
-    public static final Item FLAMECALLER_SPAWN_EGG = registerItem("flamecaller_spawn_egg",
-            new SpawnEggItem(EntityRegistry.FLAMECALLER,9541270,15246640, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
     public static final Item ARCHIVIST_SPAWN_EGG = registerItem("archivist_spawn_egg",
             new SpawnEggItem(EntityRegistry.ARCHIVIST,9541270,13251893, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
     public static final Item ILLAGER_BRUTE_SPAWN_EGG = registerItem("inquisitor_spawn_egg",

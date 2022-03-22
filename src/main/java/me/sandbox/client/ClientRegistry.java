@@ -41,7 +41,6 @@ public class ClientRegistry implements ClientModInitializer {
         EntityRendererRegistry.register(EntityRegistry.SKULLBOLT, SkullboltRender::new);
         EntityRendererRegistry.register(EntityRegistry.BASHER, BasherRender::new);
         EntityRendererRegistry.register(EntityRegistry.SORCERER, SorcererRender::new);
-        EntityRendererRegistry.register(EntityRegistry.FLAMECALLER, FlamecallerRender::new);
         EntityRendererRegistry.register(EntityRegistry.ARCHIVIST, ArchivistRender::new);
         EntityRendererRegistry.register(EntityRegistry.INQUISITOR, InquisitorRender::new);
         EntityRendererRegistry.register(EntityRegistry.MARAUDER, MarauderRender::new);

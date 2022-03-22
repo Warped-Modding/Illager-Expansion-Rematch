@@ -28,9 +28,6 @@ public class EntityRegistry {
     public static final EntityType<SorcererEntity> SORCERER = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"sorcerer"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SorcererEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
     );
-    public static final EntityType<FlamecallerEntity> FLAMECALLER = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"flamecaller"),
-            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, FlamecallerEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
-    );
     public static final EntityType<ArchivistEntity> ARCHIVIST = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"archivist"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ArchivistEntity::new).dimensions(EntityDimensions.fixed(0.74f, 1.92f)).build()
     );
