@@ -1,5 +1,7 @@
 package me.sandbox.client.renders;
 
+import me.sandbox.client.renders.feature.InvokerShieldFeatureRender;
+import me.sandbox.client.renders.feature.NecromancerShieldFeatureRender;
 import me.sandbox.entity.NecromancerEntity;
 import me.sandbox.entity.NecromancerEntity;
 import net.minecraft.block.EnchantingTableBlock;
@@ -26,6 +28,7 @@ public class NecromancerRender extends IllagerEntityRenderer<NecromancerEntity> 
     public NecromancerRender(EntityRendererFactory.Context context) {
 
         super(context, new IllagerEntityModel(context.getPart(EntityModelLayers.EVOKER)), 0.5f);
+        this.addFeature(new NecromancerShieldFeatureRender(this, context.getModelLoader()));
         this.addFeature(new HeldItemFeatureRenderer<NecromancerEntity, IllagerEntityModel<NecromancerEntity>>((FeatureRendererContext)this){
 
 

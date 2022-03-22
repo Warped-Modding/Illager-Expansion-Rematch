@@ -3,7 +3,9 @@ package me.sandbox.client;
 
 import me.sandbox.Sandbox;
 import me.sandbox.block.BlockRegistry;
+import me.sandbox.client.model.ArmoredIllagerEntityModel;
 import me.sandbox.client.model.CapedIllagerEntityModel;
+import me.sandbox.client.model.HatIllagerEntityModel;
 import me.sandbox.client.model.InvokerFangsModel;
 import me.sandbox.client.particle.ParticleRegistry;
 import me.sandbox.client.renders.*;
@@ -23,6 +25,7 @@ import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.entity.model.IllagerEntityModel;
 import net.minecraft.item.Item;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.Identifier;
@@ -43,7 +46,7 @@ public class ClientRegistry implements ClientModInitializer {
         EntityRendererRegistry.register(EntityRegistry.SORCERER, SorcererRender::new);
         EntityRendererRegistry.register(EntityRegistry.FLAMECALLER, FlamecallerRender::new);
         EntityRendererRegistry.register(EntityRegistry.ARCHIVIST, ArchivistRender::new);
-        EntityRendererRegistry.register(EntityRegistry.ILLAGER_BRUTE, IllagerBruteRender::new);
+        EntityRendererRegistry.register(EntityRegistry.INQUISITOR, IllagerBruteRender::new);
         EntityRendererRegistry.register(EntityRegistry.MARAUDER, MarauderRender::new);
         EntityRendererRegistry.register(EntityRegistry.INVOKER_FANGS, InvokerFangsRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.HATCHET, HatchetRender::new);
@@ -62,7 +65,10 @@ public class ClientRegistry implements ClientModInitializer {
         //Mob Layers
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.CAPED_ILLAGER, CapedIllagerEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INVOKER_SHIELD, CapedIllagerEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.NECROMANCER_SHIELD, IllagerEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INVOKER_FANGS, InvokerFangsModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.ARMORED_ILLAGER, ArmoredIllagerEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.HAT_ILLAGER, HatIllagerEntityModel::getTexturedModelData);
 
         //Screen Renders
         ScreenRegistry.register(ModdedScreenHandler.IMBUING_TABLE_SCREEN_HANDLER, ImbuingTableScreen::new);
