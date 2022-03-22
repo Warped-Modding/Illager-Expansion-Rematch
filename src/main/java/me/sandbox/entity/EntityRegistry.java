@@ -34,11 +34,14 @@ public class EntityRegistry {
     public static final EntityType<ArchivistEntity> ARCHIVIST = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"archivist"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ArchivistEntity::new).dimensions(EntityDimensions.fixed(0.74f, 1.92f)).build()
     );
-    public static final EntityType<InquisitorEntity> ILLAGER_BRUTE = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"illager_brute"),
+    public static final EntityType<InquisitorEntity> INQUISITOR = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"inquisitor"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, InquisitorEntity::new).dimensions(EntityDimensions.fixed(0.5f, 2.48f)).build()
     );
     public static final EntityType<MarauderEntity> MARAUDER = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"marauder"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, MarauderEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
+    );
+    public static final EntityType<AlchemistEntity> ALCHEMIST = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"alchemist"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, AlchemistEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
     );
     public static final EntityType<SurrenderedEntity> SURRENDERED = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"surrendered"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SurrenderedEntity::new).fireImmune().dimensions(EntityDimensions.fixed(0.5f, 1.42f)).build()

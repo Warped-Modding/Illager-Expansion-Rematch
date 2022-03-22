@@ -1,13 +1,20 @@
 package me.sandbox.entity;
 
+import me.sandbox.client.particle.ParticleRegistry;
 import me.sandbox.entity.projectile.SkullboltEntity;
 import me.sandbox.sounds.SoundRegistry;
+import net.minecraft.client.render.entity.feature.SkinOverlayOwner;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.MerchantEntity;
@@ -23,73 +30,142 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.Nullable;
 
-public class NecromancerEntity
-        extends SpellcastingIllagerEntity {
+import java.util.List;
+
+public class NecromancerEntity extends SpellcastingIllagerEntity implements SkinOverlayOwner
+{
     @Nullable
     private SheepEntity wololoTarget;
     private int cooldown;
+    private int undeadtick;
+    private int particletick;
+    private int summoncooldown;
+    private static final TrackedData<Boolean> SHIELDED = DataTracker.registerData(NecromancerEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private AttributeContainer attributeContainer;
 
-    public NecromancerEntity(EntityType<? extends NecromancerEntity> entityType, World world) {
-        super((EntityType<? extends SpellcastingIllagerEntity>)entityType, world);
+    public NecromancerEntity(final EntityType<? extends NecromancerEntity> entityType, final World world) {
+        super(entityType, world);
         this.experiencePoints = 15;
     }
 
-    @Override
     protected void initGoals() {
         super.initGoals();
-        this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new NecromancerEntity.LookAtTargetOrWololoTarget());
+        this.goalSelector.add(0, new SwimGoal((MobEntity)this));
+        this.goalSelector.add(1, new LookAtTargetOrWololoTarget());
         this.goalSelector.add(4, new ConjureSkullGoal());
-        this.goalSelector.add(3, new SummonUndeadGoal());
-        this.goalSelector.add(2, new FleeEntityGoal<PlayerEntity>(this, PlayerEntity.class, 8.0f, 0.6, 1.0));
-        this.goalSelector.add(8, new WanderAroundGoal(this, 0.6));
+        this.goalSelector.add(3, new NecromancerEntity.SummonUndeadGoal());
+        this.goalSelector.add(5, new FleeEntityGoal<PlayerEntity>(this, PlayerEntity.class, 8.0f, 0.6, 1.0));
+        this.goalSelector.add(8, new WanderAroundGoal((PathAwareEntity)this, 0.6));
         this.goalSelector.add(9, new LookAtEntityGoal(this, PlayerEntity.class, 3.0f, 1.0f));
         this.goalSelector.add(10, new LookAtEntityGoal(this, MobEntity.class, 8.0f));
         this.targetSelector.add(1, new RevengeGoal(this, RaiderEntity.class).setGroupRevenge(new Class[0]));
         this.targetSelector.add(2, new ActiveTargetGoal<PlayerEntity>((MobEntity)this, PlayerEntity.class, true).setMaxTimeWithoutVisibility(300));
         this.targetSelector.add(3, new ActiveTargetGoal<MerchantEntity>((MobEntity)this, MerchantEntity.class, false).setMaxTimeWithoutVisibility(300));
         this.targetSelector.add(3, new ActiveTargetGoal<IronGolemEntity>((MobEntity)this, IronGolemEntity.class, false));
-    }
-    private AttributeContainer attributeContainer;
-    @Override
-    public AttributeContainer getAttributes() {
-        if (attributeContainer == null) {
-            attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes()
-                    .add(EntityAttributes.GENERIC_MAX_HEALTH, 34.0D)
-                    .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.38D)
-                    .build());
-        }
-        return attributeContainer;
+
     }
 
-    @Override
+    public AttributeContainer getAttributes() {
+        if (this.attributeContainer == null) {
+            this.attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 32.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.38).build());
+        }
+        return this.attributeContainer;
+    }
+
     protected void initDataTracker() {
+        this.dataTracker.startTracking(SHIELDED,false);
         super.initDataTracker();
     }
 
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
+    public void setShieldedState(final boolean isShielded) {
+        this.dataTracker.set(SHIELDED, isShielded);
+    }
+
+    public boolean getShieldedState() {
+        return (boolean)this.dataTracker.get(SHIELDED);
+    }
+
+    public void readCustomDataFromNbt(final NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
     }
 
-    @Override
     public SoundEvent getCelebratingSound() {
         return SoundEvents.ENTITY_ILLUSIONER_AMBIENT;
     }
 
-    @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
+    public void writeCustomDataToNbt(final NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
     }
 
-    @Override
     protected void mobTick() {
         super.mobTick();
-        --cooldown;
+        --this.summoncooldown;
+        --this.cooldown;
+        if (!this.getNearUndeadForLink().isEmpty()) {
+            ++this.particletick;
+            this.setShieldedState(true);
+            this.getNearUndeadForLink().forEach(this::doUndeadLinkLogic);
+            if (this.particletick == 10) {
+                this.getNearUndeadForLink().forEach(this::doUndeadLinkParticle);
+                this.particletick = 0;
+            }
+        }
+        else {
+            this.setShieldedState(false);
+        }
+        if (this.getTarget() instanceof SkeletonEntity) {
+            this.setTarget((LivingEntity)null);
+        }
+        if (!this.getNearUndeadForTarget().isEmpty()) {
+            this.getNearUndeadForTarget().forEach(this::setUndeadTarget);
+        }
     }
 
-    @Override
-    public boolean isTeammate(Entity other) {
+    public List<LivingEntity> getNearUndeadForLink() {
+        return (this.world.getEntitiesByClass(LivingEntity.class, this.getBoundingBox().expand(10.0), entity -> entity.getGroup() == EntityGroup.UNDEAD));
+    }
+
+    public List<LivingEntity> getNearUndeadForTarget() {
+        return (this.world.getEntitiesByClass(LivingEntity.class, this.getBoundingBox().expand(30.0), entity -> entity.getGroup() == EntityGroup.UNDEAD));
+    }
+
+    public void doUndeadLinkLogic(final LivingEntity entity) {
+        entity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 5, 0));
+        entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 5, 0));
+        if (entity instanceof MobEntity) {
+            ((MobEntity)entity).setTarget(this.getTarget());
+        }
+        if (entity instanceof SkeletonEntity) {
+            entity.setFireTicks(0);
+        }
+    }
+
+    public void setUndeadTarget(final LivingEntity entity) {
+        if (this.getTarget() != null && entity instanceof MobEntity) {
+            ((MobEntity)entity).setTarget(this.getTarget());
+        }
+    }
+
+    public void doUndeadLinkParticle(final LivingEntity entity) {
+        final double x = entity.getX();
+        final double y = entity.getY();
+        final double z = entity.getZ();
+        if (this.world instanceof ServerWorld && this.particletick == 10) {
+            ((ServerWorld)this.world).spawnParticles(ParticleRegistry.NECROMANCER_BUFF, x, y + 1.0, z, 1, 0.4, 0.5, 0.4, 0.015);
+            ((ServerWorld)this.world).spawnParticles(ParticleRegistry.NECROMANCER_BUFF, this.getX(), this.getY() + 1.0, this.getZ(), 1, 0.4, 0.5, 0.4, 0.015);
+        }
+    }
+
+    public boolean damage(final DamageSource source, final float amount) {
+        if (this.getShieldedState()) {
+            final float halfamount = amount / 2.0f;
+            return super.damage(source, halfamount);
+        }
+        final boolean bl2 = super.damage(source, amount);
+        return bl2;
+    }
+
+    public boolean isTeammate(final Entity other) {
         if (other == null) {
             return false;
         }
@@ -100,31 +176,21 @@ public class NecromancerEntity
             return true;
         }
         if (other instanceof VexEntity) {
-            return this.isTeammate(((VexEntity)other).getOwner());
+            return this.isTeammate((Entity)((VexEntity)other).getOwner());
         }
-        if (other instanceof LivingEntity && ((LivingEntity)other).getGroup() == EntityGroup.ILLAGER) {
-            return this.getScoreboardTeam() == null && other.getScoreboardTeam() == null;
-        }
-        return false;
+        return other instanceof LivingEntity && ((LivingEntity)other).getGroup() == EntityGroup.ILLAGER && this.getScoreboardTeam() == null && other.getScoreboardTeam() == null;
     }
 
-    @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_ILLUSIONER_AMBIENT;
     }
 
-    @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_ILLUSIONER_DEATH;
     }
 
-    @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
+    protected SoundEvent getHurtSound(final DamageSource source) {
         return SoundEvents.ENTITY_ILLUSIONER_HURT;
-    }
-
-    void setWololoTarget(@Nullable SheepEntity sheep) {
-        this.wololoTarget = sheep;
     }
 
     @Nullable
@@ -132,20 +198,22 @@ public class NecromancerEntity
         return this.wololoTarget;
     }
 
-    @Override
     protected SoundEvent getCastSpellSound() {
         return SoundEvents.ENTITY_EVOKER_CAST_SPELL;
     }
 
-    @Override
-    public void addBonusForWave(int wave, boolean unused) {
+    public void addBonusForWave(final int wave, final boolean unused) {
     }
-    @Override
+
     public IllagerEntity.State getState() {
         if (this.isSpellcasting()) {
             return IllagerEntity.State.SPELLCASTING;
         }
         return IllagerEntity.State.CROSSED;
+    }
+
+    public boolean shouldRenderOverlay() {
+        return this.getShieldedState();
     }
 
     class LookAtTargetOrWololoTarget

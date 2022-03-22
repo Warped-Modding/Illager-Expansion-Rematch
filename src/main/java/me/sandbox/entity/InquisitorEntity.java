@@ -1,55 +1,91 @@
 package me.sandbox.entity;
 
-import com.google.common.collect.Maps;
 import me.sandbox.sounds.SoundRegistry;
-import net.minecraft.block.*;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.pathing.*;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import com.google.common.collect.Sets;
 import net.minecraft.enchantment.Enchantment;
+import java.util.HashMap;
+
+import net.minecraft.entity.mob.*;
+import net.minecraft.village.raid.Raid;
+import java.util.Map;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.NavigationConditions;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.ai.pathing.MobNavigation;
-import net.minecraft.entity.attribute.AttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributes;
+import com.google.common.collect.Maps;
+import net.minecraft.world.*;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import java.util.function.Consumer;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ItemStackParticleEffect;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.IllagerEntity;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.RavagerEntity;
+import net.minecraft.entity.EntityGroup;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.entity.EquipmentSlot;
+import org.jetbrains.annotations.Nullable;
+import net.minecraft.entity.EntityData;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.LivingEntity;
+import java.util.List;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import java.util.Iterator;
+import net.minecraft.util.math.Box;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.entity.Entity;
+import net.minecraft.block.GlassBlock;
+import net.minecraft.block.DoorBlock;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.ai.NavigationConditions;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.raid.RaiderEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.village.raid.Raid;
-import net.minecraft.world.*;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.attribute.AttributeContainer;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.item.Item;
+import java.util.Set;
 
-import java.util.HashMap;
+public class InquisitorEntity extends IllagerEntity
+{
+    public boolean finalRoar;
+    public int stunTick;
+    public boolean isStunned;
+    public int blockedCount;
+    public static final Set<Item> AXES;
+    private static final TrackedData<Boolean> STUNNED = DataTracker.registerData(InquisitorEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> FINAL_ROAR = DataTracker.registerData(InquisitorEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private AttributeContainer attributeContainer;
+    static {
+        AXES = Sets.newHashSet(Items.DIAMOND_AXE, Items.STONE_AXE, Items.IRON_AXE, Items.NETHERITE_AXE, Items.WOODEN_AXE, Items.GOLDEN_AXE);
+    }
 
-public class InquisitorEntity
-        extends IllagerEntity{
-    public boolean isUsingHatchet;
-
-    public InquisitorEntity(EntityType<? extends InquisitorEntity> entityType, World world) {
-        super((EntityType<? extends IllagerEntity>) entityType, world);
+    public InquisitorEntity(final EntityType<? extends InquisitorEntity> entityType, final World world) {
+        super(entityType, world);
+        this.finalRoar = false;
+        this.stunTick = 40;
+        this.isStunned = false;
+        this.blockedCount = 0;
         this.experiencePoints = 25;
     }
 
-    @Override
     protected void initGoals() {
         super.initGoals();
-        this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(2, new IllagerEntity.LongDoorInteractGoal(this));
+        this.goalSelector.add(0, new SwimGoal((MobEntity)this));
         this.goalSelector.add(4, new InquisitorEntity.AttackGoal(this));
         this.targetSelector.add(1, new RevengeGoal(this, RaiderEntity.class).setGroupRevenge(new Class[0]));
         this.targetSelector.add(2, new ActiveTargetGoal<PlayerEntity>((MobEntity) this, PlayerEntity.class, true));
@@ -57,127 +93,231 @@ public class InquisitorEntity
         this.targetSelector.add(3, new ActiveTargetGoal<IronGolemEntity>((MobEntity) this, IronGolemEntity.class, true));
         this.goalSelector.add(8, new WanderAroundGoal(this, 0.6));
         this.goalSelector.add(9, new LookAtEntityGoal(this, PlayerEntity.class, 3.0f, 1.0f));
-        this.goalSelector.add(10, new LookAtEntityGoal(this, MobEntity.class, 8.0f));
+        this.goalSelector.add(10, new LookAtEntityGoal((MobEntity)this, MobEntity.class, 8.0f));
     }
 
-    @Override
     protected void mobTick() {
-        if (!this.isAiDisabled() && NavigationConditions.hasMobNavigation(this)) {
-            boolean bl = ((ServerWorld) this.world).hasRaidAt(this.getBlockPos());
-            ((MobNavigation) this.getNavigation()).setCanPathThroughDoors(bl);
+        if (!this.isAiDisabled() && NavigationConditions.hasMobNavigation((MobEntity)this)) {
+            ((MobNavigation)this.getNavigation()).setCanPathThroughDoors(true);
         }
         super.mobTick();
     }
 
-    private AttributeContainer attributeContainer;
-
-    @Override
     public AttributeContainer getAttributes() {
-        if (attributeContainer == null) {
-            attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes()
-                    .add(EntityAttributes.GENERIC_MAX_HEALTH, 80.0D)
-                    .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.33D)
-                    .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 7.0D)
-                    .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK,1.6D)
-                    .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.8D)
-                    .build());
+        if (this.attributeContainer == null) {
+            this.attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 80.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.33).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10.0).add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.6).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.8).build());
         }
-        return attributeContainer;
+        return this.attributeContainer;
     }
-    @Override
+
     public void tickMovement() {
         if (this.horizontalCollision && this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
             boolean bl = false;
-            Box box = this.getBoundingBox().expand(0.3);
-            for (BlockPos blockPos : BlockPos.iterate(MathHelper.floor(box.minX), MathHelper.floor(box.minY), MathHelper.floor(box.minZ), MathHelper.floor(box.maxX), MathHelper.floor(box.maxY), MathHelper.floor(box.maxZ))) {
-                BlockState blockState = this.world.getBlockState(blockPos);
-                Block block = blockState.getBlock();
-                if (!(block instanceof LeavesBlock || block instanceof DoorBlock || block instanceof GlassBlock)) continue;
-                bl = this.world.breakBlock(blockPos, true, this) || bl;
+            final Box box = this.getBoundingBox().expand(0.5);
+            for (final BlockPos blockPos : BlockPos.iterate(MathHelper.floor(box.minX), MathHelper.floor(box.minY), MathHelper.floor(box.minZ), MathHelper.floor(box.maxX), MathHelper.floor(box.maxY), MathHelper.floor(box.maxZ))) {
+                final BlockState blockState = this.world.getBlockState(blockPos);
+                final Block block = blockState.getBlock();
+                if (!(block instanceof LeavesBlock) && !(block instanceof DoorBlock) && !(block instanceof GlassBlock)) {
+                    continue;
+                }
+                bl = (this.world.breakBlock(blockPos, true, (Entity)this) || bl);
+                if (!(block instanceof DoorBlock)) {
+                    continue;
+                }
+                this.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 1.0f, 1.0f);
             }
         }
         super.tickMovement();
     }
 
+    public boolean canSee(final Entity entity) {
+        return !this.getStunnedState() && super.canSee(entity);
+    }
 
-    @Override
+    protected boolean isImmobile() {
+        return super.isImmobile() || this.getStunnedState();
+    }
+
+    public void writeCustomDataToNbt(final NbtCompound nbt) {
+        nbt.putBoolean("Stunned", this.isStunned);
+        nbt.putBoolean("FinalRoar", this.finalRoar);
+        super.writeCustomDataToNbt(nbt);
+    }
+
+    public void readCustomDataFromNbt(final NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        this.setStunnedState(nbt.getBoolean("Stunned"));
+        this.setFinalRoarState(nbt.getBoolean("FinalRoar"));
+    }
+
+    protected void initDataTracker() {
+        this.dataTracker.startTracking(STUNNED,false);
+        this.dataTracker.startTracking(FINAL_ROAR, false);
+        super.initDataTracker();
+    }
+
+    public void setStunnedState(final boolean isStunned) {
+        this.dataTracker.set(STUNNED, isStunned);
+    }
+
+    public boolean getStunnedState() {
+        return (boolean)this.dataTracker.get(STUNNED);
+    }
+
+    public void setFinalRoarState(final boolean hasdoneRoar) {
+        this.dataTracker.set(FINAL_ROAR, hasdoneRoar);
+    }
+
+    public boolean getFinalRoarState() {
+        return (boolean)this.dataTracker.get(FINAL_ROAR);
+    }
+
     public IllagerEntity.State getState() {
         if (this.isCelebrating()) {
             return IllagerEntity.State.CELEBRATING;
         }
         if (this.isAttacking()) {
-            return State.ATTACKING;
+            return IllagerEntity.State.ATTACKING;
         }
-        return State.NEUTRAL;
+        return IllagerEntity.State.NEUTRAL;
     }
 
-    @Override
     public SoundEvent getCelebratingSound() {
         return SoundEvents.ENTITY_VINDICATOR_CELEBRATE;
     }
-
     @Override
+    protected EntityNavigation createNavigation(World world) {
+        return new InquisitorEntity.Navigation(this, world);
+    }
+
+    public void tick() {
+        super.tick();
+        if (!this.isAlive()) {
+            return;
+        }
+        if (this.getStunnedState()) {
+            --this.stunTick;
+            if (this.stunTick <= 0) {
+                this.setStunnedState(false);
+                this.stunTick = 40;
+            }
+        }
+    }
+
+    private List<LivingEntity> getTargets() {
+        return (this.world.getEntitiesByClass(LivingEntity.class, this.getBoundingBox().expand(8.0), entity -> !(entity instanceof HostileEntity)));
+    }
+
+    private void knockBack(final Entity entity) {
+        final double d = entity.getX() - this.getX();
+        final double e = entity.getZ() - this.getZ();
+        final double f = Math.max(d * d + e * e, 0.001);
+        entity.addVelocity(d / f * 0.6, 0.4, e / f * 0.6);
+    }
+
+    protected void knockback(final LivingEntity target) {
+        this.knockBack((Entity)target);
+        target.velocityModified = true;
+        target.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 200, 0));
+    }
+
     @Nullable
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-        EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
-        ((MobNavigation) this.getNavigation()).setCanPathThroughDoors(true);
+    public EntityData initialize(final ServerWorldAccess world, final LocalDifficulty difficulty, final SpawnReason spawnReason, @Nullable final EntityData entityData, @Nullable final NbtCompound entityNbt) {
+        final EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+        ((MobNavigation)this.getNavigation()).setCanPathThroughDoors(true);
         this.initEquipment(difficulty);
         this.updateEnchantments(difficulty);
         return entityData2;
     }
 
-    @Override
-    protected void initEquipment(LocalDifficulty difficulty) {
+    protected void initEquipment(final LocalDifficulty difficulty) {
         if (this.getRaid() == null) {
-            this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.DIAMOND_AXE));
+            this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
+            this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(Items.SHIELD));
         }
     }
 
-    @Override
-    public boolean isTeammate(Entity other) {
-        if (super.isTeammate(other)) {
-            return true;
-        }
-        if (other instanceof LivingEntity && ((LivingEntity) other).getGroup() == EntityGroup.ILLAGER) {
-            return this.getScoreboardTeam() == null && other.getScoreboardTeam() == null;
-        }
-        return false;
+    public boolean isTeammate(final Entity other) {
+        return super.isTeammate(other) || (other instanceof LivingEntity && ((LivingEntity)other).getGroup() == EntityGroup.ILLAGER && this.getScoreboardTeam() == null && other.getScoreboardTeam() == null);
     }
 
+    public boolean damage(final DamageSource source, final float amount) {
+        final Entity attacker = source.getAttacker();
+        final boolean hasShield = this.getOffHandStack().isOf(Items.SHIELD);
+        if (this.isAttacking()) {
+            if (attacker instanceof LivingEntity) {
+                final ItemStack item = ((LivingEntity) attacker).getMainHandStack();
+                final ItemStack basherItem = this.getOffHandStack();
+                final boolean isShield = basherItem.isOf(Items.SHIELD);
+                if ((InquisitorEntity.AXES.contains(item.getItem()) || attacker instanceof IronGolemEntity || this.blockedCount >= 4) && isShield) {
+                    this.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.0f, 1.0f);
+                    this.setStunnedState(true);
+                    if (this.world instanceof ServerWorld) {
+                        ((ServerWorld)this.world).spawnParticles((ParticleEffect)new ItemStackParticleEffect(ParticleTypes.ITEM, basherItem), this.getX(), this.getY() + 1.5, this.getZ(), 30, 0.3, 0.2, 0.3, 0.003);
+                        ((ServerWorld)this.world).spawnParticles((ParticleEffect)ParticleTypes.CLOUD, this.getX(), this.getY() + 1.0, this.getZ(), 30, 0.3, 0.3, 0.3, 0.1);
+                        this.playSound(SoundEvents.ENTITY_RAVAGER_ROAR, 1.0f, 1.0f);
+                        this.equipStack(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
+                    }
+                    this.getTargets().forEach(this::knockback);
+                    return super.damage(source, amount);
+                }
+            }
+            if (source.getSource() instanceof PersistentProjectileEntity && hasShield) {
+                this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0f, 1.0f);
+                ++this.blockedCount;
+                return false;
+            }
+            if (source.getSource() instanceof LivingEntity && hasShield) {
+                ++this.blockedCount;
+                this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0f, 1.0f);
+                return false;
+            }
+            if (this.getHealth() <= this.getMaxHealth() / 3.0f && !hasShield && !this.getFinalRoarState() && this.isAlive()) {
+                this.setFinalRoarState(true);
+                this.setStunnedState(true);
+                if (this.world instanceof ServerWorld) {
+                    ((ServerWorld)this.world).spawnParticles((ParticleEffect)ParticleTypes.CLOUD, this.getX(), this.getY() + 1.0, this.getZ(), 30, 0.3, 0.3, 0.3, 0.1);
+                    ((ServerWorld)this.world).spawnParticles((ParticleEffect)ParticleTypes.ANGRY_VILLAGER, this.getX(), this.getY() + 1.0, this.getZ(), 8, 0.3, 0.3, 0.3, 0.1);
+                    this.playSound(SoundEvents.ENTITY_RAVAGER_ROAR, 1.0f, 1.0f);
+                    this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 0));
+                }
+                this.getTargets().forEach(this::knockback);
+            }
+        }
+        final boolean bl2 = super.damage(source, amount);
+        return bl2;
+    }
 
-    @Override
     protected SoundEvent getAmbientSound() {
         return SoundRegistry.ILLAGER_BRUTE_AMBIENT;
     }
 
-    @Override
     protected SoundEvent getDeathSound() {
         return SoundRegistry.ILLAGER_BRUTE_DEATH;
     }
 
-    @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
+    protected SoundEvent getHurtSound(final DamageSource source) {
         return SoundRegistry.ILLAGER_BRUTE_HURT;
     }
 
-    @Override
-    public void addBonusForWave(int wave, boolean unused) {
-        boolean bl;
-        ItemStack itemStack = new ItemStack(Items.DIAMOND_AXE);
-        Raid raid = this.getRaid();
+    public void addBonusForWave(final int wave, final boolean unused) {
+        final ItemStack itemStack = new ItemStack((ItemConvertible)Items.STONE_SWORD);
+        final ItemStack itemstack1 = new ItemStack((ItemConvertible)Items.SHIELD);
+        final Raid raid = this.getRaid();
         int i = 1;
         if (wave > raid.getMaxWaves(Difficulty.NORMAL)) {
             i = 2;
         }
-        boolean bl2 = bl = this.random.nextFloat() <= raid.getEnchantmentChance();
+        final boolean bl2;
+        final boolean bl = bl2 = (this.random.nextFloat() <= raid.getEnchantmentChance());
         if (bl) {
             HashMap<Enchantment, Integer> map = Maps.newHashMap();
             map.put(Enchantments.SHARPNESS, i);
             EnchantmentHelper.set(map, itemStack);
         }
         this.equipStack(EquipmentSlot.MAINHAND, itemStack);
+        this.equipStack(EquipmentSlot.OFFHAND, itemstack1);
     }
-
     class AttackGoal
             extends MeleeAttackGoal {
         public AttackGoal(InquisitorEntity vindicator) {
@@ -192,6 +332,24 @@ public class InquisitorEntity
                 return f * 2.0f * (f * 2.0f) + entity.getWidth();
             }
             return super.getSquaredMaxAttackDistance(entity);
+        }
+    }
+    class Navigation extends MobNavigation {
+        public Navigation(final MobEntity mobEntity, final World world) {
+            super(mobEntity, world);
+        }
+
+        protected PathNodeNavigator createPathNodeNavigator(final int range) {
+            this.nodeMaker = new InquisitorEntity.PathNodeMaker();
+            return new PathNodeNavigator(this.nodeMaker, range);
+        }
+    }
+    class PathNodeMaker extends LandPathNodeMaker {
+        protected PathNodeType adjustNodeType(final BlockView world, final boolean canOpenDoors, final boolean canEnterOpenDoors, final BlockPos pos, final PathNodeType type) {
+            if (type == PathNodeType.LEAVES) {
+                return PathNodeType.OPEN;
+            }
+            return super.adjustNodeType(world, canOpenDoors, canEnterOpenDoors, pos, type);
         }
     }
 }

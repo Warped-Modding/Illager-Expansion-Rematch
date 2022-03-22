@@ -73,7 +73,7 @@ public class AlchemistEntity extends IllagerEntity implements RangedAttackMob
     protected void initGoals() {
         super.initGoals();
         this.goalSelector.add(0, (Goal)new SwimGoal((MobEntity)this));
-        this.goalSelector.add(4, (Goal)new PotionBowAttackGoal<Object>(this, 0.5, 20, 15.0f));
+        this.goalSelector.add(4, (Goal)new PotionBowAttackGoal<AlchemistEntity>(this, 0.5, 20, 15.0f));
         this.goalSelector.add(8, (Goal)new WanderAroundGoal((PathAwareEntity)this, 0.6));
         this.goalSelector.add(9, (Goal)new LookAtEntityGoal((MobEntity)this, (Class)PlayerEntity.class, 3.0f, 1.0f));
         this.goalSelector.add(10, (Goal)new LookAtEntityGoal((MobEntity)this, (Class)MobEntity.class, 8.0f));
