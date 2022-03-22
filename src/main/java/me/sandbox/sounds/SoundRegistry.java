@@ -30,6 +30,11 @@ public class SoundRegistry {
     public static SoundEvent ILLAGER_BRUTE_AMBIENT = registerSoundEvent("illager_brute_ambient");
     public static SoundEvent ILLAGER_BRUTE_HURT = registerSoundEvent("illager_brute_hurt");
     public static SoundEvent ILLAGER_BRUTE_DEATH = registerSoundEvent("illager_brute_death");
+    public static SoundEvent PROVOKER_AMBIENT = registerSoundEvent("provoker_idle");
+    public static SoundEvent PROVOKER_HURT = registerSoundEvent("provoker_hurt");
+    public static SoundEvent PROVOKER_DEATH = registerSoundEvent("provoker_death");
+    public static SoundEvent PROVOKER_CELEBRATE = registerSoundEvent("provoker_celebrate");
+
 
 
 

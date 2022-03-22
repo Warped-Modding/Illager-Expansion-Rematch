@@ -233,5 +233,33 @@
     "sounds": [
       "illagerexp:illager_brute_death1"
     ]
+  },
+  "provoker_death": {
+    "subtitle": "illagerexp.provoker_death",
+    "sounds": [
+      "illagerexp:provoker_death"
+    ]
+  },
+  "provoker_hurt": {
+    "subtitle": "illagerexp.provoker_hurt",
+    "sounds": [
+      "illagerexp:provoker_hurt1",
+      "illagerexp:provoker_hurt2",
+      "illagerexp:provoker_hurt3"
+    ]
+  },
+  "provoker_idle": {
+    "subtitle": "illagerexp.provoker_idle",
+    "sounds": [
+      "illagerexp:provoker_idle1",
+      "illagerexp:provoker_idle2",
+      "illagerexp:provoker_idle3"
+    ]
+  },
+  "provoker_celebrate": {
+    "subtitle": "illagerexp.provoker_celebrate",
+    "sounds": [
+      "illagerexp:provoker_celebrate"
+    ]
   }
 }

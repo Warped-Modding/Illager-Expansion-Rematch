@@ -1,6 +1,7 @@
 package me.sandbox.entity;
 
 import com.chocohead.mm.api.ClassTinkerers;
+import me.sandbox.sounds.SoundRegistry;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -97,7 +98,7 @@ public class ProvokerEntity
 
     @Override
     public SoundEvent getCelebratingSound() {
-        return SoundEvents.ENTITY_EVOKER_CELEBRATE;
+        return SoundRegistry.PROVOKER_CELEBRATE;
     }
 
     @Override
@@ -133,17 +134,17 @@ public class ProvokerEntity
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_EVOKER_AMBIENT;
+        return SoundRegistry.PROVOKER_AMBIENT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_EVOKER_DEATH;
+        return SoundRegistry.PROVOKER_DEATH;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.ENTITY_EVOKER_HURT;
+        return SoundRegistry.PROVOKER_HURT;
     }
 
     void setWololoTarget(@Nullable SheepEntity sheep) {
