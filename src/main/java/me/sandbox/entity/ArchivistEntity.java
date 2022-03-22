@@ -1,5 +1,6 @@
 package me.sandbox.entity;
 
+import com.chocohead.mm.api.ClassTinkerers;
 import me.sandbox.sounds.SoundRegistry;
 import me.sandbox.util.spellutil.EnchantToolUtil;
 import net.minecraft.entity.*;
@@ -330,7 +331,7 @@ public class ArchivistEntity
 
         @Override
         protected SpellcastingIllagerEntity.Spell getSpell() {
-            return Spell.WOLOLO;
+            return ClassTinkerers.getEnum(Spell.class, "ENCHANT");
         }
     }
 }

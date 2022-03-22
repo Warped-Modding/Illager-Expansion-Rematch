@@ -13,6 +13,7 @@ public class SorcererRender extends MobEntityRenderer<SorcererEntity, HatIllager
 
     public SorcererRender(EntityRendererFactory.Context context) {
         super(context, new HatIllagerEntityModel<>(context.getPart(ModModelLayers.HAT_ILLAGER)), 0.5f);
+        this.model.getHat().visible = true;
     }
 
     @Override

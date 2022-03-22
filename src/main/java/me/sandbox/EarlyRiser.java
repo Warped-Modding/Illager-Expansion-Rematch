@@ -32,5 +32,15 @@ public class EarlyRiser implements Runnable
                 .addEnum("INQUISITOR", () -> new Object[]{EntityRegistry.INQUISITOR, new int[]{0, 0, 0, 0, 0, 0, 0, 1}})
                 .addEnum("ALCHEMIST", () -> new Object[]{EntityRegistry.INQUISITOR, new int[]{0, 0, 0, 0, 1, 1, 2, 2}})
                 .build();
+
+        final String SpellcastingIllagerEntity = remapper.mapClassName("intermediary", "net.minecraft.class_1617$class_1618");
+        ClassTinkerers.enumBuilder(SpellcastingIllagerEntity, int.class, double.class, double.class, double.class)
+                .addEnum("ENCHANT",6, 0.8, 0.8, 0.2 )
+                .addEnum("CONJURE_FLAMES", 7, 1.8, 0.0, 1.8 )
+                .addEnum("CONJURE_TELEPORT", 8, 1.5, 1.5, 0.8)
+                .addEnum("NECRORAISE", 9, 0.3, 0.8, 0.05)
+                .addEnum("CONJURE_SKULLBOLT",10, 0.5, 0.05, 0.05)
+                .addEnum("PROVOKE", 11, 1.0, 0.8, 0.75)
+                .build();
     }
 }

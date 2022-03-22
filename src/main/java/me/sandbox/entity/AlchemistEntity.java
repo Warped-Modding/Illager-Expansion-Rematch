@@ -165,11 +165,11 @@ public class AlchemistEntity extends IllagerEntity implements RangedAttackMob
     }
 
     public void setPotionState(final boolean potionState) {
-        this.dataTracker.set((TrackedData)AlchemistEntity.POTION, (Object)potionState);
+        this.dataTracker.set(POTION, potionState);
     }
 
     public boolean getPotionState() {
-        return (boolean)this.dataTracker.get((TrackedData)AlchemistEntity.POTION);
+        return (boolean)this.dataTracker.get(POTION);
     }
 
     public void setBowState(final boolean bowState) {

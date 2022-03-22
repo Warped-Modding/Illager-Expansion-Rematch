@@ -1,5 +1,6 @@
 package me.sandbox.entity;
 
+import com.chocohead.mm.api.ClassTinkerers;
 import me.sandbox.client.particle.ParticleRegistry;
 import me.sandbox.sounds.SoundRegistry;
 import me.sandbox.util.spellutil.SetMagicFireUtil;
@@ -100,27 +101,11 @@ public class SorcererEntity
         super.writeCustomDataToNbt(nbt);
     }
 
-    private List<LivingEntity> getTargets() {
-        return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(50), entity -> !(entity instanceof IllagerEntity) && !(entity instanceof SurrenderedEntity) && !(entity instanceof RavagerEntity) && entity.hasStatusEffect(StatusEffects.LEVITATION));
-    }
-    private void doDamage(LivingEntity entity) {
-        entity.addStatusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 0));
-        double x = entity.getX();
-        double y = entity.getY()+1;
-        double z = entity.getZ();
-        entity.pushAwayFrom(SorcererEntity.this);
-        ((ServerWorld)world).spawnParticles(ParticleTypes.WITCH,x, y,z,45,0.4D, 0.4D,0.4D,0.03D);
-    }
-
     @Override
     protected void mobTick() {
         super.mobTick();
         --cooldown;
         --flamecooldown;
-        if (this.isSpellcasting() && offenseSpell) {
-            SpellParticleUtil spellParticleUtil = new SpellParticleUtil();
-            spellParticleUtil.setSpellParticles(this, world, ParticleRegistry.MAGIC_FLAME,1, 0.08D);
-        }
     }
     @Override
     public boolean isTeammate(Entity other) {
@@ -157,9 +142,6 @@ public class SorcererEntity
         return SoundRegistry.SORCERER_HURT;
     }
 
-    void setWololoTarget(@Nullable SheepEntity sheep) {
-        this.wololoTarget = sheep;
-    }
 
     @Nullable
     SheepEntity getWololoTarget() {
@@ -259,7 +241,7 @@ public class SorcererEntity
 
         @Override
         protected SpellcastingIllagerEntity.Spell getSpell() {
-            return Spell.FANGS;
+            return ClassTinkerers.getEnum(Spell.class, "CONJURE_TELEPORT");
         }
     }
     public class ConjureFlamesGoal
@@ -320,7 +302,7 @@ public class SorcererEntity
 
         @Override
         protected SpellcastingIllagerEntity.Spell getSpell() {
-            return Spell.FANGS;
+            return ClassTinkerers.getEnum(Spell.class, "CONJURE_FLAMES");
         }
     }
 }
