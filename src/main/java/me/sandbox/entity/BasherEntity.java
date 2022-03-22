@@ -49,6 +49,7 @@ public class BasherEntity
         extends IllagerEntity {
     public int stunTick = 60;
     public boolean isStunned = false;
+    public int blockedCount;
     private static final TrackedData<Boolean> STUNNED = DataTracker.registerData(BasherEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public BasherEntity(EntityType<? extends BasherEntity> entityType, World world) {
@@ -171,7 +172,7 @@ public class BasherEntity
             if (attacker instanceof LivingEntity) {
                 ItemStack item = ((LivingEntity) attacker).getMainHandStack();
                 ItemStack basherItem = this.getMainHandStack();
-                if ((item.isOf(Items.DIAMOND_AXE) || item.isOf(Items.IRON_AXE) || item.isOf(Items.GOLDEN_AXE) || item.isOf(Items.NETHERITE_AXE) || item.isOf(Items.STONE_AXE) || item.isOf(Items.WOODEN_AXE)) && basherItem.isOf(Items.SHIELD) || (attacker instanceof IronGolemEntity && basherItem.isOf(Items.SHIELD))) {
+                if ((item.isOf(Items.DIAMOND_AXE) || item.isOf(Items.IRON_AXE) || item.isOf(Items.GOLDEN_AXE) || item.isOf(Items.NETHERITE_AXE) || item.isOf(Items.STONE_AXE) || item.isOf(Items.WOODEN_AXE)) && basherItem.isOf(Items.SHIELD) || (attacker instanceof IronGolemEntity && basherItem.isOf(Items.SHIELD)) || (this.blockedCount >= 4 && basherItem.isOf(Items.SHIELD))) {
                     this.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.0f, 1.0f);
                     this.setStunnedState(true);
                     if (world instanceof ServerWorld) {
@@ -183,10 +184,12 @@ public class BasherEntity
             }
             if ((source.getSource()) instanceof PersistentProjectileEntity && hasShield) {
                 this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0f, 1.0f);
+                ++blockedCount;
                 return false;
             }
             if ((source.getSource()) instanceof LivingEntity && !(canBlockMelee == 0) && hasShield) {
                 this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0f, 1.0f);
+                ++blockedCount;
                 return false;
             }
         }
