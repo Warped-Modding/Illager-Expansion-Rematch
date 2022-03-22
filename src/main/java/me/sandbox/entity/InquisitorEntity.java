@@ -272,17 +272,17 @@ public class InquisitorEntity extends IllagerEntity
                 this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0f, 1.0f);
                 return false;
             }
-            if (this.getHealth() <= this.getMaxHealth() / 3.0f && !hasShield && !this.getFinalRoarState() && this.isAlive()) {
-                this.setFinalRoarState(true);
-                this.setStunnedState(true);
-                if (this.world instanceof ServerWorld) {
-                    ((ServerWorld)this.world).spawnParticles((ParticleEffect)ParticleTypes.CLOUD, this.getX(), this.getY() + 1.0, this.getZ(), 30, 0.3, 0.3, 0.3, 0.1);
-                    ((ServerWorld)this.world).spawnParticles((ParticleEffect)ParticleTypes.ANGRY_VILLAGER, this.getX(), this.getY() + 1.0, this.getZ(), 8, 0.3, 0.3, 0.3, 0.1);
-                    this.playSound(SoundEvents.ENTITY_RAVAGER_ROAR, 1.0f, 1.0f);
-                    this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 0));
-                }
-                this.getTargets().forEach(this::knockback);
+        }
+        if (this.getHealth() <= this.getMaxHealth() / 3.0f && !hasShield && !this.getFinalRoarState() && this.isAlive()) {
+            this.setFinalRoarState(true);
+            this.setStunnedState(true);
+            if (this.world instanceof ServerWorld) {
+                ((ServerWorld)this.world).spawnParticles((ParticleEffect)ParticleTypes.CLOUD, this.getX(), this.getY() + 1.0, this.getZ(), 30, 0.3, 0.3, 0.3, 0.1);
+                ((ServerWorld)this.world).spawnParticles((ParticleEffect)ParticleTypes.ANGRY_VILLAGER, this.getX(), this.getY() + 1.0, this.getZ(), 8, 0.3, 0.3, 0.3, 0.1);
+                this.playSound(SoundEvents.ENTITY_RAVAGER_ROAR, 1.0f, 1.0f);
+                this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 0));
             }
+            this.getTargets().forEach(this::knockback);
         }
         final boolean bl2 = super.damage(source, amount);
         return bl2;

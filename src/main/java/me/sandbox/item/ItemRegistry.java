@@ -85,10 +85,12 @@ public class ItemRegistry {
             new SpawnEggItem(EntityRegistry.FLAMECALLER,9541270,15246640, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
     public static final Item ARCHIVIST_SPAWN_EGG = registerItem("archivist_spawn_egg",
             new SpawnEggItem(EntityRegistry.ARCHIVIST,9541270,13251893, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
-    public static final Item ILLAGER_BRUTE_SPAWN_EGG = registerItem("illager_brute_spawn_egg",
+    public static final Item ILLAGER_BRUTE_SPAWN_EGG = registerItem("inquisitor_spawn_egg",
             new SpawnEggItem(EntityRegistry.INQUISITOR,9541270,4934471, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
     public static final Item MARAUDER_SPAWN_EGG = registerItem("marauder_spawn_egg",
             new SpawnEggItem(EntityRegistry.MARAUDER,5441030,9541270, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
+    public static final Item ALCHEMIST_SPAWN_EGG = registerItem("alchemist_spawn_egg",
+            new SpawnEggItem(EntityRegistry.ALCHEMIST,9541270,7550099, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
 
 
 

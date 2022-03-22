@@ -30,8 +30,9 @@
   "item.sandbox.sorcerer_spawn_egg": "Sorcerer Spawn Egg",
   "item.sandbox.flamecaller_spawn_egg": "Flamecaller Spawn Egg",
   "item.sandbox.archivist_spawn_egg": "Archivist Spawn Egg",
-  "item.sandbox.illager_brute_spawn_egg": "Illager Brute Spawn Egg",
+  "item.sandbox.inquisitor_spawn_egg": "Inquisitor Spawn Egg",
   "item.sandbox.marauder_spawn_egg": "Marauder Spawn Egg",
+  "item.sandbox.alchemist_spawn_egg": "Alchemist Spawn Egg",
 
 
   "block.sandbox.endergon_ore": "Endergon Ore",
@@ -55,8 +56,9 @@
   "entity.sandbox.sorcerer": "Sorcerer",
   "entity.sandbox.flamecaller": "Flamecaller",
   "entity.sandbox.archivist": "Archivist",
-  "entity.sandbox.illager_brute": "Illager Brute",
+  "entity.sandbox.inquisitor": "Inquisitor",
   "entity.sandbox.marauder": "Marauder",
+  "entity.sandbox.alchemist": "Alchemist",
 
   "itemGroup.sandbox.sandboxdecor" : "SB Decor",
   "itemGroup.sandbox.sandboxmisc" : "SB Misc",
