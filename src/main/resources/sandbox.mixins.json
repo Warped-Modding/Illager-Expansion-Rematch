@@ -9,7 +9,8 @@
     "IllagerModelMixin",
     "AnvilScreenHandlerMixin",
     "IllusionerEntityMixin",
-    "MarauderPatrolMixin"
+    "MarauderPatrolMixin",
+    "StructureFeatureAccessor"
   ],
   "client": [
   ],

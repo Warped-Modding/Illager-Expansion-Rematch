@@ -1,5 +1,6 @@
 package me.sandbox.entity;
 
+import com.chocohead.mm.api.ClassTinkerers;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -246,7 +247,7 @@ public class ProvokerEntity
 
         @Override
         protected SpellcastingIllagerEntity.Spell getSpell() {
-            return SpellcastingIllagerEntity.Spell.WOLOLO;
+            return ClassTinkerers.getEnum(Spell.class, "PROVOKE");
         }
     }
 }

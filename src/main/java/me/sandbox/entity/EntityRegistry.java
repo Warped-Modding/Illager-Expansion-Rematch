@@ -56,15 +56,6 @@ public class EntityRegistry {
             FabricEntityTypeBuilder.<InvokerFangsEntity>create(SpawnGroup.MISC, (entityType, world) -> (new InvokerFangsEntity(entityType, world))).dimensions(EntityDimensions.fixed(0.65f, 1.05f)).build()
     );
 
-    public static final EntityType<LostMinerEntity> LOST_MINER = Registry.register(Registry.ENTITY_TYPE, new Identifier(Sandbox.MOD_ID,"lost_miner"),
-            FabricEntityTypeBuilder.createMob()
-            .spawnGroup(SpawnGroup.MONSTER)
-            .entityFactory(LostMinerEntity::new)
-            .dimensions(EntityDimensions.changing(0.6F, 1.9F))
-            .spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LostMinerEntity::canSpawn)
-            .build()
-    );
-
     public static void registerEntities() {
         Sandbox.LOGGER.info("Registering mobs...");
     }

@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Sandbox Features",
-  "description": "Adds unique features to the Sandbox server!",
+  "description": "A 1.18.2 Fabric Mod that focuses on expanding content surrounding the mysterious Illagers in Minecraft!",
   "authors": [
     "Anyone who contributes :)"
   ],
@@ -33,7 +33,7 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.11.3",
+    "fabricloader": ">=0.13.3",
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17",

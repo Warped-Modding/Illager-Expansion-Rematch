@@ -1,0 +1,15 @@
+{
+
+  "type": "minecraft:village",
+
+  "config": {
+    "start_pool": "sandbox:illusioner_tower/illusioner_tower",
+
+    "size": 1
+  },
+
+  "biomes": "#sandbox:has_structure/illusioner_tower",
+
+  "adapt_noise": true,
+  "spawn_overrides": {}
+}

@@ -34,7 +34,6 @@ public class ClientRegistry implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         //entities
-        EntityRendererRegistry.register(EntityRegistry.LOST_MINER, LostMinerRender::new);
         EntityRendererRegistry.register(EntityRegistry.PROVOKER, ProvokerRender::new);
         EntityRendererRegistry.register(EntityRegistry.INVOKER, InvokerRender::new);
         EntityRendererRegistry.register(EntityRegistry.SURRENDERED, SurrenderedRender::new);

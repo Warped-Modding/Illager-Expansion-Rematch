@@ -1,0 +1,19 @@
+{
+
+  "structures": [
+    {
+      "structure": "sandbox:illusioner_tower",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 169476081,
+
+    "spacing": 21,
+
+
+    "separation": 16,
+
+    "type": "minecraft:random_spread"
+  }
+}

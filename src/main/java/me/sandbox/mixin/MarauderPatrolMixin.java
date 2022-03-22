@@ -1,5 +1,6 @@
 package me.sandbox.mixin;
 
+import net.minecraft.world.spawner.PatrolSpawner;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import net.minecraft.block.BlockState;
@@ -19,10 +20,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Random;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.gen.PillagerSpawner;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin({ PillagerSpawner.class })
+@Mixin( PatrolSpawner.class)
 public abstract class MarauderPatrolMixin
 {
     @Inject(at = { @At("HEAD") }, cancellable = true, method = { "spawnPillager(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;Z)Z" })

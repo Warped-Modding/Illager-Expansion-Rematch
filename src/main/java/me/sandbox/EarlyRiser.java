@@ -26,7 +26,6 @@ public class EarlyRiser implements Runnable
                 .addEnum("NECROMANCER", () -> new Object[]{EntityRegistry.NECROMANCER, new int[]{0, 0, 0, 0, 1, 1, 1, 1}})
                 .addEnum("SORCERER", () -> new Object[]{EntityRegistry.SORCERER, new int[]{0, 0, 0, 0, 0, 1, 1, 1}})
                 .addEnum("ILLUSIONER", () -> new Object[]{net.minecraft.entity.EntityType.ILLUSIONER, new int[]{0, 0, 0, 0, 0, 1, 1, 1}})
-                .addEnum("FLAMECALLER", () -> new Object[]{EntityRegistry.FLAMECALLER, new int[]{0, 0, 0, 0, 0, 1, 1, 1}})
                 .addEnum("ARCHIVIST", () -> new Object[]{EntityRegistry.ARCHIVIST, new int[]{0, 1, 0, 1, 1, 1, 2, 2}})
                 .addEnum("MARAUDER", () -> new Object[]{EntityRegistry.MARAUDER, new int[]{0, 1, 1, 1, 2, 2, 3, 2}})
                 .addEnum("INQUISITOR", () -> new Object[]{EntityRegistry.INQUISITOR, new int[]{0, 0, 0, 0, 0, 0, 0, 1}})

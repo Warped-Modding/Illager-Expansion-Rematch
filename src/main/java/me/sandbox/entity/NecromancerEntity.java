@@ -1,5 +1,6 @@
 package me.sandbox.entity;
 
+import com.chocohead.mm.api.ClassTinkerers;
 import me.sandbox.client.particle.ParticleRegistry;
 import me.sandbox.entity.projectile.SkullboltEntity;
 import me.sandbox.sounds.SoundRegistry;
@@ -272,7 +273,7 @@ public class NecromancerEntity extends SpellcastingIllagerEntity implements Skin
             }
             if(NecromancerEntity.this.world.isDay()) {
                 ServerWorld serverWorld = (ServerWorld) NecromancerEntity.this.world;
-                for (int i = 0; i < 3; ++i) {
+                for (int i = 0; i < 2; ++i) {
                     BlockPos blockPos = NecromancerEntity.this.getBlockPos().add(-2 + NecromancerEntity.this.random.nextInt(5), 1, -2 + NecromancerEntity.this.random.nextInt(5));
                     HuskEntity zombieEntity = EntityType.HUSK.create(NecromancerEntity.this.world);
                     zombieEntity.refreshPositionAndAngles(blockPos, 0.0f, 0.0f);
@@ -290,7 +291,7 @@ public class NecromancerEntity extends SpellcastingIllagerEntity implements Skin
 
         @Override
         protected SpellcastingIllagerEntity.Spell getSpell() {
-            return SpellcastingIllagerEntity.Spell.SUMMON_VEX;
+            return ClassTinkerers.getEnum(Spell.class, "NECRORAISE");
         }
     }
 
@@ -368,7 +369,7 @@ public class NecromancerEntity extends SpellcastingIllagerEntity implements Skin
 
         @Override
         protected SpellcastingIllagerEntity.Spell getSpell() {
-            return Spell.FANGS;
+            return ClassTinkerers.getEnum(Spell.class, "CONJURE_SKULLBOLT");
         }
     }
 }

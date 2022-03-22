@@ -71,8 +71,6 @@ public class ItemRegistry {
     //SPAWN EGGS
     public static final Item PROVOKER_SPAWN_EGG = registerItem("provoker_spawn_egg",
             new SpawnEggItem(EntityRegistry.PROVOKER,9541270,9399876, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
-    public static final Item LOST_MINER_SPAWN_EGG = registerItem("lost_miner_spawn_egg",
-            new SpawnEggItem(EntityRegistry.LOST_MINER,12895428,6704946, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
     public static final Item SURRENDERED_SPAWN_EGG = registerItem("surrendered_spawn_egg",
             new SpawnEggItem(EntityRegistry.SURRENDERED,11260369,11858160, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
     public static final Item NECROMANCER_SPAWN_EGG = registerItem("necromancer_spawn_egg",
