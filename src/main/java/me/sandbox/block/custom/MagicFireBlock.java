@@ -26,7 +26,7 @@ public class MagicFireBlock extends AbstractFireBlock {
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
             if (!(entity instanceof IllagerEntity || entity instanceof RavagerEntity) ) {
-                entity.damage(DamageSource.MAGIC, 2.0f);
+                entity.damage(DamageSource.MAGIC, 3.0f);
             } else {
                 return;
             }
