@@ -7,7 +7,9 @@
     "WoodlandMansionPiecesMixin",
     "SurrenderedChargeMixin",
     "IllagerModelMixin",
-    "AnvilScreenHandlerMixin"
+    "AnvilScreenHandlerMixin",
+    "IllusionerEntityMixin",
+    "MarauderPatrolMixin"
   ],
   "client": [
   ],

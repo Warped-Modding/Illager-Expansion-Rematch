@@ -17,7 +17,7 @@ public class SetMagicFireUtil {
         if (goodBlock(blockBelow)) {
             return;
         }
-        for (BlockPos blockradius : BlockPos.iterateOutwards(entitylocation, 1,0, 1)) {
+        for (BlockPos blockradius : BlockPos.iterateOutwards(entitylocation, 1,1, 1)) {
             Block blockInRadius = world.getBlockState(blockradius).getBlock();
             if (goodBlock(blockInRadius)) {
                 world.setBlockState(blockradius, BlockRegistry.MAGIC_FIRE.getDefaultState());

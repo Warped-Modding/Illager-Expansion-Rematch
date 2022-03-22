@@ -1,7 +1,6 @@
 package me.sandbox.client;
 
 
-import me.sandbox.Sandbox;
 import me.sandbox.block.BlockRegistry;
 import me.sandbox.client.model.ArmoredIllagerEntityModel;
 import me.sandbox.client.model.CapedIllagerEntityModel;
@@ -21,13 +20,12 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
-import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
+import net.minecraft.client.particle.EmotionParticle;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.model.IllagerEntityModel;
 import net.minecraft.item.Item;
-import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.Identifier;
 
 
@@ -46,15 +44,18 @@ public class ClientRegistry implements ClientModInitializer {
         EntityRendererRegistry.register(EntityRegistry.SORCERER, SorcererRender::new);
         EntityRendererRegistry.register(EntityRegistry.FLAMECALLER, FlamecallerRender::new);
         EntityRendererRegistry.register(EntityRegistry.ARCHIVIST, ArchivistRender::new);
-        EntityRendererRegistry.register(EntityRegistry.INQUISITOR, IllagerBruteRender::new);
+        EntityRendererRegistry.register(EntityRegistry.INQUISITOR, InquisitorRender::new);
         EntityRendererRegistry.register(EntityRegistry.MARAUDER, MarauderRender::new);
+        EntityRendererRegistry.register(EntityRegistry.ALCHEMIST, AlchemistRender::new);
         EntityRendererRegistry.register(EntityRegistry.INVOKER_FANGS, InvokerFangsRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.HATCHET, HatchetRender::new);
 
 
 
+
         //particle factory
         ParticleFactoryRegistry.getInstance().register(ParticleRegistry.MAGIC_FLAME, FlameParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(ParticleRegistry.NECROMANCER_BUFF, EmotionParticle.HeartFactory::new);
 
         //pull registry
         registerPullPredicates(ItemRegistry.HORN_OF_SIGHT);

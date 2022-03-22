@@ -38,11 +38,13 @@ public class SoundRegistry {
     public static SoundEvent INVOKER_FANGS_CAST = registerSoundEvent("invoker_fangs_cast");
     public static SoundEvent INVOKER_BIG_CAST = registerSoundEvent("invoker_big_cast");
     public static SoundEvent INVOKER_SUMMON_CAST = registerSoundEvent("invoker_summon_cast");
-    public static SoundEvent INVOKER_SHIELD_CREATE = registerSoundEvent("invoker_shield_create");
     public static SoundEvent INVOKER_SHIELD_BREAK = registerSoundEvent("invoker_shield_break");
     public static SoundEvent ILLAGER_BRUTE_AMBIENT = registerSoundEvent("illager_brute_ambient");
     public static SoundEvent ILLAGER_BRUTE_HURT = registerSoundEvent("illager_brute_hurt");
     public static SoundEvent ILLAGER_BRUTE_DEATH = registerSoundEvent("illager_brute_death");
+    public static SoundEvent SORCERER_DEATH_ALT = registerSoundEvent("sorcerer_death_alt");
+    public static SoundEvent SORCERER_HURT_ALT = registerSoundEvent("sorcerer_hurt_alt");
+    public static SoundEvent SORCERER__ALT = registerSoundEvent("sorcerer_ambient_alt");
 
 
 

@@ -22,14 +22,15 @@ public class EarlyRiser implements Runnable
         ClassTinkerers
                 .enumBuilder(Raid, EntityType, int[].class)
                 .addEnum("BASHER", () -> new Object[]{EntityRegistry.BASHER, new int[]{1, 1, 2, 1, 2, 2, 3, 3}})
-                .addEnum("PROVOKER", () -> new Object[]{EntityRegistry.PROVOKER, new int[]{0, 0, 1, 0, 1, 1, 1, 1}})
+                .addEnum("PROVOKER", () -> new Object[]{EntityRegistry.PROVOKER, new int[]{0, 1, 1, 0, 1, 1, 2, 2}})
                 .addEnum("NECROMANCER", () -> new Object[]{EntityRegistry.NECROMANCER, new int[]{0, 0, 0, 0, 1, 1, 1, 1}})
                 .addEnum("SORCERER", () -> new Object[]{EntityRegistry.SORCERER, new int[]{0, 0, 0, 0, 0, 1, 1, 1}})
                 .addEnum("ILLUSIONER", () -> new Object[]{net.minecraft.entity.EntityType.ILLUSIONER, new int[]{0, 0, 0, 0, 0, 1, 1, 1}})
                 .addEnum("FLAMECALLER", () -> new Object[]{EntityRegistry.FLAMECALLER, new int[]{0, 0, 0, 0, 0, 1, 1, 1}})
                 .addEnum("ARCHIVIST", () -> new Object[]{EntityRegistry.ARCHIVIST, new int[]{0, 1, 0, 1, 1, 1, 2, 2}})
                 .addEnum("MARAUDER", () -> new Object[]{EntityRegistry.MARAUDER, new int[]{0, 1, 1, 1, 2, 2, 3, 2}})
-                .addEnum("ILLAGER_BRUTE", () -> new Object[]{EntityRegistry.ILLAGER_BRUTE, new int[]{0, 0, 0, 0, 0, 0, 0, 1}})
+                .addEnum("INQUISITOR", () -> new Object[]{EntityRegistry.INQUISITOR, new int[]{0, 0, 0, 0, 0, 0, 0, 1}})
+                .addEnum("ALCHEMIST", () -> new Object[]{EntityRegistry.INQUISITOR, new int[]{0, 0, 0, 0, 1, 1, 2, 2}})
                 .build();
     }
 }

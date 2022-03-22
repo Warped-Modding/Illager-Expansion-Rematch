@@ -1,5 +1,7 @@
 package me.sandbox.client.renders.feature;
 
+import me.sandbox.client.model.CapedIllagerEntityModel;
+import me.sandbox.entity.InvokerEntity;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.util.math.MathHelper;
 import me.sandbox.client.ModModelLayers;
@@ -19,8 +21,8 @@ public class NecromancerShieldFeatureRender extends EnergySwirlOverlayFeatureRen
     private final IllagerEntityModel<NecromancerEntity> model;
 
     public NecromancerShieldFeatureRender(final FeatureRendererContext<NecromancerEntity, IllagerEntityModel<NecromancerEntity>> context, final EntityModelLoader loader) {
-        super((FeatureRendererContext)context);
-        this.model = (IllagerEntityModel<NecromancerEntity>)new IllagerEntityModel(loader.getModelPart(ModModelLayers.NECROMANCER_SHIELD));
+        super(context);
+        this.model = new IllagerEntityModel<NecromancerEntity>(loader.getModelPart(ModModelLayers.NECROMANCER_SHIELD));
     }
 
     protected float getEnergySwirlX(final float partialAge) {
