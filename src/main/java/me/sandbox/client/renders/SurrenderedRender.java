@@ -14,8 +14,8 @@ import net.minecraft.util.math.BlockPos;
 
 
 public class SurrenderedRender extends SkeletonEntityRenderer {
-    private static final Identifier TEXTURE = new Identifier("sandbox:textures/entity/surrendered.png");
-    private static final Identifier CHARGE_TEXTURE = new Identifier("sandbox:textures/entity/surrendered_charge.png");
+    private static final Identifier TEXTURE = new Identifier("illagerexp:textures/entity/surrendered.png");
+    private static final Identifier CHARGE_TEXTURE = new Identifier("illagerexp:textures/entity/surrendered_charge.png");
 
 
     public SurrenderedRender(EntityRendererFactory.Context context) {

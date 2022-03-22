@@ -1,6 +1,6 @@
 package me.sandbox.world.features;
 
-import me.sandbox.Sandbox;
+import me.sandbox.IllagerExpansion;
 import me.sandbox.mixin.StructureFeatureAccessor;
 import me.sandbox.world.features.structurefeatures.IllagerFortFeature;
 import me.sandbox.world.features.structurefeatures.IllusionerTowerFeature;
@@ -14,9 +14,9 @@ public class StructureRegistry {
     public static StructureFeature<?> ILLAGER_FORT = new IllagerFortFeature();
 
     public static void registerStructureFeatures() {
-        StructureFeatureAccessor.callRegister(Sandbox.MOD_ID + ":illusioner_tower", ILLUSIONER_TOWER, GenerationStep.Feature.SURFACE_STRUCTURES);
-        StructureFeatureAccessor.callRegister(Sandbox.MOD_ID + ":illager_fort", ILLAGER_FORT, GenerationStep.Feature.SURFACE_STRUCTURES);
-        StructureFeatureAccessor.callRegister(Sandbox.MOD_ID + ":sorcerer_hut", SORCERER_HUT, GenerationStep.Feature.SURFACE_STRUCTURES);
+        StructureFeatureAccessor.callRegister(IllagerExpansion.MOD_ID + ":illusioner_tower", ILLUSIONER_TOWER, GenerationStep.Feature.SURFACE_STRUCTURES);
+        StructureFeatureAccessor.callRegister(IllagerExpansion.MOD_ID + ":illager_fort", ILLAGER_FORT, GenerationStep.Feature.SURFACE_STRUCTURES);
+        StructureFeatureAccessor.callRegister(IllagerExpansion.MOD_ID + ":sorcerer_hut", SORCERER_HUT, GenerationStep.Feature.SURFACE_STRUCTURES);
 
     }
 }

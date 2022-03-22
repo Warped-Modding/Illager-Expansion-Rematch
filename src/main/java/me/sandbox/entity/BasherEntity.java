@@ -171,7 +171,7 @@ public class BasherEntity
             if (attacker instanceof LivingEntity) {
                 ItemStack item = ((LivingEntity) attacker).getMainHandStack();
                 ItemStack basherItem = this.getMainHandStack();
-                if ((item.isOf(Items.DIAMOND_AXE) || item.isOf(Items.IRON_AXE) || item.isOf(Items.GOLDEN_AXE) || item.isOf(Items.NETHERITE_AXE) || item.isOf(Items.STONE_AXE) || item.isOf(Items.WOODEN_AXE) || item.isOf(ItemRegistry.ENDERGON_AXE)) && basherItem.isOf(Items.SHIELD) || (attacker instanceof IronGolemEntity && basherItem.isOf(Items.SHIELD))) {
+                if ((item.isOf(Items.DIAMOND_AXE) || item.isOf(Items.IRON_AXE) || item.isOf(Items.GOLDEN_AXE) || item.isOf(Items.NETHERITE_AXE) || item.isOf(Items.STONE_AXE) || item.isOf(Items.WOODEN_AXE)) && basherItem.isOf(Items.SHIELD) || (attacker instanceof IronGolemEntity && basherItem.isOf(Items.SHIELD))) {
                     this.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.0f, 1.0f);
                     this.setStunnedState(true);
                     if (world instanceof ServerWorld) {

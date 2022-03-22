@@ -70,7 +70,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "sandbox:illusionary_dust"
+          "name": "illagerexp:illusionary_dust"
         }
       ],
       "conditions": [

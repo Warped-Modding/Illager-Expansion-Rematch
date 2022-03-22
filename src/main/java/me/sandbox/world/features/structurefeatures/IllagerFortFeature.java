@@ -2,19 +2,12 @@ package me.sandbox.world.features.structurefeatures;
 
 
 
-import com.mojang.serialization.Codec;
-import me.sandbox.Sandbox;
-import me.sandbox.entity.EntityRegistry;
 import net.minecraft.structure.*;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.random.AtomicSimpleRandom;
-import net.minecraft.world.gen.random.ChunkRandom;
 
 import java.util.Optional;
 

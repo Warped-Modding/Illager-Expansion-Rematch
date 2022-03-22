@@ -17,7 +17,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
     public class InvokerRender extends MobEntityRenderer<InvokerEntity, CapedIllagerEntityModel<InvokerEntity>> {
-        private static final Identifier TEXTURE = new Identifier("sandbox:textures/entity/caped_invoker.png");
+        private static final Identifier TEXTURE = new Identifier("illagerexp:textures/entity/caped_invoker.png");
 
         public InvokerRender(EntityRendererFactory.Context context) {
             super(context, new CapedIllagerEntityModel<>(context.getPart(ModModelLayers.CAPED_ILLAGER)), 0.5f);

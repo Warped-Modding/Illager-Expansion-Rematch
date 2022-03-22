@@ -22,7 +22,7 @@ import net.minecraft.util.Identifier;
 import org.lwjgl.system.CallbackI;
 
 public class NecromancerRender extends IllagerEntityRenderer<NecromancerEntity> {
-    private static final Identifier TEXTURE = new Identifier("sandbox:textures/entity/necromancer.png");
+    private static final Identifier TEXTURE = new Identifier("illagerexp:textures/entity/necromancer.png");
 
 
     public NecromancerRender(EntityRendererFactory.Context context) {

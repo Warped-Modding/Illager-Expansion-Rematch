@@ -1,19 +1,16 @@
 package me.sandbox.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import me.sandbox.Sandbox;
+import me.sandbox.IllagerExpansion;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.screen.ingame.AnvilScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
-import org.lwjgl.system.CallbackI;
 
 @Environment(value= EnvType.CLIENT)
 public class ImbuingTableScreen
@@ -22,7 +19,7 @@ public class ImbuingTableScreen
     private static final Text BOOK_BIG = new LiteralText("Must have 1 enchantment!");
     private static final Text TOO_LOW = new LiteralText("Enchantment level is too low!");
     private static final Text BAD_ENCHANT = new LiteralText("Enchantment cannot be imbued!");
-    private static final Identifier TEXTURE = new Identifier(Sandbox.MOD_ID,"textures/gui/imbue_table.png");
+    private static final Identifier TEXTURE = new Identifier(IllagerExpansion.MOD_ID,"textures/gui/imbue_table.png");
 
     public ImbuingTableScreen(ImbuingTableScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);

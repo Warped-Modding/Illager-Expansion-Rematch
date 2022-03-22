@@ -38,6 +38,6 @@ public class NecromancerShieldFeatureRender extends EnergySwirlOverlayFeatureRen
     }
 
     static {
-        SKIN = new Identifier("sandbox:textures/entity/necromancer_armor1.png");
+        SKIN = new Identifier("illagerexp:textures/entity/necromancer_armor1.png");
     }
 }

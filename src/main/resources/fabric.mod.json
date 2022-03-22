@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "sandbox",
+  "id": "illagerexp",
   "version": "${version}",
 
-  "name": "Sandbox Features",
+  "name": "Illager_Expansion",
   "description": "A 1.18.2 Fabric Mod that focuses on expanding content surrounding the mysterious Illagers in Minecraft!",
   "authors": [
     "Anyone who contributes :)"
@@ -14,12 +14,12 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/sandbox/icon.png",
+  "icon": "assets/illagerexp/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "me.sandbox.Sandbox"
+      "me.sandbox.IllagerExpansion"
     ],
     "client": [
       "me.sandbox.client.ClientRegistry"
@@ -29,7 +29,7 @@
     ]
   },
   "mixins": [
-    "sandbox.mixins.json"
+    "illagerexp.mixins.json"
   ],
 
   "depends": {
@@ -42,5 +42,5 @@
   "suggests": {
     "another-mod": "*"
   },
-  "accessWidener" : "sandbox.accesswidener"
+  "accessWidener" : "illagerexp.accesswidener"
 }

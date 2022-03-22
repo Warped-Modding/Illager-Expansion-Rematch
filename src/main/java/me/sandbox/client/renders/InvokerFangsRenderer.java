@@ -15,7 +15,7 @@ import net.minecraft.util.math.Vec3f;
 
 public class InvokerFangsRenderer
         extends EntityRenderer<InvokerFangsEntity> {
-    private static final Identifier TEXTURE = new Identifier("sandbox:textures/entity/invoker_fangs.png");
+    private static final Identifier TEXTURE = new Identifier("illagerexp:textures/entity/invoker_fangs.png");
     private final InvokerFangsModel<InvokerFangsEntity> model;
 
     public InvokerFangsRenderer(EntityRendererFactory.Context context) {

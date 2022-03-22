@@ -12,7 +12,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class ProvokerRender extends IllagerEntityRenderer<ProvokerEntity> {
-    private static final Identifier TEXTURE = new Identifier("sandbox:textures/entity/provoker.png");
+    private static final Identifier TEXTURE = new Identifier("illagerexp:textures/entity/provoker.png");
 
     public ProvokerRender(EntityRendererFactory.Context context) {
 

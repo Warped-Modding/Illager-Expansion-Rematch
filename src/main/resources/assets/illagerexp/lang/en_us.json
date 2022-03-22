@@ -1,0 +1,42 @@
+{
+  "item.illagerexp.unusual_dust": "Unusual Dust",
+  "item.illagerexp.illusionary_dust": "Illusionary Dust",
+  "item.illagerexp.ravager_horn": "Ravager Horn",
+  "item.illagerexp.gilded_horn": "Gilded Horn",
+  "item.illagerexp.horn_of_sight": "Horn of Sight",
+  "item.illagerexp.hallowed_gem": "Hallowed Gem",
+  "item.illagerexp.hatchet": "Hatchet",
+  "item.illagerexp.primal_essence": "§bPrimal Essence",
+
+
+  "item.illagerexp.provoker_spawn_egg": "Provoker Spawn Egg",
+  "item.illagerexp.surrendered_spawn_egg": "Surrendered Spawn Egg",
+  "item.illagerexp.necromancer_spawn_egg": "Necromancer Spawn Egg",
+  "item.illagerexp.basher_spawn_egg": "Basher Spawn Egg",
+  "item.illagerexp.sorcerer_spawn_egg": "Sorcerer Spawn Egg",
+  "item.illagerexp.archivist_spawn_egg": "Archivist Spawn Egg",
+  "item.illagerexp.inquisitor_spawn_egg": "Inquisitor Spawn Egg",
+  "item.illagerexp.marauder_spawn_egg": "Marauder Spawn Egg",
+  "item.illagerexp.alchemist_spawn_egg": "Alchemist Spawn Egg",
+
+
+
+  "block.illagerexp.imbuing_table": "Imbuing Table",
+
+
+  "entity.illagerexp.provoker": "Provoker",
+  "entity.illagerexp.invoker": "Invoker",
+  "entity.illagerexp.surrendered": "Surrendered",
+  "entity.illagerexp.necromancer": "Necromancer",
+  "entity.illagerexp.basher": "Basher",
+  "entity.illagerexp.sorcerer": "Sorcerer",
+  "entity.illagerexp.archivist": "Archivist",
+  "entity.illagerexp.inquisitor": "Inquisitor",
+  "entity.illagerexp.marauder": "Marauder",
+  "entity.illagerexp.alchemist": "Alchemist",
+
+  "itemGroup.illagerexp.illagerexpdecor" : "SB Decor",
+  "itemGroup.illagerexp.illagerexpmisc" : "SB Misc",
+  "itemGroup.illagerexp.illagerexpmobs" : "SB Mobs"
+
+}

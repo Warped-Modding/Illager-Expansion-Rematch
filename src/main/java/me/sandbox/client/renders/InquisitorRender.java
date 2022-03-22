@@ -37,6 +37,6 @@ public class InquisitorRender extends MobEntityRenderer<InquisitorEntity, Armore
     }
 
     static {
-        TEXTURE = new Identifier("sandbox:textures/entity/inquisitor.png");
+        TEXTURE = new Identifier("illagerexp:textures/entity/inquisitor.png");
     }
 }

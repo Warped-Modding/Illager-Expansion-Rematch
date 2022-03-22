@@ -23,7 +23,7 @@ import net.minecraft.util.math.Vec3f;
 
 
 public class ArchivistRender extends IllagerEntityRenderer<ArchivistEntity> {
-    private static final Identifier TEXTURE = new Identifier("sandbox:textures/entity/archivist.png");
+    private static final Identifier TEXTURE = new Identifier("illagerexp:textures/entity/archivist.png");
     public static final SpriteIdentifier BOOK_TEXTURE = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("entity/enchanting_table_book"));
     private final BookModel book;
 

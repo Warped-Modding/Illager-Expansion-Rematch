@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
 public class SkullboltRender extends EntityRenderer<SkullboltEntity> {
-    private static final Identifier TEXTURE = new Identifier("sandbox:textures/entity/skullbolt.png");
+    private static final Identifier TEXTURE = new Identifier("illagerexp:textures/entity/skullbolt.png");
     private final SkullEntityModel model;
 
     public SkullboltRender(EntityRendererFactory.Context context) {

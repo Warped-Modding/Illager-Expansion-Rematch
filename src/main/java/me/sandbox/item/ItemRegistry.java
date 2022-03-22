@@ -1,15 +1,12 @@
 package me.sandbox.item;
 
-import me.sandbox.Sandbox;
+import me.sandbox.IllagerExpansion;
 import me.sandbox.entity.EntityRegistry;
 import me.sandbox.item.custom.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import org.lwjgl.system.CallbackI;
 
 public class ItemRegistry {
 
@@ -58,11 +55,11 @@ public class ItemRegistry {
 
 
     public static Item registerItem(String name, Item item) {
-        return Registry.register(Registry.ITEM, new Identifier(Sandbox.MOD_ID, name), item);
+        return Registry.register(Registry.ITEM, new Identifier(IllagerExpansion.MOD_ID, name), item);
     }
 
 
     public static void registerModItems() {
-        Sandbox.LOGGER.info("Registering items...");
+        IllagerExpansion.LOGGER.info("Registering items...");
     }
 }

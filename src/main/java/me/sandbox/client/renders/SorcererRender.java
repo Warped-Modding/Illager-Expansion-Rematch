@@ -9,7 +9,7 @@ import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
 
 public class SorcererRender extends MobEntityRenderer<SorcererEntity, HatIllagerEntityModel<SorcererEntity>> {
-    private static final Identifier TEXTURE = new Identifier("sandbox:textures/entity/sorcerer.png");
+    private static final Identifier TEXTURE = new Identifier("illagerexp:textures/entity/sorcerer.png");
 
     public SorcererRender(EntityRendererFactory.Context context) {
         super(context, new HatIllagerEntityModel<>(context.getPart(ModModelLayers.HAT_ILLAGER)), 0.5f);

@@ -16,7 +16,7 @@ import net.minecraft.util.Identifier;
     @Environment(value= EnvType.CLIENT)
     public class MarauderRender
             extends IllagerEntityRenderer<MarauderEntity> {
-        private static final Identifier TEXTURE = new Identifier("sandbox:textures/entity/savager.png");
+        private static final Identifier TEXTURE = new Identifier("illagerexp:textures/entity/savager.png");
 
         public MarauderRender(EntityRendererFactory.Context context) {
             super(context, new IllagerEntityModel(context.getPart(EntityModelLayers.VINDICATOR)), 0.5f);

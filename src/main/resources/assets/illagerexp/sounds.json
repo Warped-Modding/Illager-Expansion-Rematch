@@ -1,0 +1,237 @@
+{
+  "lost_miner_ambient": {
+    "subtitle": "illagerexp.lost_miner_ambient",
+    "sounds": [
+      "illagerexp:lost_miner_ambient1",
+      "illagerexp:lost_miner_ambient2",
+      "illagerexp:lost_miner_ambient3"
+    ]
+  },
+  "lost_miner_hurt": {
+  "subtitle": "illagerexp.lost_miner_hurt",
+  "sounds": [
+    "illagerexp:lost_miner_hurt1",
+    "illagerexp:lost_miner_hurt2",
+    "illagerexp:lost_miner_hurt3",
+    "illagerexp:lost_miner_hurt4"
+    ]
+  },
+  "lost_miner_death": {
+    "subtitle": "illagerexp.lost_miner_death",
+    "sounds": [
+      "illagerexp:lost_miner_death"
+    ]
+  },
+  "lost_candle_coal": {
+    "subtitle": "illagerexp.lost_candle_coal",
+    "sounds": [
+      "illagerexp:lost_candle_coal"
+    ]
+  },
+  "lost_candle_copper": {
+    "subtitle": "illagerexp.lost_candle_copper",
+    "sounds": [
+      "illagerexp:lost_candle_copper"
+    ]
+  },
+  "lost_candle_iron": {
+    "subtitle": "illagerexp.lost_candle_iron",
+    "sounds": [
+      "illagerexp:lost_candle_iron"
+    ]
+  },
+  "lost_candle_diamond": {
+    "subtitle": "illagerexp.lost_candle_diamond",
+    "sounds": [
+      "illagerexp:lost_candle_diamond"
+    ]
+  },
+  "lost_candle_gold": {
+    "subtitle": "illagerexp.lost_candle_gold",
+    "sounds": [
+      "illagerexp:lost_candle_gold"
+    ]
+  },
+  "surrendered_hurt": {
+    "subtitle": "illagerexp.surrendered",
+    "sounds": [
+      "illagerexp:surrendered_hurt1",
+      "illagerexp:surrendered_hurt2",
+      "illagerexp:surrendered_hurt3"
+    ]
+  },
+  "surrendered_ambient": {
+    "subtitle": "illagerexp.surrendered_hurt",
+    "sounds": [
+      "illagerexp:surrendered_ambient1",
+      "illagerexp:surrendered_ambient2",
+      "illagerexp:surrendered_ambient3"
+    ]
+  },
+  "surrendered_charge": {
+    "subtitle": "illagerexp.surrendered_charge",
+    "sounds": [
+      "illagerexp:surrendered_charge"
+    ]
+  },
+  "surrendered_death": {
+    "subtitle": "illagerexp.surrendered_death",
+    "sounds": [
+      "illagerexp:surrendered_death"
+    ]
+  },
+  "necromancer_summon": {
+    "subtitle": "illagerexp.necromancer_summon",
+    "sounds": [
+      "illagerexp:necroraise"
+    ]
+  },
+  "sorcerer_ambient": {
+    "subtitle": "illagerexp.sorcerer.ambient",
+    "sounds": [
+      "illagerexp:sorcerer_idle1",
+      "illagerexp:sorcerer_idle2",
+      "illagerexp:sorcerer_idle3"
+    ]
+  },
+  "sorcerer_hurt": {
+    "subtitle": "illagerexp.sorcerer.hurt",
+    "sounds": [
+      "illagerexp:sorcerer_hurt1",
+      "illagerexp:sorcerer_hurt2",
+      "illagerexp:sorcerer_hurt3"
+    ]
+  },
+  "sorcerer_death": {
+    "subtitle": "illagerexp.sorcerer.death",
+    "sounds": [
+      "illagerexp:sorcerer_death1",
+      "illagerexp:sorcerer_death2",
+      "illagerexp:sorcerer_death3"
+    ]
+  },
+  "sorcerer_cast": {
+    "subtitle": "illagerexp.sorcerer.cast",
+    "sounds": [
+      "illagerexp:sorcerer_cast"
+    ]
+  },
+  "sorcerer_complete_cast": {
+    "subtitle": "illagerexp.sorcerer.complete_cast",
+    "sounds": [
+      "illagerexp:sorcerer_completecast"
+    ]
+  },
+  "horn_of_sight": {
+    "subtitle": "illagerexp.horn_of_sight",
+    "sounds": [
+      "illagerexp:horn_of_sight"
+    ]
+  },
+  "equip_endergon": {
+    "subtitle": "illagerexp.equip_endergon",
+    "sounds": [
+      "illagerexp:equip_endergon"
+    ]
+  },
+  "flamecaller_cast": {
+    "subtitle": "illagerexp.flamecaller_cast",
+    "sounds": [
+      "illagerexp:flamecaller_cast"
+    ]
+  },
+  "invoker_fangs": {
+    "subtitle": "illagerexp.invoker_fangs",
+    "sounds": [
+      "illagerexp:invoker_fangs"
+    ]
+  },
+  "invoker_hurt": {
+    "subtitle": "illagerexp.invoker_hurt",
+    "sounds": [
+      "illagerexp:invoker_hurt1",
+      "illagerexp:invoker_hurt2"
+    ]
+  },
+  "invoker_ambient": {
+    "subtitle": "illagerexp.invoker_ambient",
+    "sounds": [
+      "illagerexp:invoker_idle1",
+      "illagerexp:invoker_idle2",
+      "illagerexp:invoker_idle3",
+      "illagerexp:invoker_idle4"
+    ]
+  },
+  "invoker_death": {
+    "subtitle": "illagerexp.invoker_death",
+    "sounds": [
+      "illagerexp:invoker_death"
+    ]
+  },
+  "invoker_big_cast": {
+    "subtitle": "illagerexp.invoker_big_cast",
+    "sounds": [
+      "illagerexp:invoker_big_cast"
+    ]
+  },
+  "invoker_fangs_cast": {
+    "subtitle": "illagerexp.invoker_fangs_cast",
+    "sounds": [
+      "illagerexp:invoker_fangs_cast"
+    ]
+  },
+  "invoker_teleport_cast": {
+    "subtitle": "illagerexp.invoker_teleport_cast",
+    "sounds": [
+      "illagerexp:invoker_teleport_cast"
+    ]
+  },
+  "invoker_completecast": {
+    "subtitle": "illagerexp.invoker_completecast",
+    "sounds": [
+      "illagerexp:invoker_completecast"
+    ]
+  },
+  "invoker_summon_cast": {
+    "subtitle": "illagerexp.invoker_summon_cast",
+    "sounds": [
+      "illagerexp:invoker_summon_cast"
+    ]
+  },
+  "invoker_shield_create": {
+    "subtitle": "illagerexp.invoker_shield_create",
+    "sounds": [
+      "illagerexp:invoker_shield_create"
+    ]
+  },
+  "invoker_shield_break": {
+    "subtitle": "illagerexp.invoker_shield_break",
+    "sounds": [
+      "illagerexp:invoker_shield_break"
+    ]
+  },
+  "illager_brute_ambient": {
+    "subtitle": "illagerexp.illager_brute_ambient",
+    "sounds": [
+      "illagerexp:illager_brute_idle1",
+      "illagerexp:illager_brute_idle2",
+      "illagerexp:illager_brute_idle3",
+      "illagerexp:illager_brute_idle4",
+      "illagerexp:illager_brute_idle5"
+    ]
+  },
+  "illager_brute_hurt": {
+    "subtitle": "illagerexp.illager_brute_hurt",
+    "sounds": [
+      "illagerexp:illager_brute_hurt1",
+      "illagerexp:illager_brute_hurt2",
+      "illagerexp:illager_brute_hurt3"
+    ]
+  },
+  "illager_brute_death": {
+    "subtitle": "illagerexp.illager_brute_death",
+    "sounds": [
+      "illagerexp:illager_brute_death1"
+    ]
+  }
+}

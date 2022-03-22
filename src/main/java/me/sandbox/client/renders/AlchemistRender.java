@@ -12,7 +12,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class AlchemistRender extends IllagerEntityRenderer<AlchemistEntity> {
-    private static final Identifier TEXTURE = new Identifier("sandbox:textures/entity/alchemist.png");
+    private static final Identifier TEXTURE = new Identifier("illagerexp:textures/entity/alchemist.png");
 
     public AlchemistRender(EntityRendererFactory.Context context) {
 

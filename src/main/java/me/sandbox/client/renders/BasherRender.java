@@ -17,7 +17,7 @@ import net.minecraft.util.Identifier;
 @Environment(value= EnvType.CLIENT)
 public class BasherRender
         extends IllagerEntityRenderer<BasherEntity> {
-    private static final Identifier TEXTURE = new Identifier("sandbox:textures/entity/basher.png");
+    private static final Identifier TEXTURE = new Identifier("illagerexp:textures/entity/basher.png");
 
     public BasherRender(EntityRendererFactory.Context context) {
         super(context, new IllagerEntityModel(context.getPart(EntityModelLayers.VINDICATOR)), 0.5f);

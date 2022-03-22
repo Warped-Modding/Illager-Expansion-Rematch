@@ -13,7 +13,7 @@ repositories {
 
     }
     loom {
-        accessWidenerPath = file("src/main/resources/sandbox.accesswidener")
+        accessWidenerPath = file("src/main/resources/illagerexp.accesswidener")
     }
 
     dependencies {
