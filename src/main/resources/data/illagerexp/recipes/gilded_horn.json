@@ -10,11 +10,11 @@
       "item": "minecraft:gold_ingot"
     },
     "G": {
-      "item": "sandbox:ravager_horn"
+      "item": "illagerexp:ravager_horn"
     }
   },
   "result": {
-    "item": "sandbox:gilded_horn",
+    "item": "illagerexp:gilded_horn",
     "count": 1
   }
 }

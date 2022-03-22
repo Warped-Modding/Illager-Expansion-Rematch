@@ -35,8 +35,7 @@
   "entity.illagerexp.marauder": "Marauder",
   "entity.illagerexp.alchemist": "Alchemist",
 
-  "itemGroup.illagerexp.illagerexpdecor" : "SB Decor",
-  "itemGroup.illagerexp.illagerexpmisc" : "SB Misc",
-  "itemGroup.illagerexp.illagerexpmobs" : "SB Mobs"
+  "itemGroup.illagerexp.sandboxmisc" : "Illager Expansion Items",
+  "itemGroup.illagerexp.sandboxmobs" : "Illager Expansion Mobs"
 
 }

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "sandbox:ravager_horn"
+      "item": "illagerexp:ravager_horn"
     }
   ],
   "result": {

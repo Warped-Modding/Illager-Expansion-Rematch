@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "sandbox:hallowed_gem"
+      "item": "illagerexp:hallowed_gem"
     },
     {
-      "item": "sandbox:gilded_horn"
+      "item": "illagerexp:gilded_horn"
     }
   ],
   "result": {
-    "item": "sandbox:horn_of_sight",
+    "item": "illagerexp:horn_of_sight",
     "count": 1
   }
 }

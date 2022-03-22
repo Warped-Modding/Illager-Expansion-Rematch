@@ -10,17 +10,17 @@
       "item": "minecraft:amethyst_shard"
     },
     "B": {
-      "item": "sandbox:unusual_dust"
+      "item": "illagerexp:unusual_dust"
     },
     "R": {
-      "item": "sandbox:illusionary_dust"
+      "item": "illagerexp:illusionary_dust"
     },
     "D": {
       "item": "minecraft:diamond"
     }
   },
   "result": {
-    "item": "sandbox:hallowed_gem",
+    "item": "illagerexp:hallowed_gem",
     "count": 1
   }
 }

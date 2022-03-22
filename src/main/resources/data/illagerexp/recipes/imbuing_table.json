@@ -16,14 +16,14 @@
       "item": "minecraft:oak_planks"
     },
     "S": {
-      "item": "sandbox:primal_essence"
+      "item": "illagerexp:primal_essence"
     },
     "E": {
       "item": "minecraft:experience_bottle"
     }
   },
   "result": {
-    "item": "sandbox:imbuing_table",
+    "item": "illagerexp:imbuing_table",
     "count": 1
   }
 }
