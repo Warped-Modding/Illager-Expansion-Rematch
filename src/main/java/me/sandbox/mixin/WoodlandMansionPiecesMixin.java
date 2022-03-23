@@ -59,7 +59,7 @@ public class WoodlandMansionPiecesMixin {
             archivist.refreshPositionAndAngles(pos, 0.0f, 0.0f);
             archivist.initialize(world, world.getLocalDifficulty(archivist.getBlockPos()), SpawnReason.STRUCTURE, null, null);
             world.spawnEntityAndPassengers(archivist);
-            world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_LISTENERS);z
+            world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_LISTENERS);
         }
     }
 }
