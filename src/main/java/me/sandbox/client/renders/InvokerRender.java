@@ -22,6 +22,7 @@ import net.minecraft.util.Identifier;
         public InvokerRender(EntityRendererFactory.Context context) {
             super(context, new CapedIllagerEntityModel<>(context.getPart(ModModelLayers.CAPED_ILLAGER)), 0.5f);
             this.addFeature(new InvokerShieldFeatureRender(this, context.getModelLoader()));
+            this.model.getHat().visible = true;
         }
 
         @Override

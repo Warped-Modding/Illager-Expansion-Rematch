@@ -29,7 +29,7 @@ public class EarlyRiser implements Runnable
                 .addEnum("ARCHIVIST", () -> new Object[]{EntityRegistry.ARCHIVIST, new int[]{0, 1, 0, 1, 1, 1, 2, 2}})
                 .addEnum("MARAUDER", () -> new Object[]{EntityRegistry.MARAUDER, new int[]{0, 1, 1, 1, 2, 2, 3, 2}})
                 .addEnum("INQUISITOR", () -> new Object[]{EntityRegistry.INQUISITOR, new int[]{0, 0, 0, 0, 0, 0, 0, 1}})
-                .addEnum("ALCHEMIST", () -> new Object[]{EntityRegistry.INQUISITOR, new int[]{0, 0, 0, 0, 1, 1, 2, 2}})
+                .addEnum("ALCHEMIST", () -> new Object[]{EntityRegistry.ALCHEMIST, new int[]{0, 0, 0, 0, 1, 1, 2, 2}})
                 .build();
 
         final String SpellcastingIllagerEntity = remapper.mapClassName("intermediary", "net.minecraft.class_1617$class_1618");

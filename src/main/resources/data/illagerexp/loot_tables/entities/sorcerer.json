@@ -70,7 +70,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "sandbox:unusual_dust"
+          "name": "illagerexp:unusual_dust"
         }
       ],
       "conditions": [

@@ -332,7 +332,7 @@ public class InvokerEntity
         @Override
         protected void castSpell() {
             ServerWorld serverWorld = (ServerWorld) InvokerEntity.this.world;
-            for (int i = 0; i < 2; ++i) {
+            for (int i = 0; i < 4; ++i) {
                 BlockPos blockPos = InvokerEntity.this.getBlockPos().add(-2 + InvokerEntity.this.random.nextInt(5), 1, -2 + InvokerEntity.this.random.nextInt(5));
                 SurrenderedEntity surrenderedEntity = EntityRegistry.SURRENDERED.create(InvokerEntity.this.world);
                 surrenderedEntity.refreshPositionAndAngles(blockPos, 0.0f, 0.0f);

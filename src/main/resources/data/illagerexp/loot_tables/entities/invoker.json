@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "sandbox:primal_essence"
+          "name": "illagerexp:primal_essence"
         }
       ]
     },

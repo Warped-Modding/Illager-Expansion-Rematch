@@ -2,6 +2,7 @@ package me.sandbox.entity.projectile;
 
 import me.sandbox.entity.EntityRegistry;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -40,23 +41,14 @@ public class SkullboltEntity
         }
         Entity entity = entityHitResult.getEntity();
         Entity entity2 = this.getOwner();
-        if (entity2 instanceof LivingEntity && !(entity instanceof ZombieEntity)) {
-            LivingEntity livingEntity = (LivingEntity)entity2;
-            bl = entity.damage(DamageSource.MAGIC, 5.0f);
-            if (bl) {
-                if (entity.isAlive()) {
-                    this.applyDamageEffects(livingEntity, entity);
-                } else {
-                    livingEntity.heal(5.0f);
-                }
+        if (entity2 instanceof LivingEntity) {
+            if (((LivingEntity) entity).getGroup() == EntityGroup.UNDEAD) {
+                ((LivingEntity) entity).heal(5.0f);
+                ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 2));
+            } else {
+                entity.damage(DamageSource.MAGIC, 7.0f);
+                ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 1));
             }
-        } else {
-            bl = entity.damage(DamageSource.MAGIC, 5.0f);
-        }
-        if (entity instanceof ZombieEntity) {
-            LivingEntity livingEntity = (LivingEntity)entity;
-            livingEntity.heal(5.0f);
-            livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 2));
         }
     }
 
