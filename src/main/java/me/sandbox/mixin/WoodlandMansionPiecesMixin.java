@@ -52,15 +52,14 @@ public class WoodlandMansionPiecesMixin {
             world.spawnEntityAndPassengers(archivist);
             world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_LISTENERS);
         }
-        int value4 = randomValue.nextInt(11);
-        if (metadata.equals("Mage") && value4 == 1) {
+        if (metadata.equals("invoker")) {
             InvokerEntity archivist;
             archivist = EntityRegistry.INVOKER.create(world.toServerWorld());
             archivist.setPersistent();
             archivist.refreshPositionAndAngles(pos, 0.0f, 0.0f);
             archivist.initialize(world, world.getLocalDifficulty(archivist.getBlockPos()), SpawnReason.STRUCTURE, null, null);
             world.spawnEntityAndPassengers(archivist);
-            world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_LISTENERS);
+            world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_LISTENERS);z
         }
     }
 }
