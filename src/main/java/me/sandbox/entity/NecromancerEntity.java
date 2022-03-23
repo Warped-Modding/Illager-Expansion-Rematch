@@ -270,6 +270,7 @@ public class NecromancerEntity extends SpellcastingIllagerEntity implements Skin
                     zombieEntity.initialize(serverWorld, NecromancerEntity.this.world.getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, null, null);
                     serverWorld.spawnEntityAndPassengers(zombieEntity);
                     SkeletonEntity skeletonEntity = EntityType.SKELETON.create(NecromancerEntity.this.world);
+                    skeletonEntity.refreshPositionAndAngles(blockPos, 0.0f, 0.0f);
                     skeletonEntity.initialize(serverWorld, NecromancerEntity.this.world.getLocalDifficulty(blockPos), SpawnReason.MOB_SUMMONED, null, null);
                     serverWorld.spawnEntityAndPassengers(skeletonEntity);
                 }

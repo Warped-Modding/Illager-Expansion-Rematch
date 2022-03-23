@@ -40,7 +40,7 @@ public class NecromancerRender extends IllagerEntityRenderer<NecromancerEntity> 
                 }
             }
         });
-        ((IllagerEntityModel)this.model).getHat().visible = true;
+        ((IllagerEntityModel)this.model).getHat().visible = false;
     }
 
 
