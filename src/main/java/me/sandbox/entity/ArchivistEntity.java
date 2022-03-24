@@ -253,16 +253,16 @@ public class ArchivistEntity
 
     public class EnchantAllyGoal
             extends SpellcastingIllagerEntity.CastSpellGoal {
+        EnchantToolUtil enchantToolUtil = new EnchantToolUtil();
         private final TargetPredicate closeEnchantableMobPredicate = TargetPredicate.createNonAttackable().setBaseMaxDistance(16.0).setPredicate(livingEntity -> !(livingEntity instanceof ArchivistEntity));
         private int targetId;
+
         public boolean canEnchant() {
             IllagerEntity hostileEntity = ArchivistEntity.this.getEnchantTarget();
-            ItemStack mainhand = hostileEntity.getMainHandStack();
-            ItemStack offhand = hostileEntity.getOffHandStack();
-            if (!(offhand.isEmpty() && mainhand.isEmpty())) {
-                return true;
+            if (hostileEntity == null) {
+                return false;
             }
-            return false;
+            return enchantToolUtil.eligibleForEnchant(hostileEntity);
         }
         @Override
         public boolean canStart() {
@@ -295,7 +295,6 @@ public class ArchivistEntity
         @Override
         protected void castSpell() {
             HostileEntity hostileEntity = ArchivistEntity.this.getEnchantTarget();
-            EnchantToolUtil enchantToolUtil = new EnchantToolUtil();
             if (hostileEntity != null) {
                 this.targetId = hostileEntity.getId();
             }
