@@ -55,7 +55,7 @@ public class ImbuingTableScreen
             this.drawTexture(matrices, i + 99, j+ 44, 176, 0, 28, 36);
             this.textRenderer.drawWithShadow(matrices, text, 175.0f, 80.0f, 0xFF5555);
         }
-        if (handler.tooLow) {
+        if (handler.tooLow && !handler.bigBook) {
             Text text;
             text = TOO_LOW;
             this.drawTexture(matrices, i + 99, j+ 44, 176, 0, 28, 36);

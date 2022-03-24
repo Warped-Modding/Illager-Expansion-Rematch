@@ -24,7 +24,7 @@ public class WoodlandMansionPiecesMixin {
         Boolean canInvokerSpawn = false;
         Random randomValue = new Random();
         int value = randomValue.nextInt(8);
-        if (metadata.equals("Warrior") && value == 1) {
+        if (metadata.equals("Provoker")) {
             ProvokerEntity provoker;
             provoker = EntityRegistry.PROVOKER.create(world.toServerWorld());
             provoker.setPersistent();
@@ -43,7 +43,7 @@ public class WoodlandMansionPiecesMixin {
             world.spawnEntityAndPassengers(basher);
             world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_LISTENERS);
         }
-        if (metadata.equals("Mage")) {
+        if (metadata.equals("Archivist")) {
             ArchivistEntity archivist;
             archivist = EntityRegistry.ARCHIVIST.create(world.toServerWorld());
             archivist.setPersistent();
