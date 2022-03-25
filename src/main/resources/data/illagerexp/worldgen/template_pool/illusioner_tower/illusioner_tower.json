@@ -1,4 +1,3 @@
-
 {
   "name": "illagerexp:illusioner_tower",
   "fallback": "minecraft:empty",
@@ -6,7 +5,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "illagerexp:illusioner_tower",
+        "location": "illagerexp:illusioner_tower/illusioner_tower",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
