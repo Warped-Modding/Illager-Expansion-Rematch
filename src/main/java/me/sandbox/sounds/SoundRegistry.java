@@ -34,6 +34,10 @@ public class SoundRegistry {
     public static SoundEvent PROVOKER_HURT = registerSoundEvent("provoker_hurt");
     public static SoundEvent PROVOKER_DEATH = registerSoundEvent("provoker_death");
     public static SoundEvent PROVOKER_CELEBRATE = registerSoundEvent("provoker_celebrate");
+    public static SoundEvent BASHER_AMBIENT = registerSoundEvent("basher_idle");
+    public static SoundEvent BASHER_HURT = registerSoundEvent("basher_hurt");
+    public static SoundEvent BASHER_DEATH = registerSoundEvent("basher_death");
+    public static SoundEvent BASHER_CELEBRATE = registerSoundEvent("basher_celebrate");
 
 
 

@@ -1,19 +1,20 @@
 package me.sandbox.world.features.structurefeatures;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.structure.*;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.StructureFeature;
+import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 import java.util.Optional;
 
+public class LabyrinthTestFeature extends StructureFeature<StructurePoolFeatureConfig> {
 
-public class IllagerFortFeature extends StructureFeature<StructurePoolFeatureConfig> {
-
-    public IllagerFortFeature() {
-        super(StructurePoolFeatureConfig.CODEC, IllagerFortFeature::createPiecesGenerator, PostPlacementProcessor.EMPTY);
+    public LabyrinthTestFeature(Codec<StructurePoolFeatureConfig> codec) {
+        super(StructurePoolFeatureConfig.CODEC, LabyrinthTestFeature::createPiecesGenerator, PostPlacementProcessor.EMPTY);
     }
 
     public static boolean isFeatureChunk(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> context) {
@@ -22,11 +23,12 @@ public class IllagerFortFeature extends StructureFeature<StructurePoolFeatureCon
         return !context.chunkGenerator().method_41053(StructureSetKeys.VILLAGES, context.seed(), chunkPos.x, chunkPos.z, 10);
     }
     public static Optional<StructurePiecesGenerator<StructurePoolFeatureConfig>> createPiecesGenerator(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> context) {
-        if (!IllagerFortFeature.isFeatureChunk(context)) {
+        if (!LabyrinthTestFeature.isFeatureChunk(context)) {
             return Optional.empty();
         }
         BlockPos blockpos = context.chunkPos().getCenterAtY(0);
         int topLandY = context.chunkGenerator().getHeightOnGround(blockpos.getX(), blockpos.getZ(), Heightmap.Type.WORLD_SURFACE_WG, context.world());
+        blockpos = blockpos.up(topLandY - 40);
 
         Optional<StructurePiecesGenerator<StructurePoolFeatureConfig>> structurePiecesCollector =
                 StructurePoolBasedGenerator.generate(
@@ -41,4 +43,3 @@ public class IllagerFortFeature extends StructureFeature<StructurePoolFeatureCon
 
 
 }
-

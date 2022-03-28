@@ -4,13 +4,16 @@
   "package": "me.sandbox.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "WoodlandMansionPiecesMixin",
-    "SurrenderedChargeMixin",
-    "IllagerModelMixin",
     "AnvilScreenHandlerMixin",
+    "ConfiguredStructureFeaturesAccessor",
+    "IllagerModelMixin",
     "IllusionerEntityMixin",
     "MarauderPatrolMixin",
-    "StructureFeatureAccessor"
+    "StructureFeatureAccessor",
+    "StructureMixin",
+    "StructureProcessorAccessor",
+    "SurrenderedChargeMixin",
+    "WoodlandMansionPiecesMixin"
   ],
   "client": [
   ],

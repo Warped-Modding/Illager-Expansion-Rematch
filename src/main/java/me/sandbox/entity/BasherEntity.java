@@ -2,6 +2,7 @@ package me.sandbox.entity;
 
 import com.google.common.collect.Maps;
 import me.sandbox.item.ItemRegistry;
+import me.sandbox.sounds.SoundRegistry;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -138,7 +139,7 @@ public class BasherEntity
             attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes()
                     .add(EntityAttributes.GENERIC_MAX_HEALTH, 28.0D)
                     .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.31D)
-                    .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0D)
+                    .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D)
                     .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK,0.2D)
                     .build());
         }
@@ -159,7 +160,7 @@ public class BasherEntity
 
     @Override
     public SoundEvent getCelebratingSound() {
-        return SoundEvents.ENTITY_VINDICATOR_CELEBRATE;
+        return SoundRegistry.BASHER_CELEBRATE;
     }
 
     @Override
@@ -228,17 +229,17 @@ public class BasherEntity
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_VINDICATOR_AMBIENT;
+        return SoundRegistry.BASHER_AMBIENT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_VINDICATOR_DEATH;
+        return SoundRegistry.BASHER_DEATH;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.ENTITY_VINDICATOR_HURT;
+        return SoundRegistry.BASHER_HURT;
     }
 
     @Override

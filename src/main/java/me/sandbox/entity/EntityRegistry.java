@@ -28,7 +28,7 @@ public class EntityRegistry {
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SorcererEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
     );
     public static final EntityType<ArchivistEntity> ARCHIVIST = Registry.register(Registry.ENTITY_TYPE, new Identifier(IllagerExpansion.MOD_ID,"archivist"),
-            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ArchivistEntity::new).dimensions(EntityDimensions.fixed(0.74f, 1.92f)).build()
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ArchivistEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
     );
     public static final EntityType<InquisitorEntity> INQUISITOR = Registry.register(Registry.ENTITY_TYPE, new Identifier(IllagerExpansion.MOD_ID,"inquisitor"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, InquisitorEntity::new).dimensions(EntityDimensions.fixed(0.5f, 2.48f)).build()

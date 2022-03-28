@@ -6,16 +6,34 @@
       "weight": 50,
       "element": {
         "location": "illagerexp:labyrinth/hall1",
-        "processors": "minecraft:empty",
+        "processors": "illagerexp:nowater",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
     },
     {
-      "weight": 50,
+      "weight": 70,
       "element": {
         "location": "illagerexp:labyrinth/hall2",
-        "processors": "minecraft:empty",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 55,
+      "element": {
+        "location": "illagerexp:labyrinth/hallcorner",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 60,
+      "element": {
+        "location": "illagerexp:labyrinth/hall3",
+        "processors": "illagerexp:nowater",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -23,8 +41,126 @@
     {
       "weight": 50,
       "element": {
-        "location": "illagerexp:labyrinth/hallcorner1",
-        "processors": "minecraft:empty",
+        "location": "illagerexp:labyrinth/hall1-room1",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "illagerexp:labyrinth/hall1-room2",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "illagerexp:labyrinth/hall1-room3",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "illagerexp:labyrinth/hall1-room4",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "illagerexp:labyrinth/hall1-room5",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "illagerexp:labyrinth/hall1-room6",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "illagerexp:labyrinth/hall1-room7",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "illagerexp:labyrinth/hall1-room8",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 55,
+      "element": {
+        "location": "illagerexp:labyrinth/hall3-room1",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 55,
+      "element": {
+        "location": "illagerexp:labyrinth/hall3-room2",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 55,
+      "element": {
+        "location": "illagerexp:labyrinth/hall3-room3",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 55,
+      "element": {
+        "location": "illagerexp:labyrinth/hall3-room4",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "illagerexp:labyrinth/hall3-room5",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "illagerexp:labyrinth/hallcorner-room1",
+        "processors": "illagerexp:nowater",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }

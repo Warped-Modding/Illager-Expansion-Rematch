@@ -1,57 +1,4 @@
 {
-  "lost_miner_ambient": {
-    "subtitle": "illagerexp.lost_miner_ambient",
-    "sounds": [
-      "illagerexp:lost_miner_ambient1",
-      "illagerexp:lost_miner_ambient2",
-      "illagerexp:lost_miner_ambient3"
-    ]
-  },
-  "lost_miner_hurt": {
-  "subtitle": "illagerexp.lost_miner_hurt",
-  "sounds": [
-    "illagerexp:lost_miner_hurt1",
-    "illagerexp:lost_miner_hurt2",
-    "illagerexp:lost_miner_hurt3",
-    "illagerexp:lost_miner_hurt4"
-    ]
-  },
-  "lost_miner_death": {
-    "subtitle": "illagerexp.lost_miner_death",
-    "sounds": [
-      "illagerexp:lost_miner_death"
-    ]
-  },
-  "lost_candle_coal": {
-    "subtitle": "illagerexp.lost_candle_coal",
-    "sounds": [
-      "illagerexp:lost_candle_coal"
-    ]
-  },
-  "lost_candle_copper": {
-    "subtitle": "illagerexp.lost_candle_copper",
-    "sounds": [
-      "illagerexp:lost_candle_copper"
-    ]
-  },
-  "lost_candle_iron": {
-    "subtitle": "illagerexp.lost_candle_iron",
-    "sounds": [
-      "illagerexp:lost_candle_iron"
-    ]
-  },
-  "lost_candle_diamond": {
-    "subtitle": "illagerexp.lost_candle_diamond",
-    "sounds": [
-      "illagerexp:lost_candle_diamond"
-    ]
-  },
-  "lost_candle_gold": {
-    "subtitle": "illagerexp.lost_candle_gold",
-    "sounds": [
-      "illagerexp:lost_candle_gold"
-    ]
-  },
   "surrendered_hurt": {
     "subtitle": "illagerexp.surrendered",
     "sounds": [
@@ -260,6 +207,33 @@
     "subtitle": "illagerexp.provoker_celebrate",
     "sounds": [
       "illagerexp:provoker_celebrate"
+    ]
+  },
+  "basher_celebrate": {
+    "subtitle": "illagerexp.basher_celebrate",
+    "sounds": [
+      "illagerexp:basher_celebrate"
+    ]
+  },
+  "basher_idle": {
+    "subtitle": "illagerexp.basher_idle",
+    "sounds": [
+      "illagerexp:basher_idle1",
+      "illagerexp:basher_idle2",
+      "illagerexp:basher_idle3"
+    ]
+  },
+  "basher_hurt": {
+    "subtitle": "illagerexp.basher_hurt",
+    "sounds": [
+      "illagerexp:basher_hurt1",
+      "illagerexp:basher_hurt2"
+    ]
+  },
+  "basher_death": {
+    "subtitle": "illagerexp.basher_death",
+    "sounds": [
+      "illagerexp:basher_death"
     ]
   }
 }
