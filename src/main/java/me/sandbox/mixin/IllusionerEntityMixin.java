@@ -34,14 +34,23 @@ public class IllusionerEntityMixin extends IllagerEntity
 
     @Inject(at = { @At("HEAD") }, cancellable = true, method = { "attack(Lnet/minecraft/entity/LivingEntity;F)V" })
     public void shootFirework(final LivingEntity target, final float pullProgress, final CallbackInfo callbackInfo) {
+        int randvalue;
+        final ItemStack firework = new ItemStack(Items.FIREWORK_ROCKET);
         if (FabricLoader.getInstance().isModLoaded("friendsandfoes")) {
-            final ItemStack firework = new ItemStack(Items.FIREWORK_ROCKET);
             try {
                 firework.setSubNbt("Fireworks", StringNbtReader.parse("{Flight:3,Explosions:[{Type:1,Flicker:0,Trail:0,Colors:[I;8073150],FadeColors:[I;8073150]},{Type:1,Flicker:0,Trail:0,Colors:[I;15790320],FadeColors:[I;15790320]},{Type:1,Flicker:0,Trail:0,Colors:[I;11250603],FadeColors:[I;11250603]}]}"));
             } catch (CommandSyntaxException e) {
                 e.printStackTrace();
             }
-            final int randvalue = this.random.nextInt(8);
+            randvalue = this.random.nextInt(8);
+        }  else {
+            try {
+                firework.setSubNbt("Fireworks", StringNbtReader.parse("{Flight:3,Explosions:[{Type:1,Flicker:0,Trail:0,Colors:[I;2437522],FadeColors:[I;2437522]},{Type:1,Flicker:0,Trail:0,Colors:[I;8073150],FadeColors:[I;8073150]},{Type:1,Flicker:0,Trail:0,Colors:[I;3887386],FadeColors:[I;3887386]}]}"));
+            } catch (CommandSyntaxException e) {
+                e.printStackTrace();
+            }
+            randvalue = this.random.nextInt(3);
+        }
             if (randvalue == 0 && this.getNearbyPlayers().isEmpty()) {
                 final ProjectileEntity projectileEntity = new FireworkRocketEntity(this.world, firework, this, this.getX(), this.getEyeY() - 0.15000000596046448, this.getZ(), true);
                 final double d = target.getX() - this.getX();
@@ -51,25 +60,6 @@ public class IllusionerEntityMixin extends IllagerEntity
                 projectileEntity.setVelocity(d, e2 + 0.4000000059604645, f - 1.0, 1.6f, (float) (14 - this.world.getDifficulty().getId() * 4));
                 this.world.spawnEntity(projectileEntity);
                 callbackInfo.cancel();
-            }
-        } else {
-                final ItemStack firework = new ItemStack(Items.FIREWORK_ROCKET);
-                try {
-                    firework.setSubNbt("Fireworks", StringNbtReader.parse("{Flight:3,Explosions:[{Type:1,Flicker:0,Trail:0,Colors:[I;2437522],FadeColors:[I;2437522]},{Type:1,Flicker:0,Trail:0,Colors:[I;8073150],FadeColors:[I;8073150]},{Type:1,Flicker:0,Trail:0,Colors:[I;3887386],FadeColors:[I;3887386]}]}"));
-                } catch (CommandSyntaxException e) {
-                    e.printStackTrace();
-                }
-                final int randvalue = this.random.nextInt(3);
-                if (randvalue == 0 && this.getNearbyPlayers().isEmpty()) {
-                    final ProjectileEntity projectileEntity = new FireworkRocketEntity(this.world, firework, this, this.getX(), this.getEyeY() - 0.15000000596046448, this.getZ(), true);
-                    final double d = target.getX() - this.getX();
-                    final double e2 = target.getBodyY(0.3333333333333333) - projectileEntity.getY();
-                    final double f = target.getZ() - this.getZ();
-                    final double g = Math.sqrt(d * d + f * f);
-                    projectileEntity.setVelocity(d, e2 + 0.4000000059604645, f - 1.0, 1.6f, (float) (14 - this.world.getDifficulty().getId() * 4));
-                    this.world.spawnEntity(projectileEntity);
-                    callbackInfo.cancel();
-                }
             }
         }
 
