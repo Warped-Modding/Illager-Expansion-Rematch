@@ -619,7 +619,7 @@ public class InvokerEntity
             return false;
         }
         private List<LivingEntity> getTargets() {
-            return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(6), entity -> (entity instanceof PlayerEntity) || (entity instanceof IronGolemEntity) && !((PlayerEntity)entity).getAbilities().creativeMode);
+            return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(6), entity -> ((entity instanceof PlayerEntity && !((PlayerEntity)entity).getAbilities().creativeMode)) || (entity instanceof IronGolemEntity));
         }
         @Override
         public boolean shouldContinue() {

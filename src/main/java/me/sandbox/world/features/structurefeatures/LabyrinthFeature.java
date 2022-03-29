@@ -1,8 +1,7 @@
 package me.sandbox.world.features.structurefeatures;
 
-import net.fabricmc.fabric.impl.registry.sync.FabricRegistry;
+import com.mojang.serialization.Codec;
 import net.minecraft.structure.*;
-import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -14,7 +13,7 @@ import java.util.Optional;
 
 public class LabyrinthFeature extends StructureFeature<StructurePoolFeatureConfig> {
 
-    public LabyrinthFeature() {
+    public LabyrinthFeature(Codec<StructurePoolFeatureConfig> codec) {
         super(StructurePoolFeatureConfig.CODEC, LabyrinthFeature::createPiecesGenerator, PostPlacementProcessor.EMPTY);
     }
 
@@ -29,7 +28,7 @@ public class LabyrinthFeature extends StructureFeature<StructurePoolFeatureConfi
         }
         BlockPos blockpos = context.chunkPos().getCenterAtY(0);
         int topLandY = context.chunkGenerator().getHeightOnGround(blockpos.getX(), blockpos.getZ(), Heightmap.Type.WORLD_SURFACE_WG, context.world());
-        blockpos = blockpos.up(topLandY - 60);
+        blockpos = blockpos.up(topLandY - 40);
 
         Optional<StructurePiecesGenerator<StructurePoolFeatureConfig>> structurePiecesCollector =
                 StructurePoolBasedGenerator.generate(

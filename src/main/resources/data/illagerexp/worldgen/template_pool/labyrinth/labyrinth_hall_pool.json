@@ -137,7 +137,6 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
-
     {
       "weight": 55,
       "element": {
@@ -160,6 +159,15 @@
       "weight": 50,
       "element": {
         "location": "illagerexp:labyrinth/hallcorner-room1",
+        "processors": "illagerexp:nowater",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "illagerexp:labyrinth/hallcorner-room2",
         "processors": "illagerexp:nowater",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
