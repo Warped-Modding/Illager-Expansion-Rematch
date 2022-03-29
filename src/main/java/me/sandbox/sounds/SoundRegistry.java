@@ -47,6 +47,5 @@ public class SoundRegistry {
         return Registry.register(Registry.SOUND_EVENT, id, new SoundEvent(id));
     }
     public static void registerSounds() {
-        IllagerExpansion.LOGGER.info("Registering sounds...");
     }
 }

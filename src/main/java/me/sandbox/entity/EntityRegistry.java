@@ -53,7 +53,6 @@ public class EntityRegistry {
     );
 
     public static void registerEntities() {
-        IllagerExpansion.LOGGER.info("Registering mobs...");
     }
 
 }

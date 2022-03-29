@@ -7,6 +7,15 @@
   "item.illagerexp.hallowed_gem": "Hallowed Gem",
   "item.illagerexp.hatchet": "Hatchet",
   "item.illagerexp.primal_essence": "§bPrimal Essence",
+  "item.minecraft.potion.effect.berserking": "Potion of Berserking",
+  "item.minecraft.potion.effect.berserking_long": "Potion of Berserking",
+  "item.minecraft.potion.effect.berserking_strong": "Potion of Berserking",
+  "item.minecraft.splash_potion.effect.berserking": "Splash Potion of Berserking",
+  "item.minecraft.splash_potion.effect.berserking_long": "Splash Potion of Berserking",
+  "item.minecraft.splash_potion.effect.berserking_strong": "Splash Potion of Berserking",
+  "item.minecraft.lingering_potion.effect.berserking": "Lingering Potion of Berserking",
+  "item.minecraft.lingering_potion.effect.berserking_long": "Lingering Potion of Berserking",
+  "item.minecraft.lingering_potion.effect.berserking_strong": "Lingering Potion of Berserking",
 
 
   "item.illagerexp.provoker_spawn_egg": "Provoker Spawn Egg",

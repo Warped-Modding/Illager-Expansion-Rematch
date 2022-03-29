@@ -40,6 +40,5 @@ public class BlockRegistry {
     }
 
     public static void registerModBlocks() {
-        IllagerExpansion.LOGGER.info("Registering blocks...");
     }
 }

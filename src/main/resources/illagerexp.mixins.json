@@ -5,10 +5,12 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AnvilScreenHandlerMixin",
+    "BrewingRecipeRegistryMixin",
     "ConfiguredStructureFeaturesAccessor",
     "IllagerModelMixin",
     "IllusionerEntityMixin",
     "MarauderPatrolMixin",
+    "PotionsAccessor",
     "StructureFeatureAccessor",
     "StructureMixin",
     "StructureProcessorAccessor",

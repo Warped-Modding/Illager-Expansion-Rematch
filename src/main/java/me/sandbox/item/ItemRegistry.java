@@ -60,6 +60,5 @@ public class ItemRegistry {
 
 
     public static void registerModItems() {
-        IllagerExpansion.LOGGER.info("Registering items...");
     }
 }

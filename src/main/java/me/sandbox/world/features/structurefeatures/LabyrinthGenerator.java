@@ -13,6 +13,5 @@ public class LabyrinthGenerator {
     public static final RegistryEntry<StructurePool> STRUCTURE_POOLS = StructurePools.register(new StructurePool(new Identifier("illagerexp:labyrinth_entrance_pool"), new Identifier("empty"), ImmutableList.of(Pair.of(StructurePoolElement.ofProcessedSingle("illagerexp:labyrinth/labyrinth_entrance", ProcessorRegistry.WATERLOGGED_LIST), 1)), StructurePool.Projection.RIGID));
 
     public static void init() {
-
     }
 }
