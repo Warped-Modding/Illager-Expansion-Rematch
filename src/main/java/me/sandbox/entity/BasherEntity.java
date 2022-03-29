@@ -160,7 +160,7 @@ public class BasherEntity
 
     @Override
     public SoundEvent getCelebratingSound() {
-        return SoundRegistry.BASHER_CELEBRATE;
+        return SoundEvents.ENTITY_PILLAGER_CELEBRATE;
     }
 
     @Override
@@ -229,17 +229,17 @@ public class BasherEntity
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundRegistry.BASHER_AMBIENT;
+        return SoundEvents.ENTITY_VINDICATOR_AMBIENT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundRegistry.BASHER_DEATH;
+        return SoundEvents.ENTITY_VINDICATOR_DEATH;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundRegistry.BASHER_HURT;
+        return SoundEvents.ENTITY_VINDICATOR_HURT;
     }
 
     @Override
