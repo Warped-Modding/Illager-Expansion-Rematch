@@ -2,10 +2,7 @@ package me.sandbox.client;
 
 
 import me.sandbox.block.BlockRegistry;
-import me.sandbox.client.model.ArmoredIllagerEntityModel;
-import me.sandbox.client.model.CapedIllagerEntityModel;
-import me.sandbox.client.model.HatIllagerEntityModel;
-import me.sandbox.client.model.InvokerFangsModel;
+import me.sandbox.client.model.*;
 import me.sandbox.client.particle.ParticleRegistry;
 import me.sandbox.client.renders.*;
 import me.sandbox.entity.EntityRegistry;
@@ -45,8 +42,10 @@ public class ClientRegistry implements ClientModInitializer {
         EntityRendererRegistry.register(EntityRegistry.INQUISITOR, InquisitorRender::new);
         EntityRendererRegistry.register(EntityRegistry.MARAUDER, MarauderRender::new);
         EntityRendererRegistry.register(EntityRegistry.ALCHEMIST, AlchemistRender::new);
+        EntityRendererRegistry.register(EntityRegistry.FIRECALLER, FirecallerRender::new);
         EntityRendererRegistry.register(EntityRegistry.INVOKER_FANGS, InvokerFangsRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.HATCHET, HatchetRender::new);
+        EntityRendererRegistry.register(EntityRegistry.MAGMA, MagmaEntityRender::new);
 
 
 
@@ -68,6 +67,7 @@ public class ClientRegistry implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INVOKER_FANGS, InvokerFangsModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.ARMORED_ILLAGER, ArmoredIllagerEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.HAT_ILLAGER, HatIllagerEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.STAFF_ILLAGER, IllagerWithStaffEntityModel::getTexturedModelData);
 
         //Screen Renders
         ScreenRegistry.register(ModdedScreenHandler.IMBUING_TABLE_SCREEN_HANDLER, ImbuingTableScreen::new);
