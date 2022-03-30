@@ -59,6 +59,9 @@ public class EntityRegistry {
     public static final EntityType<MagmaEntity> MAGMA = Registry.register(Registry.ENTITY_TYPE, new Identifier(IllagerExpansion.MOD_ID,"magma"),
             FabricEntityTypeBuilder.<MagmaEntity>create(SpawnGroup.MISC, MagmaEntity::new).dimensions(EntityDimensions.fixed(0.95f, 1.05f)).build()
     );
+    public static final EntityType<FlamePlumeEntity> FLAME_PLUME = Registry.register(Registry.ENTITY_TYPE, new Identifier(IllagerExpansion.MOD_ID,"flame_plume"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, FlamePlumeEntity::new).dimensions(EntityDimensions.fixed(1.0f, 0.3f)).build()
+    );
 
     public static void registerEntities() {
     }
