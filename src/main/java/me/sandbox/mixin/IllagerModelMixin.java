@@ -40,7 +40,7 @@ public class IllagerModelMixin<T extends IllagerEntity>{
                 this.leftArm.pitch = -1.05f;
                 this.leftArm.yaw = 0.5235988f;
             }
-            if (((BasherEntity) illagerEntity).getStunnedState()) {
+            if (((BasherEntity)illagerEntity).getStunnedState()) {
                 this.head.pitch = 20.35f;
                 this.head.yaw = MathHelper.cos(h * 0.8f) * 0.3f;
                 this.rightArm.pitch = -0.25f;

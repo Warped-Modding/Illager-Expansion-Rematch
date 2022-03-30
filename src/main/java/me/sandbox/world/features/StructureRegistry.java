@@ -37,10 +37,10 @@ public class StructureRegistry<C extends FeatureConfig> {
         LabyrinthGenerator.init();
     }
     public static void registerConfiguredStructureFeatures() {
-        CONFIGURED_LABYRINTH = ConfiguredStructureFeaturesAccessor.callRegister(StructureRegistry.LABYRINTH_KEY, StructureRegistry.LABYRINTH.configure(new StructurePoolFeatureConfig(LabyrinthGenerator.STRUCTURE_POOLS, 7), BiomeTags.PILLAGER_OUTPOST_HAS_STRUCTURE));
+        CONFIGURED_LABYRINTH = ConfiguredStructureFeaturesAccessor.callRegister(StructureRegistry.LABYRINTH_KEY, StructureRegistry.LABYRINTH.configure(new StructurePoolFeatureConfig(LabyrinthGenerator.STRUCTURE_POOLS, 7), BiomeTags.WOODLAND_MANSION_HAS_STRUCTURE));
     }
     public static void registerStructureSets() {
-        LABYRINTHS = StructureSets.register(StructureRegistry.LABYRINTH_STRUCTURE_SET_KEY, StructureRegistry.CONFIGURED_LABYRINTH, new RandomSpreadStructurePlacement(64, 58, SpreadType.LINEAR, 1687452161));
+        LABYRINTHS = StructureSets.register(StructureRegistry.LABYRINTH_STRUCTURE_SET_KEY, StructureRegistry.CONFIGURED_LABYRINTH, new RandomSpreadStructurePlacement(48, 40, SpreadType.LINEAR, 1687452161));
     }
     private static RegistryKey<ConfiguredStructureFeature<?, ?>> of(String id) {
         return RegistryKey.of(Registry.CONFIGURED_STRUCTURE_FEATURE_KEY, new Identifier(IllagerExpansion.MOD_ID, id));

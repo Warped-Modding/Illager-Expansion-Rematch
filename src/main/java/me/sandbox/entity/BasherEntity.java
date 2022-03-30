@@ -1,6 +1,7 @@
 package me.sandbox.entity;
 
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import me.sandbox.item.ItemRegistry;
 import me.sandbox.sounds.SoundRegistry;
 import net.minecraft.enchantment.Enchantment;
@@ -26,10 +27,12 @@ import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.raid.RaiderEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ItemStackParticleEffect;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -44,6 +47,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Set;
 import java.util.function.Predicate;
 
 public class BasherEntity
@@ -51,7 +55,11 @@ public class BasherEntity
     public int stunTick = 60;
     public boolean isStunned = false;
     public int blockedCount;
+    public static final Set<Item> AXES;
     private static final TrackedData<Boolean> STUNNED = DataTracker.registerData(BasherEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    static {
+        AXES = Sets.newHashSet(Items.DIAMOND_AXE, Items.STONE_AXE, Items.IRON_AXE, Items.NETHERITE_AXE, Items.WOODEN_AXE, Items.GOLDEN_AXE);
+    }
 
     public BasherEntity(EntityType<? extends BasherEntity> entityType, World world) {
         super((EntityType<? extends IllagerEntity>) entityType, world);
@@ -160,37 +168,36 @@ public class BasherEntity
 
     @Override
     public SoundEvent getCelebratingSound() {
-        return SoundEvents.ENTITY_PILLAGER_CELEBRATE;
+        return SoundRegistry.BASHER_CELEBRATE;
     }
 
     @Override
-    public boolean damage(DamageSource source, float amount) {
-        Entity attacker = source.getAttacker();
-        boolean hasShield = this.getMainHandStack().isOf(Items.SHIELD);
-        if (isAttacking()) {
-            Random random = new Random();
-            int canBlockMelee = random.nextInt(5);
+    public boolean damage(final DamageSource source, final float amount) {
+        final Entity attacker = source.getAttacker();
+        final boolean hasShield = this.getMainHandStack().isOf(Items.SHIELD);
+        if (this.isAttacking()) {
             if (attacker instanceof LivingEntity) {
-                ItemStack item = ((LivingEntity) attacker).getMainHandStack();
-                ItemStack basherItem = this.getMainHandStack();
-                if ((item.isOf(Items.DIAMOND_AXE) || item.isOf(Items.IRON_AXE) || item.isOf(Items.GOLDEN_AXE) || item.isOf(Items.NETHERITE_AXE) || item.isOf(Items.STONE_AXE) || item.isOf(Items.WOODEN_AXE)) && basherItem.isOf(Items.SHIELD) || (attacker instanceof IronGolemEntity && basherItem.isOf(Items.SHIELD)) || (this.blockedCount >= 4 && basherItem.isOf(Items.SHIELD))) {
+                final ItemStack item = ((LivingEntity) attacker).getMainHandStack();
+                final ItemStack basherItem = this.getMainHandStack();
+                final boolean isShield = basherItem.isOf(Items.SHIELD);
+                if ((BasherEntity.AXES.contains(item.getItem()) || attacker instanceof IronGolemEntity || this.blockedCount >= 4) && isShield) {
                     this.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.0f, 1.0f);
                     this.setStunnedState(true);
-                    if (world instanceof ServerWorld) {
-                        ((ServerWorld) world).spawnParticles(new ItemStackParticleEffect(ParticleTypes.ITEM, basherItem), this.getX(), this.getY()+1.5, this.getZ(), 30, 0.3D, 0.2D, 0.3D, 0.003);
+                    if (this.world instanceof ServerWorld) {
+                        ((ServerWorld)this.world).spawnParticles((ParticleEffect)new ItemStackParticleEffect(ParticleTypes.ITEM, basherItem), this.getX(), this.getY() + 1.5, this.getZ(), 30, 0.3, 0.2, 0.3, 0.003);
+                        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_AXE));
                     }
-                    this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_AXE));
-
+                    return super.damage(source, amount);
                 }
             }
-            if ((source.getSource()) instanceof PersistentProjectileEntity && hasShield) {
+            if (source.getSource() instanceof PersistentProjectileEntity && hasShield) {
                 this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0f, 1.0f);
-                ++blockedCount;
+                ++this.blockedCount;
                 return false;
             }
-            if ((source.getSource()) instanceof LivingEntity && !(canBlockMelee == 0) && hasShield) {
+            if (source.getSource() instanceof LivingEntity && hasShield) {
                 this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0f, 1.0f);
-                ++blockedCount;
+                ++this.blockedCount;
                 return false;
             }
         }
@@ -229,17 +236,17 @@ public class BasherEntity
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_VINDICATOR_AMBIENT;
+        return SoundRegistry.BASHER_AMBIENT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_VINDICATOR_DEATH;
+        return SoundRegistry.BASHER_DEATH;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.ENTITY_VINDICATOR_HURT;
+        return SoundRegistry.BASHER_HURT;
     }
 
     @Override

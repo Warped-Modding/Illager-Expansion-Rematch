@@ -16,6 +16,9 @@
   "item.minecraft.lingering_potion.effect.berserking": "Lingering Potion of Berserking",
   "item.minecraft.lingering_potion.effect.berserking_long": "Lingering Potion of Berserking",
   "item.minecraft.lingering_potion.effect.berserking_strong": "Lingering Potion of Berserking",
+  "item.minecraft.tipped_arrow.effect.berserking": "Arrow of Berserking",
+  "item.minecraft.tipped_arrow.effect.berserking_strong": "Arrow of Berserking",
+  "item.minecraft.tipped_arrow.effect.berserking_long": "Arrow of Berserking",
 
 
   "item.illagerexp.provoker_spawn_egg": "Provoker Spawn Egg",
