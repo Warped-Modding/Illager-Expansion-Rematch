@@ -38,6 +38,9 @@ public class SoundRegistry {
     public static SoundEvent BASHER_HURT = registerSoundEvent("basher_hurt");
     public static SoundEvent BASHER_DEATH = registerSoundEvent("basher_death");
     public static SoundEvent BASHER_CELEBRATE = registerSoundEvent("basher_celebrate");
+    public static SoundEvent FIRECALLER_AMBIENT = registerSoundEvent("firecaller_idle");
+    public static SoundEvent FIRECALLER_HURT = registerSoundEvent("firecaller_hurt");
+    public static SoundEvent FIRECALLER_DEATH = registerSoundEvent("firecaller_death");
 
 
 

@@ -1,44 +1,37 @@
 package me.sandbox.world.features.structurefeatures;
 
+import com.mojang.serialization.Codec;
+import me.sandbox.config.IllagerExpansionConfig;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.structure.*;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.random.AtomicSimpleRandom;
+import net.minecraft.world.gen.random.ChunkRandom;
 
 import java.util.Optional;
 
 
-public class IllagerFortFeature extends StructureFeature<StructurePoolFeatureConfig> {
-
-    public IllagerFortFeature() {
-        super(StructurePoolFeatureConfig.CODEC, IllagerFortFeature::createPiecesGenerator, PostPlacementProcessor.EMPTY);
+public class IllagerFortFeature
+        extends JigsawFeature {
+    public IllagerFortFeature(Codec<StructurePoolFeatureConfig> configCodec) {
+        super(configCodec, 0, true, true, IllagerFortFeature::canGenerate);
     }
 
-    public static boolean isFeatureChunk(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> context) {
+    private static boolean canGenerate(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> context) {
         ChunkPos chunkPos = context.chunkPos();
-
+        int i = chunkPos.x >> 4;
+        int j = chunkPos.z >> 4;
+        ChunkRandom chunkRandom = new ChunkRandom(new AtomicSimpleRandom(0L));
+        chunkRandom.setSeed((long)(i ^ j << 4) ^ context.seed());
+        chunkRandom.nextInt();
+        if (chunkRandom.nextInt(5) != 0) {
+            return false;
+        }
         return !context.chunkGenerator().method_41053(StructureSetKeys.VILLAGES, context.seed(), chunkPos.x, chunkPos.z, 10);
     }
-    public static Optional<StructurePiecesGenerator<StructurePoolFeatureConfig>> createPiecesGenerator(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> context) {
-        if (!IllagerFortFeature.isFeatureChunk(context)) {
-            return Optional.empty();
-        }
-        BlockPos blockpos = context.chunkPos().getCenterAtY(0);
-        int topLandY = context.chunkGenerator().getHeightOnGround(blockpos.getX(), blockpos.getZ(), Heightmap.Type.WORLD_SURFACE_WG, context.world());
-
-        Optional<StructurePiecesGenerator<StructurePoolFeatureConfig>> structurePiecesCollector =
-                StructurePoolBasedGenerator.generate(
-                        context,
-                        PoolStructurePiece::new,
-                        blockpos,
-                        false,
-                        false
-                );
-        return structurePiecesCollector;
-    }
-
-
 }
 

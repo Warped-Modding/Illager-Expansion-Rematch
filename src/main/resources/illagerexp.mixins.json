@@ -11,6 +11,7 @@
     "IllusionerEntityMixin",
     "MarauderPatrolMixin",
     "PotionsAccessor",
+    "RaidMixin",
     "StructureFeatureAccessor",
     "StructureMixin",
     "StructureProcessorAccessor",

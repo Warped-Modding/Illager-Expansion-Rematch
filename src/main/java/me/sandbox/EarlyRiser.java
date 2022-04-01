@@ -1,7 +1,10 @@
 package me.sandbox;
 
 import com.chocohead.mm.api.ClassTinkerers;
+import me.sandbox.config.IllagerExpansionConfig;
 import me.sandbox.entity.EntityRegistry;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.MappingResolver;

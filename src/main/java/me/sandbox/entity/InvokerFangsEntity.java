@@ -119,7 +119,7 @@ public class InvokerFangsEntity
         }
         if (livingEntity == null) {
             target.damage(DamageSource.MAGIC, 10.0f);
-            knockBack(target);
+            target.addVelocity(0.0f, 1.7f, 0.0f);
         } else {
             if (livingEntity.isTeammate(target)) {
                 return;

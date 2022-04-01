@@ -1,9 +1,11 @@
 package me.sandbox.world.features;
 
 import me.sandbox.IllagerExpansion;
+import me.sandbox.config.IllagerExpansionConfig;
 import me.sandbox.mixin.ConfiguredStructureFeaturesAccessor;
 import me.sandbox.mixin.StructureFeatureAccessor;
 import me.sandbox.world.features.structurefeatures.*;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.structure.StructureSet;
 import net.minecraft.structure.StructureSets;
 import net.minecraft.tag.BiomeTags;
@@ -21,8 +23,11 @@ public class StructureRegistry<C extends FeatureConfig> {
     public static RegistryEntry<StructureSet> LABYRINTHS;
     public static StructureFeature<?> ILLUSIONER_TOWER = new IllusionerTowerFeature();
     public static StructureFeature<?> SORCERER_HUT = new SorcererHutFeature();
-    public static StructureFeature<?> ILLAGER_FORT = new IllagerFortFeature();
+    public static StructureFeature<?> ILLAGER_FORT = new IllagerFortFeature(StructurePoolFeatureConfig.CODEC);
     public static StructureFeature<StructurePoolFeatureConfig> LABYRINTH = new LabyrinthFeature(StructurePoolFeatureConfig.CODEC);
+    static {
+
+    }
 
     public static final RegistryKey<ConfiguredStructureFeature<?, ?>> LABYRINTH_KEY = StructureRegistry.of("labyrinth");
 

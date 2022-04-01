@@ -235,5 +235,29 @@
     "sounds": [
       "illagerexp:basher_death"
     ]
+  },
+  "firecaller_death": {
+    "subtitle": "illagerexp.firecaller_death",
+    "sounds": [
+      "illagerexp:firecaller_death1",
+      "illagerexp:firecaller_death2"
+    ]
+  },
+  "firecaller_idle": {
+    "subtitle": "illagerexp.firecaller_idle",
+    "sounds": [
+      "illagerexp:firecaller_idle1",
+      "illagerexp:firecaller_idle2",
+      "illagerexp:firecaller_idle3",
+      "illagerexp:firecaller_idle4"
+    ]
+  },
+  "firecaller_hurt": {
+    "subtitle": "illagerexp.firecaller_hurt",
+    "sounds": [
+      "illagerexp:firecaller_hurt1",
+      "illagerexp:firecaller_hurt2",
+      "illagerexp:firecaller_hurt3"
+    ]
   }
 }

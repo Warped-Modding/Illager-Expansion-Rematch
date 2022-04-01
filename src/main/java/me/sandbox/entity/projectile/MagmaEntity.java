@@ -32,8 +32,7 @@ public class MagmaEntity
     @Override
     public void tick() {
         if (world instanceof ServerWorld) {
-            ((ServerWorld) world).spawnParticles(ParticleTypes.LAVA, this.getX(), this.getY(), this.getZ(), 2, 0.1D, 0.1D, 0.1D, 0.05D);
-            ((ServerWorld) world).spawnParticles(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 2, 0.1D, 0.1D, 0.1D, 0.05D);
+            ((ServerWorld) world).spawnParticles(ParticleTypes.LARGE_SMOKE, this.getX(), this.getY(), this.getZ(), 3, 0.3D, 0.3D, 0.3D, 0.05D);
         }
         super.tick();
     }
@@ -65,7 +64,7 @@ public class MagmaEntity
         super.onCollision(hitResult);
         if (!this.world.isClient) {
             boolean bl = this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING);
-            this.world.createExplosion(null, this.getX(), this.getY(), this.getZ(), 2, bl, bl ? Explosion.DestructionType.DESTROY : Explosion.DestructionType.NONE);
+            this.world.createExplosion(null, this.getX(), this.getY(), this.getZ(), 1, bl, bl ? Explosion.DestructionType.DESTROY : Explosion.DestructionType.NONE);
             this.discard();
         }
         if (world instanceof ServerWorld) {

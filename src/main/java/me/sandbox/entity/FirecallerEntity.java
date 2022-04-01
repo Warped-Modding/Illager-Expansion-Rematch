@@ -2,9 +2,12 @@ package me.sandbox.entity;
 
 
 import com.chocohead.mm.api.ClassTinkerers;
+import me.sandbox.block.BlockRegistry;
 import me.sandbox.client.particle.ParticleRegistry;
 import me.sandbox.entity.projectile.MagmaEntity;
 import me.sandbox.sounds.SoundRegistry;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.render.entity.feature.SkinOverlayOwner;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.TargetPredicate;
@@ -29,6 +32,9 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,6 +45,7 @@ public class FirecallerEntity extends SpellcastingIllagerEntity
     @Nullable
     private SheepEntity wololoTarget;
     private int cooldown = 160;
+    private int aoecooldown = 300;
     private AttributeContainer attributeContainer;
 
     public FirecallerEntity(final EntityType<? extends FirecallerEntity> entityType, final World world) {
@@ -51,6 +58,7 @@ public class FirecallerEntity extends SpellcastingIllagerEntity
         this.goalSelector.add(0, new SwimGoal((MobEntity)this));
         this.goalSelector.add(1, new LookAtTargetOrWololoTarget());
         this.goalSelector.add(4, new ConjureSkullGoal());
+        this.goalSelector.add(3, new AreaDamageGoal());
         this.goalSelector.add(5, new FleeEntityGoal<PlayerEntity>(this, PlayerEntity.class, 8.0f, 0.6, 1.0));
         this.goalSelector.add(8, new WanderAroundGoal((PathAwareEntity)this, 0.6));
         this.goalSelector.add(9, new LookAtEntityGoal(this, PlayerEntity.class, 3.0f, 1.0f));
@@ -89,6 +97,7 @@ public class FirecallerEntity extends SpellcastingIllagerEntity
     protected void mobTick() {
         super.mobTick();
         --this.cooldown;
+        --this.aoecooldown;
     }
 
     public boolean damage(final DamageSource source, final float amount) {
@@ -113,15 +122,15 @@ public class FirecallerEntity extends SpellcastingIllagerEntity
     }
 
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_ILLUSIONER_AMBIENT;
+        return SoundRegistry.FIRECALLER_AMBIENT;
     }
 
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_ILLUSIONER_DEATH;
+        return SoundRegistry.FIRECALLER_DEATH;
     }
 
     protected SoundEvent getHurtSound(final DamageSource source) {
-        return SoundEvents.ENTITY_ILLUSIONER_HURT;
+        return SoundRegistry.FIRECALLER_HURT;
     }
 
     @Nullable
@@ -239,6 +248,79 @@ public class FirecallerEntity extends SpellcastingIllagerEntity
         @Override
         protected SpellcastingIllagerEntity.Spell getSpell() {
             return Spell.WOLOLO;
+        }
+    }
+    public class AreaDamageGoal
+            extends SpellcastingIllagerEntity.CastSpellGoal {
+
+        @Override
+        public boolean canStart() {
+            if (FirecallerEntity.this.getTarget() == null) {
+                return false;
+            }
+            if (FirecallerEntity.this.isSpellcasting()) {
+                return false;
+            }
+            if (FirecallerEntity.this.aoecooldown <= 0) {
+                return true;
+            }
+            return false;
+        }
+        private List<LivingEntity> getTargets() {
+            return world.getEntitiesByClass(LivingEntity.class, getBoundingBox().expand(6), entity -> !(entity instanceof IllagerEntity) && !(entity instanceof SurrenderedEntity) && !(entity instanceof RavagerEntity));
+        }
+
+
+        @Override
+        public void stop() {
+            super.stop();
+        }
+        private void buff(LivingEntity entity) {
+            entity.addVelocity(0.0f, 1.2f, 0.0f);
+            entity.damage(DamageSource.MAGIC, 6.0f);
+            entity.setFireTicks(120);
+            double x = entity.getX();
+            double y = entity.getY()+1;
+            double z = entity.getZ();
+            ((ServerWorld)world).spawnParticles(ParticleTypes.SMOKE,x, y+1,z,10,0.2D, 0.2D,0.2D,0.015D);
+            BlockPos blockPos = entity.getBlockPos();
+            FirecallerEntity.this.world.setBlockState(blockPos, Blocks.FIRE.getDefaultState());
+        }
+
+        @Override
+        protected void castSpell() {
+            getTargets().forEach(this::buff);
+            double posx = FirecallerEntity.this.getX();
+            double posy = FirecallerEntity.this.getY();
+            double posz = FirecallerEntity.this.getZ();
+            ((ServerWorld)world).spawnParticles(ParticleTypes.LARGE_SMOKE,posx, posy+1, posz,350,1.0D, 0.8D,1.0D,0.3D);
+            ((ServerWorld)world).spawnParticles(ParticleTypes.FLAME,posx, posy+1, posz,350,1.0D, 0.8D,1.0D,0.3D);
+            FirecallerEntity.this.aoecooldown = 300;
+        }
+
+        @Override
+        protected int getInitialCooldown() {
+            return 50;
+        }
+
+        @Override
+        protected int getSpellTicks() {
+            return 50;
+        }
+
+        @Override
+        protected int startTimeDelay() {
+            return 400;
+        }
+
+        @Override
+        protected SoundEvent getSoundPrepare() {
+            return SoundEvents.ENTITY_ILLUSIONER_PREPARE_BLINDNESS;
+        }
+
+        @Override
+        protected SpellcastingIllagerEntity.Spell getSpell() {
+            return Spell.BLINDNESS;
         }
     }
 }
