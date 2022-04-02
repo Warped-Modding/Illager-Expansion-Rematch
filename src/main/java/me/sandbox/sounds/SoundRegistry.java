@@ -41,6 +41,7 @@ public class SoundRegistry {
     public static SoundEvent FIRECALLER_AMBIENT = registerSoundEvent("firecaller_idle");
     public static SoundEvent FIRECALLER_HURT = registerSoundEvent("firecaller_hurt");
     public static SoundEvent FIRECALLER_DEATH = registerSoundEvent("firecaller_death");
+    public static SoundEvent FIRECALLER_CAST = registerSoundEvent("firecaller_cast");
 
 
 

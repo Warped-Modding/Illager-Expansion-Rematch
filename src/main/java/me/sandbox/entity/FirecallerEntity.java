@@ -139,7 +139,7 @@ public class FirecallerEntity extends SpellcastingIllagerEntity
     }
 
     protected SoundEvent getCastSpellSound() {
-        return SoundEvents.ENTITY_EVOKER_CAST_SPELL;
+        return SoundEvents.ITEM_FIRECHARGE_USE;
     }
 
     public void addBonusForWave(final int wave, final boolean unused) {
@@ -242,7 +242,7 @@ public class FirecallerEntity extends SpellcastingIllagerEntity
 
         @Override
         protected SoundEvent getSoundPrepare() {
-            return SoundEvents.ENTITY_EVOKER_PREPARE_ATTACK;
+            return SoundRegistry.FIRECALLER_CAST;
         }
 
         @Override
@@ -290,11 +290,6 @@ public class FirecallerEntity extends SpellcastingIllagerEntity
         @Override
         protected void castSpell() {
             getTargets().forEach(this::buff);
-            double posx = FirecallerEntity.this.getX();
-            double posy = FirecallerEntity.this.getY();
-            double posz = FirecallerEntity.this.getZ();
-            ((ServerWorld)world).spawnParticles(ParticleTypes.LARGE_SMOKE,posx, posy+1, posz,350,1.0D, 0.8D,1.0D,0.3D);
-            ((ServerWorld)world).spawnParticles(ParticleTypes.FLAME,posx, posy+1, posz,350,1.0D, 0.8D,1.0D,0.3D);
             FirecallerEntity.this.aoecooldown = 300;
         }
 
@@ -315,12 +310,12 @@ public class FirecallerEntity extends SpellcastingIllagerEntity
 
         @Override
         protected SoundEvent getSoundPrepare() {
-            return SoundEvents.ENTITY_ILLUSIONER_PREPARE_BLINDNESS;
+            return SoundRegistry.FIRECALLER_CAST;
         }
 
         @Override
         protected SpellcastingIllagerEntity.Spell getSpell() {
-            return Spell.BLINDNESS;
+            return ClassTinkerers.getEnum(Spell.class, "PROVOKE");
         }
     }
 }

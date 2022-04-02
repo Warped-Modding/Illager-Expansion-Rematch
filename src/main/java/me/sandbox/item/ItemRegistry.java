@@ -51,6 +51,8 @@ public class ItemRegistry {
             new SpawnEggItem(EntityRegistry.MARAUDER,5441030,9541270, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
     public static final Item ALCHEMIST_SPAWN_EGG = registerItem("alchemist_spawn_egg",
             new SpawnEggItem(EntityRegistry.ALCHEMIST,9541270,7550099, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
+    public static final Item FIRECALLER_SPAWN_EGG = registerItem("firecaller_spawn_egg",
+            new SpawnEggItem(EntityRegistry.FIRECALLER,9541270,14185784, new Item.Settings().group(ModItemGroup.SandBoxMobs)));
 
 
 

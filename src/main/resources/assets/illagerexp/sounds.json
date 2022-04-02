@@ -259,5 +259,11 @@
       "illagerexp:firecaller_hurt2",
       "illagerexp:firecaller_hurt3"
     ]
+  },
+  "firecaller_cast": {
+    "subtitle": "illagerexp.firecaller_cast",
+    "sounds": [
+      "illagerexp:firecaller_cast"
+    ]
   }
 }

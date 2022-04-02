@@ -30,6 +30,7 @@
   "item.illagerexp.inquisitor_spawn_egg": "Inquisitor Spawn Egg",
   "item.illagerexp.marauder_spawn_egg": "Marauder Spawn Egg",
   "item.illagerexp.alchemist_spawn_egg": "Alchemist Spawn Egg",
+  "item.illagerexp.firecaller_spawn_egg": "Firecaller Spawn Egg",
 
 
 
@@ -46,6 +47,7 @@
   "entity.illagerexp.inquisitor": "Inquisitor",
   "entity.illagerexp.marauder": "Marauder",
   "entity.illagerexp.alchemist": "Alchemist",
+  "entity.illagerexp.firecaller": "Firecaller",
 
   "itemGroup.illagerexp.sandboxmisc" : "Illager Expansion Items",
   "itemGroup.illagerexp.sandboxmobs" : "Illager Expansion Mobs"

@@ -1,6 +1,6 @@
 package me.sandbox.config;
 
-import me.sandbox.IllagerExpansion;
+
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 
