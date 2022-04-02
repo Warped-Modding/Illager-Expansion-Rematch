@@ -75,18 +75,6 @@
       "illagerexp:horn_of_sight"
     ]
   },
-  "equip_endergon": {
-    "subtitle": "illagerexp.equip_endergon",
-    "sounds": [
-      "illagerexp:equip_endergon"
-    ]
-  },
-  "flamecaller_cast": {
-    "subtitle": "illagerexp.flamecaller_cast",
-    "sounds": [
-      "illagerexp:flamecaller_cast"
-    ]
-  },
   "invoker_fangs": {
     "subtitle": "illagerexp.invoker_fangs",
     "sounds": [

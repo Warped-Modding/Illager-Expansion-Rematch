@@ -33,6 +33,7 @@ repositories {
         modApi("me.shedaniel.cloth:cloth-config-fabric:6.2.57") {
                 exclude(group: "net.fabricmc.fabric-api")
             }
+        include 'me.shedaniel.cloth:cloth-config-fabric:6.2.57'
     }
 
     processResources {
