@@ -1,19 +1,21 @@
 {
   "schemaVersion": 1,
   "id": "illagerexp",
-  "version": "${version}",
+  "version": "0.1.4",
 
-  "name": "Illager_Expansion",
+  "name": "Illager Expansion",
   "description": "A 1.18.2 Fabric Mod that focuses on expanding content surrounding the mysterious Illagers in Minecraft!",
   "authors": [
-    "Dricky"
+    "Dricky",
+    "All other contributors :)"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/OhDricky/Illager-Expansion"
+    "sources": "https://github.com/OhDricky/Illager-Expansion",
+    "issues": "https://github.com/OhDricky/Illager-Expansion/issues",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/illager-expansion-fabric"
   },
 
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/illagerexp/icon.png",
 
   "environment": "*",
@@ -26,6 +28,9 @@
     ],
     "mm:early_risers": [
       "me.sandbox.EarlyRiser"
+    ],
+    "modmenu": [
+      "me.sandbox.config.ModMenu"
     ]
   },
   "mixins": [

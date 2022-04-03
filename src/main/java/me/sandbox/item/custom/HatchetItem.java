@@ -66,7 +66,7 @@ public class HatchetItem
         }
             stack.damage(1, playerEntity, p -> p.sendToolBreakStatus(user.getActiveHand()));
                 HatchetEntity hatchetentity = new HatchetEntity(world, (LivingEntity)playerEntity, stack);
-                hatchetentity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0f, 2.5f + 0.5f, 1.0f);
+                hatchetentity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0f, 1.0f + 0.5f, 1.0f);
                 if (playerEntity.getAbilities().creativeMode) {
                     hatchetentity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
                 }

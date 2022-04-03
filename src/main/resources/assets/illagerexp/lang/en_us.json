@@ -50,6 +50,9 @@
   "entity.illagerexp.firecaller": "Firecaller",
 
   "itemGroup.illagerexp.sandboxmisc" : "Illager Expansion Items",
-  "itemGroup.illagerexp.sandboxmobs" : "Illager Expansion Mobs"
+  "itemGroup.illagerexp.sandboxmobs" : "Illager Expansion Mobs",
+
+  "text.autoconfig.illager_expansion_config.title": "Illager Expansion Config",
+  "text.autoconfig.illager_expansion_config.option.addIllagersToRaids": "Add New Illagers To Raids"
 
 }

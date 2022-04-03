@@ -31,7 +31,7 @@ public class IllagerModelMixin<T extends IllagerEntity>{
         ItemStack item = illagerEntity.getMainHandStack();
         Arm mainArm= illagerEntity.getMainArm();
         if (illagerEntity instanceof BasherEntity) {
-            IllagerEntity.State state = ((IllagerEntity)illagerEntity).getState();
+            IllagerEntity.State state = illagerEntity.getState();
             if (state == IllagerEntity.State.ATTACKING && item.isOf(Items.SHIELD) && !(((BasherEntity) illagerEntity).isStunned) && mainArm == Arm.RIGHT) {
                 this.rightArm.pitch = 200.0f;
                 this.rightArm.yaw = -0.5235988f;
@@ -48,12 +48,20 @@ public class IllagerModelMixin<T extends IllagerEntity>{
             }
         }
         if (illagerEntity instanceof MarauderEntity) {
-            IllagerEntity.State state = (illagerEntity.getState());
-            if (((MarauderEntity) illagerEntity).isCharging()) {
-                this.rightArm.pitch = 3.7699115f;
-            }
-            if (!illagerEntity.isAttacking()) {
-                this.rightArm.pitch = 0.0f;
+            if (mainArm == Arm.RIGHT) {
+                if (((MarauderEntity) illagerEntity).isCharging()) {
+                    this.rightArm.pitch = 3.7699115f;
+                }
+                if (!illagerEntity.isAttacking()) {
+                    this.rightArm.pitch = MathHelper.cos(f * 0.6662f + (float) Math.PI) * 2.0f * g * 0.5f;
+                }
+            } else {
+                if (((MarauderEntity) illagerEntity).isCharging()) {
+                    this.leftArm.pitch = 3.7699115f;
+                }
+                if (!illagerEntity.isAttacking()) {
+                    this.leftArm.pitch = MathHelper.cos(f * 0.6662f) * 2.0f * g * 0.5f;
+                }
             }
         }
     }

@@ -3,6 +3,7 @@ package me.sandbox;
 import me.sandbox.block.BlockRegistry;
 import me.sandbox.client.particle.ParticleRegistry;
 import me.sandbox.config.IllagerExpansionConfig;
+import me.sandbox.config.ModMenu;
 import me.sandbox.entity.EntityRegistry;
 import me.sandbox.item.ItemRegistry;
 import me.sandbox.item.potion.PotionRegistry;
@@ -22,8 +23,7 @@ public class IllagerExpansion implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        AutoConfig.register(IllagerExpansionConfig.class, GsonConfigSerializer::new);
-
+        IllagerExpansionConfig.registerConfig();
         ItemRegistry.registerModItems();
         BlockRegistry.registerModBlocks();
         SoundRegistry.registerSounds();
@@ -34,6 +34,7 @@ public class IllagerExpansion implements ModInitializer {
         StructureRegistry.registerStructureSets();
         ProcessorRegistry.registerProcessors();
         PotionRegistry.registerPotions();
+
         LOGGER.info("Why are there so many illagers?");
     }
 }

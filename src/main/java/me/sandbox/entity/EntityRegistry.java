@@ -1,16 +1,17 @@
 package me.sandbox.entity;
 
+import com.google.common.collect.ImmutableSet;
 import me.sandbox.IllagerExpansion;
 import me.sandbox.entity.projectile.HatchetEntity;
 import me.sandbox.entity.projectile.MagmaEntity;
 import me.sandbox.entity.projectile.SkullboltEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.block.Block;
 import net.minecraft.entity.*;
-import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class EntityRegistry {
+public class EntityRegistry<T extends Entity> {
 
 
     //Register Entities

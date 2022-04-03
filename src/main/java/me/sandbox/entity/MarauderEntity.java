@@ -94,7 +94,7 @@ public class MarauderEntity
         double e = target.getBodyY(0.3333333333333333) - hatchetEntity.getY();
         double f = target.getZ() - this.getZ();
         double g = Math.sqrt(d * d + f * f);
-        hatchetEntity.setVelocity(d, e + g * (double) 0.2f, f, 1.6f, 14 - this.world.getDifficulty().getId() * 4);
+        hatchetEntity.setVelocity(d, e + g * (double) 0.2f, f, 1.2f, 14 - this.world.getDifficulty().getId() * 4);
         this.playSound(SoundEvents.ITEM_TRIDENT_THROW, 1.0f, 1.0f / (this.getRandom().nextFloat() * 0.4f + 0.8f));
         this.world.spawnEntity(hatchetEntity);
     }
