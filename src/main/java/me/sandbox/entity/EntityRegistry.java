@@ -11,7 +11,7 @@ import net.minecraft.entity.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class EntityRegistry<T extends Entity> {
+public class EntityRegistry {
 
 
     //Register Entities
