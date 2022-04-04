@@ -17,7 +17,7 @@ public class RaidMixin {
     public void discardRaider(int wave, RaiderEntity raider, BlockPos pos, boolean existing, CallbackInfo ci) {
         IllagerExpansionConfig config = AutoConfig.getConfigHolder(IllagerExpansionConfig.class).getConfig();
         if (!config.addIllagersToRaids) {
-            if (raider instanceof ArchivistEntity || raider instanceof BasherEntity || raider instanceof AlchemistEntity || raider instanceof InquisitorEntity || raider instanceof MarauderEntity || raider instanceof NecromancerEntity || raider instanceof SorcererEntity) {
+            if (raider instanceof ArchivistEntity || raider instanceof BasherEntity || raider instanceof AlchemistEntity || raider instanceof InquisitorEntity || raider instanceof MarauderEntity || raider instanceof NecromancerEntity ||raider instanceof ProvokerEntity || raider instanceof SorcererEntity) {
                 raider.discard();
             }
         }
