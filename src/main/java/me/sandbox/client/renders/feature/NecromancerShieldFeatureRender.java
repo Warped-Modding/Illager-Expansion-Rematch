@@ -1,8 +1,5 @@
 package me.sandbox.client.renders.feature;
 
-import me.sandbox.client.model.CapedIllagerEntityModel;
-import me.sandbox.entity.InvokerEntity;
-import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.util.math.MathHelper;
 import me.sandbox.client.ModModelLayers;
 import net.minecraft.client.render.entity.model.EntityModelLoader;

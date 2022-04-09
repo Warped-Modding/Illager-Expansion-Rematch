@@ -1,6 +1,7 @@
 package me.sandbox.entity;
 
 import me.sandbox.sounds.SoundRegistry;
+import net.minecraft.block.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.data.DataTracker;
@@ -37,15 +38,11 @@ import net.minecraft.entity.LivingEntity;
 import java.util.List;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+
 import java.util.Iterator;
 import net.minecraft.util.math.Box;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.entity.Entity;
-import net.minecraft.block.GlassBlock;
-import net.minecraft.block.DoorBlock;
-import net.minecraft.block.LeavesBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -97,7 +94,7 @@ public class InquisitorEntity extends IllagerEntity
     }
 
     protected void mobTick() {
-        if (!this.isAiDisabled() && NavigationConditions.hasMobNavigation((MobEntity)this)) {
+        if (!this.isAiDisabled() && NavigationConditions.hasMobNavigation(this)) {
             ((MobNavigation)this.getNavigation()).setCanPathThroughDoors(true);
         }
         super.mobTick();
@@ -113,14 +110,14 @@ public class InquisitorEntity extends IllagerEntity
     public void tickMovement() {
         if (this.horizontalCollision && this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
             boolean bl = false;
-            final Box box = this.getBoundingBox().expand(0.5);
+            final Box box = this.getBoundingBox().expand(1.0);
             for (final BlockPos blockPos : BlockPos.iterate(MathHelper.floor(box.minX), MathHelper.floor(box.minY), MathHelper.floor(box.minZ), MathHelper.floor(box.maxX), MathHelper.floor(box.maxY), MathHelper.floor(box.maxZ))) {
                 final BlockState blockState = this.world.getBlockState(blockPos);
                 final Block block = blockState.getBlock();
-                if (!(block instanceof LeavesBlock) && !(block instanceof DoorBlock) && !(block instanceof GlassBlock)) {
+                if (!(block instanceof LeavesBlock) && !(block instanceof DoorBlock) && !(block instanceof GlassBlock) && !(block instanceof HayBlock) && !(block instanceof SugarCaneBlock) && !(block instanceof CobwebBlock)) {
                     continue;
                 }
-                bl = (this.world.breakBlock(blockPos, true, (Entity)this) || bl);
+                bl = (this.world.breakBlock(blockPos, true, this) || bl);
                 if (!(block instanceof DoorBlock)) {
                     continue;
                 }

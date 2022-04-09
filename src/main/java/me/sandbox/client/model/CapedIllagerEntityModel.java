@@ -1,5 +1,6 @@
 package me.sandbox.client.model;
 
+
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.Dilation;
@@ -57,7 +58,7 @@ public class CapedIllagerEntityModel<T extends IllagerEntity>
         ModelPartData modelPartData2 = modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 0).cuboid(-4.0f, -10.0f, -4.0f, 8.0f, 10.0f, 8.0f), ModelTransform.pivot(0.0f, 0.0f, 0.0f));
         modelPartData2.addChild(EntityModelPartNames.HAT, ModelPartBuilder.create().uv(32, 0).cuboid(-4.0f, -10.0f, -4.0f, 8.0f, 12.0f, 8.0f, new Dilation(0.45f)), ModelTransform.NONE);
         modelPartData2.addChild(EntityModelPartNames.NOSE, ModelPartBuilder.create().uv(24, 0).cuboid(-1.0f, -1.0f, -6.0f, 2.0f, 4.0f, 2.0f), ModelTransform.pivot(0.0f, -2.0f, 0.0f));
-        modelPartData.addChild(EntityModelPartNames.BODY, ModelPartBuilder.create().uv(16, 20).cuboid(-4.0f, 0.0f, -3.0f, 8.0f, 12.0f, 6.0f).uv(0, 38).cuboid(-4.0f, 0.0f, -3.0f, 8.0f, 18.0f, 6.0f, new Dilation(0.5f)), ModelTransform.pivot(0.0f, 0.0f, 0.0f));
+        modelPartData.addChild(EntityModelPartNames.BODY, ModelPartBuilder.create().uv(16, 20).cuboid(-4.0f, 0.0f, -3.0f, 8.0f, 12.0f, 6.0f).uv(0, 38).cuboid(-4.0f, 0.0f, -3.0f, 8.0f, 19.0f, 6.0f, new Dilation(0.5f)), ModelTransform.pivot(0.0f, 0.0f, 0.0f));
         ModelPartData modelPartData3 = modelPartData.addChild(EntityModelPartNames.ARMS, ModelPartBuilder.create().uv(44, 22).cuboid(-8.0f, -2.0f, -2.0f, 4.0f, 8.0f, 4.0f).uv(40, 38).cuboid(-4.0f, 2.0f, -2.0f, 8.0f, 4.0f, 4.0f), ModelTransform.of(0.0f, 3.0f, -1.0f, -0.75f, 0.0f, 0.0f));
         modelPartData.addChild(CAPE, ModelPartBuilder.create().uv(64, 0).cuboid(-4.5F, 0.0F, 0.0F, 9.0F, 17.0F, 1.0F, new Dilation(0.6f, 0.7f, 0.0f)), ModelTransform.pivot(0.0f, 1.0f, 3.4f));
         modelPartData3.addChild("left_shoulder", ModelPartBuilder.create().uv(44, 22).mirrored().cuboid(4.0f, -2.0f, -2.0f, 4.0f, 8.0f, 4.0f), ModelTransform.NONE);
@@ -65,7 +66,7 @@ public class CapedIllagerEntityModel<T extends IllagerEntity>
         modelPartData.addChild(EntityModelPartNames.LEFT_LEG, ModelPartBuilder.create().uv(0, 22).mirrored().cuboid(-2.0f, 0.0f, -2.0f, 4.0f, 12.0f, 4.0f), ModelTransform.pivot(2.0f, 12.0f, 0.0f));
         modelPartData.addChild(EntityModelPartNames.RIGHT_ARM, ModelPartBuilder.create().uv(40, 46).cuboid(-3.0f, -2.0f, -2.0f, 4.0f, 12.0f, 4.0f), ModelTransform.pivot(-5.0f, 2.0f, 0.0f));
         modelPartData.addChild(EntityModelPartNames.LEFT_ARM, ModelPartBuilder.create().uv(40, 46).mirrored().cuboid(-1.0f, -2.0f, -2.0f, 4.0f, 12.0f, 4.0f), ModelTransform.pivot(5.0f, 2.0f, 0.0f));
-        return TexturedModelData.of(modelData, 128, 64);
+        return TexturedModelData.of(modelData, 128, 128);
     }
 
     @Override
@@ -75,6 +76,7 @@ public class CapedIllagerEntityModel<T extends IllagerEntity>
 
     @Override
     public void setAngles(T illagerEntity, float f, float g, float h, float i, float j) {
+
         boolean bl;
         this.head.yaw = i * ((float)Math.PI / 180);
         this.head.pitch = j * ((float)Math.PI / 180);
@@ -85,27 +87,19 @@ public class CapedIllagerEntityModel<T extends IllagerEntity>
             this.leftArm.pitch = -0.62831855f;
             this.leftArm.yaw = 0.0f;
             this.leftArm.roll = 0.0f;
-            this.rightLeg.pitch = -1.4137167f;
-            this.rightLeg.yaw = 0.31415927f;
-            this.rightLeg.roll = 0.07853982f;
-            this.leftLeg.pitch = -1.4137167f;
-            this.leftLeg.yaw = -0.31415927f;
-            this.leftLeg.roll = -0.07853982f;
         } else {
-            this.rightArm.pitch = MathHelper.cos(f * 0.6662f + (float)Math.PI) * 2.0f * g * 0.5f;
+            this.rightArm.pitch = MathHelper.cos(f * 0.6662f + 3.1415927f) * 2.0f * g * 0.5f;
             this.rightArm.yaw = 0.0f;
             this.rightArm.roll = 0.0f;
-            this.leftArm.pitch = MathHelper.cos(f * 0.6662f) * 2.0f * g * 0.5f;
+            this.leftArm.pitch = MathHelper.cos(f * 0.6662f) * 0.5f * g * 0.5f - 1.2f;
             this.leftArm.yaw = 0.0f;
             this.leftArm.roll = 0.0f;
             this.rightLeg.pitch = MathHelper.cos(f * 0.6662f) * 1.4f * g * 0.5f;
             this.rightLeg.yaw = 0.0f;
             this.rightLeg.roll = 0.0f;
-            this.leftLeg.pitch = MathHelper.cos(f * 0.6662f + (float)Math.PI) * 1.4f * g * 0.5f;
+            this.leftLeg.pitch = MathHelper.cos(f * 0.6662f + 3.1415927f) * 1.4f * g * 0.5f;
             this.leftLeg.yaw = 0.0f;
             this.leftLeg.roll = 0.0f;
-            this.cape.pitch = (MathHelper.cos(f * 0.3111f + (float)Math.PI) * 0.4f * g * 0.5f)  + 0.15f;
-            this.cape.yaw = 0.0f;
         }
         IllagerEntity.State state = ((IllagerEntity)illagerEntity).getState();
         if (state == IllagerEntity.State.ATTACKING) {
@@ -176,5 +170,6 @@ public class CapedIllagerEntityModel<T extends IllagerEntity>
         this.getAttackingArm(arm).rotate(matrices);
     }
 }
+
 
 

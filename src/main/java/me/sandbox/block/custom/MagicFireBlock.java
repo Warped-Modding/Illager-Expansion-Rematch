@@ -30,6 +30,9 @@ public class MagicFireBlock extends AbstractFireBlock {
             } else {
                 return;
             }
+            if (entity.getFireTicks() == 0) {
+                entity.setFireTicks(0);
+            }
         super.onEntityCollision(state, world, pos, entity);
     }
 

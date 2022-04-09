@@ -21,7 +21,6 @@ import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredica
 import net.minecraft.client.particle.EmotionParticle;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.model.IllagerEntityModel;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
@@ -62,13 +61,14 @@ public class ClientRegistry implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.MAGIC_FIRE, RenderLayer.getCutout());
 
         //Mob Layers
-        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.CAPED_ILLAGER, CapedIllagerEntityModel::getTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INVOKER_SHIELD, CapedIllagerEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.CAPED_ILLAGER, InvokerEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INVOKER_SHIELD, InvokerEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.NECROMANCER_SHIELD, IllagerEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INVOKER_FANGS, InvokerFangsModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.ARMORED_ILLAGER, ArmoredIllagerEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.HAT_ILLAGER, HatIllagerEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.STAFF_ILLAGER, IllagerWithStaffEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.BRIM_HAT_ILLAGER, BrimmedHatIllagerEntityModel::getTexturedModelData);
 
         //Screen Renders
         ScreenRegistry.register(ModdedScreenHandler.IMBUING_TABLE_SCREEN_HANDLER, ImbuingTableScreen::new);

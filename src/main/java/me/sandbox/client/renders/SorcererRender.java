@@ -1,9 +1,7 @@
 package me.sandbox.client.renders;
 
 import me.sandbox.client.ModModelLayers;
-import me.sandbox.client.model.CapedIllagerEntityModel;
 import me.sandbox.client.model.HatIllagerEntityModel;
-import me.sandbox.entity.InquisitorEntity;
 import me.sandbox.entity.SorcererEntity;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;

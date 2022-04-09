@@ -4,6 +4,7 @@ import me.sandbox.IllagerExpansion;
 import me.sandbox.entity.EntityRegistry;
 import me.sandbox.item.custom.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -25,11 +26,35 @@ public class ItemRegistry {
             new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
     public static final Item PRIMAL_ESSENCE = registerItem("primal_essence",
             new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
+    public static final Item PLATINUM_CHUNK = registerItem("platinum_chunk",
+            new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
+    public static final Item PLATINUM_SHEET = registerItem("platinum_sheet",
+            new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
 
 
     //TOOLS
     public static final Item HATCHET = registerItem("hatchet",
             new HatchetItem(new FabricItemSettings().maxDamage(250).group(ModItemGroup.SandBoxMisc)));
+    public static final Item PLATINUM_INFUSED_NETHERITE_PICKAXE = registerItem("platinum_infused_netherite_pickaxe",
+            new ModPickaxeItem(ModToolMaterial.PLATINUM_INFUSED_NETHERITE, 1, -2.8f, new FabricItemSettings().fireproof().group(ModItemGroup.SandBoxMisc)));
+    public static final Item PLATINUM_INFUSED_NETHERITE_AXE = registerItem("platinum_infused_netherite_axe",
+            new ModAxeItem(ModToolMaterial.PLATINUM_INFUSED_NETHERITE, 5, -3.0f, new FabricItemSettings().fireproof().group(ModItemGroup.SandBoxMisc)));
+    public static final Item PLATINUM_INFUSED_NETHERITE_HOE = registerItem("platinum_infused_netherite_hoe",
+            new ModHoeItem(ModToolMaterial.PLATINUM_INFUSED_NETHERITE, -2, 0.0f, new FabricItemSettings().fireproof().group(ModItemGroup.SandBoxMisc)));
+    public static final Item PLATINUM_INFUSED_NETHERITE_SWORD = registerItem("platinum_infused_netherite_sword",
+            new SwordItem(ModToolMaterial.PLATINUM_INFUSED_NETHERITE, 3, -2.4f, new FabricItemSettings().fireproof().group(ModItemGroup.SandBoxMisc)));
+    public static final Item PLATINUM_INFUSED_NETHERITE_SHOVEL = registerItem("platinum_infused_netherite_shovel",
+            new ShovelItem(ModToolMaterial.PLATINUM_INFUSED_NETHERITE, 1.5f, -3.0f, new FabricItemSettings().fireproof().group(ModItemGroup.SandBoxMisc)));
+
+    //ARMOR
+    public static final Item PLATINUM_INFUSED_NETHERITE_HELMET = registerItem("platinum_infused_netherite_helmet",
+            new ArmorItem(ModArmorMaterial.PLATINUM_INFUSED_NETHERITE, EquipmentSlot.HEAD, new FabricItemSettings().fireproof().group(ModItemGroup.SandBoxMisc)));
+    public static final Item PLATINUM_INFUSED_NETHERITE_CHESTPLATE = registerItem("platinum_infused_netherite_chestplate",
+            new ArmorItem(ModArmorMaterial.PLATINUM_INFUSED_NETHERITE, EquipmentSlot.CHEST, new FabricItemSettings().fireproof().group(ModItemGroup.SandBoxMisc)));
+    public static final Item PLATINUM_INFUSED_NETHERITE_LEGGINGS = registerItem("platinum_infused_netherite_leggings",
+            new ArmorItem(ModArmorMaterial.PLATINUM_INFUSED_NETHERITE, EquipmentSlot.LEGS, new FabricItemSettings().fireproof().group(ModItemGroup.SandBoxMisc)));
+    public static final Item PLATINUM_INFUSED_NETHERITE_BOOTS = registerItem("platinum_infused_netherite_boots",
+            new ArmorItem(ModArmorMaterial.PLATINUM_INFUSED_NETHERITE, EquipmentSlot.FEET, new FabricItemSettings().fireproof().group(ModItemGroup.SandBoxMisc)));
 
 
     //SPAWN EGGS

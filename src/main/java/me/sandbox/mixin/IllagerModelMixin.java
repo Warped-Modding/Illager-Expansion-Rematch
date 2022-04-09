@@ -33,11 +33,12 @@ public class IllagerModelMixin<T extends IllagerEntity>{
         if (illagerEntity instanceof BasherEntity) {
             IllagerEntity.State state = illagerEntity.getState();
             if (state == IllagerEntity.State.ATTACKING && item.isOf(Items.SHIELD) && !(((BasherEntity) illagerEntity).isStunned) && mainArm == Arm.RIGHT) {
-                this.rightArm.pitch = 200.0f;
+                this.rightArm.pitch = this.rightArm.pitch * 0.5f + 0.05424779f;
                 this.rightArm.yaw = -0.5235988f;
+
             }
             if (state == IllagerEntity.State.ATTACKING && item.isOf(Items.SHIELD) && !(((BasherEntity) illagerEntity).isStunned) && mainArm == Arm.LEFT) {
-                this.leftArm.pitch = -1.05f;
+                this.leftArm.pitch = this.leftArm.pitch * 0.5f - 0.9424779f;
                 this.leftArm.yaw = 0.5235988f;
             }
             if (((BasherEntity)illagerEntity).getStunnedState()) {

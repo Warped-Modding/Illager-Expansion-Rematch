@@ -41,6 +41,7 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
@@ -174,9 +175,20 @@ public class InvokerEntity
         }
         if (getShieldedState()) {
             if (world instanceof ServerWorld) {
-                ((ServerWorld) world).spawnParticles(ParticleTypes.CRIT, this.getX(), this.getY() + 1, this.getZ(), 1, 0.5D, 0.7D, 0.5D, 0.15D);
+                ((ServerWorld) world).spawnParticles(ParticleTypes.CRIT, this.getX(), this.getY() + 1.5, this.getZ(), 1, 0.5D, 0.7D, 0.5D, 0.15D);
             }
         }
+        Vec3d vec3d = this.getVelocity();
+        if (!this.onGround && vec3d.y < 0.0) {
+            this.setVelocity(vec3d.multiply(1.0, 0.6, 1.0));
+        }
+        if (world instanceof ServerWorld) {
+            ((ServerWorld) world).spawnParticles(ParticleTypes.SMOKE, this.getX(), this.getY() + 0.3, this.getZ(), 1, 0.2D, 0.2D, 0.2D, 0.005D);
+        }
+    }
+    @Override
+    public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
+        return false;
     }
 
     @Override
@@ -189,6 +201,9 @@ public class InvokerEntity
     public void onStoppedTrackingBy(ServerPlayerEntity player) {
         super.onStoppedTrackingBy(player);
         this.bossBar.removePlayer(player);
+    }
+    @Override
+    protected void playStepSound(BlockPos pos, BlockState state) {
     }
 
     @Override
