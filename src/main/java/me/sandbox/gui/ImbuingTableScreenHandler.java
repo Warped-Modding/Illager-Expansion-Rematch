@@ -21,6 +21,7 @@ public class ImbuingTableScreenHandler extends ScreenHandler {
     public static boolean bigBook;
     public static boolean badEnchant;
     public static boolean lowEnchant;
+    public static boolean badItem;
     protected final CraftingResultInventory output = new CraftingResultInventory();
     final Inventory input = new SimpleInventory(3){
         @Override
@@ -105,6 +106,7 @@ public class ImbuingTableScreenHandler extends ScreenHandler {
         bigBook = value;
         badEnchant = value;
         lowEnchant = value;
+        badItem = value;
     }
     public void updateResult() {
         ItemStack imbuingItem = this.input.getStack(1);
@@ -112,7 +114,7 @@ public class ImbuingTableScreenHandler extends ScreenHandler {
         ItemStack gem = this.input.getStack(2);
         ItemStack imbuingResult = imbuingItem.copy();
         Map<Enchantment, Integer> bookmap = EnchantmentHelper.get(book);
-        if (!book.isEmpty() && !gem.isEmpty()) {
+        if (!book.isEmpty() && !gem.isEmpty() && !imbuingItem.isEmpty()) {
             for (Enchantment bookEnchantment : bookmap.keySet()) {
                 if (bookmap.size() > 1) {
                     bigBook = true;
@@ -120,6 +122,8 @@ public class ImbuingTableScreenHandler extends ScreenHandler {
                     badEnchant = true;
                 } else if (bookmap.getOrDefault(bookEnchantment, 0) != bookEnchantment.getMaxLevel()) {
                     lowEnchant = true;
+                } else if (!bookEnchantment.isAcceptableItem(imbuingItem)) {
+                    badItem = true;
                 } else {
                     int imbueLevel = bookmap.get(bookEnchantment) + 1;
                     Map<Enchantment, Integer> imbueMap = EnchantmentHelper.get(imbuingItem);

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "illagerexp",
-  "version": "0.1.4",
+  "version": "0.1.5",
 
   "name": "Illager Expansion",
   "description": "A 1.18.2 Fabric Mod that focuses on expanding content surrounding the mysterious Illagers in Minecraft!",

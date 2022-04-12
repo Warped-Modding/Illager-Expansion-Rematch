@@ -18,6 +18,7 @@ public class ImbuingTableScreen
     private static final Text BOOK_BIG = new LiteralText("Book must have 1 enchantment!");
     private static final Text TOO_LOW = new LiteralText("Book enchantment level is too low!");
     private static final Text BAD_ENCHANT = new LiteralText("Book enchantment cannot be imbued!");
+    private static final Text BAD_ITEM = new LiteralText("Item cannot have this enchantment!");
     private static final Identifier TEXTURE = new Identifier(IllagerExpansion.MOD_ID,"textures/gui/imbue_table.png");
 
     public ImbuingTableScreen(ImbuingTableScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -55,6 +56,12 @@ public class ImbuingTableScreen
         if (ImbuingTableScreenHandler.lowEnchant && !ImbuingTableScreenHandler.bigBook && !ImbuingTableScreenHandler.badEnchant) {
             Text text;
             text = TOO_LOW;
+            this.drawTexture(matrices, 226, 81, 176, 0, 36,23);
+            this.textRenderer.drawWithShadow(matrices, text, 155, 40, 0xFF6060);
+        }
+        if (ImbuingTableScreenHandler.badItem && !ImbuingTableScreenHandler.badEnchant && !ImbuingTableScreenHandler.bigBook && !ImbuingTableScreenHandler.lowEnchant) {
+            Text text;
+            text = BAD_ITEM;
             this.drawTexture(matrices, 226, 81, 176, 0, 36,23);
             this.textRenderer.drawWithShadow(matrices, text, 155, 40, 0xFF6060);
         }
