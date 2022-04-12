@@ -4,7 +4,6 @@
   "package": "me.sandbox.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "AnvilScreenHandlerMixin",
     "BrewingRecipeRegistryMixin",
     "ConfiguredStructureFeaturesAccessor",
     "IllagerModelMixin",

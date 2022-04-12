@@ -15,10 +15,9 @@ import net.minecraft.util.Identifier;
 @Environment(value= EnvType.CLIENT)
 public class ImbuingTableScreen
         extends HandledScreen<ImbuingTableScreenHandler> {
-    private static final Text AT_MAX = new LiteralText("Book is at max level!");
-    private static final Text BOOK_BIG = new LiteralText("Must have 1 enchantment!");
-    private static final Text TOO_LOW = new LiteralText("Enchantment level is too low!");
-    private static final Text BAD_ENCHANT = new LiteralText("Enchantment cannot be imbued!");
+    private static final Text BOOK_BIG = new LiteralText("Book must have 1 enchantment!");
+    private static final Text TOO_LOW = new LiteralText("Book enchantment level is too low!");
+    private static final Text BAD_ENCHANT = new LiteralText("Book enchantment cannot be imbued!");
     private static final Identifier TEXTURE = new Identifier(IllagerExpansion.MOD_ID,"textures/gui/imbue_table.png");
 
     public ImbuingTableScreen(ImbuingTableScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -41,34 +40,23 @@ public class ImbuingTableScreen
         int i = (this.width - this.backgroundWidth) / 2;
         int j = (this.height - this.backgroundHeight) / 2;
         this.drawTexture(matrices, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
-        if ((((ImbuingTableScreenHandler)this.handler).getSlot(0).hasStack() || ((ImbuingTableScreenHandler)this.handler).getSlot(1).hasStack()) && !((ImbuingTableScreenHandler)this.handler).getSlot(2).hasStack()) {
-        }
-        if (handler.atMax) {
-            Text text;
-            text = AT_MAX;
-            this.drawTexture(matrices, i + 99, j+ 44, 176, 0, 28, 36);
-            this.textRenderer.drawWithShadow(matrices, text, 190.0f, 80.0f, 0xFF5555);
-        }
-        if (handler.bigBook) {
+        if (ImbuingTableScreenHandler.bigBook && !ImbuingTableScreenHandler.lowEnchant && !ImbuingTableScreenHandler.badEnchant) {
             Text text;
             text = BOOK_BIG;
-            this.drawTexture(matrices, i + 99, j+ 44, 176, 0, 28, 36);
-            this.textRenderer.drawWithShadow(matrices, text, 175.0f, 80.0f, 0xFF5555);
+            this.drawTexture(matrices, 226, 81, 176, 0, 36,23);
+            this.textRenderer.drawWithShadow(matrices, text, 165, 40, 0xFF6060);
         }
-        if (handler.tooLow && !handler.bigBook) {
-            Text text;
-            text = TOO_LOW;
-            this.drawTexture(matrices, i + 99, j+ 44, 176, 0, 28, 36);
-            this.textRenderer.drawWithShadow(matrices, text, 170.0f, 80.0f, 0xFF5555);
-        }
-        if (handler.badEnchant) {
+        if (ImbuingTableScreenHandler.badEnchant && !ImbuingTableScreenHandler.bigBook && !ImbuingTableScreenHandler.lowEnchant) {
             Text text;
             text = BAD_ENCHANT;
-            this.drawTexture(matrices, i + 99, j+ 44, 176, 0, 28, 36);
-            this.textRenderer.drawWithShadow(matrices, text, 165.0f, 80.0f, 0xFF5555);
+            this.drawTexture(matrices, 226, 81, 176, 0, 36,23);
+            this.textRenderer.drawWithShadow(matrices, text, 151, 40, 0xFF6060);
         }
-        if (handler.badItems && !handler.tooLow && !handler.bigBook && !handler.atMax && !handler.badEnchant) {
-            this.drawTexture(matrices, i + 99, j+ 44, 176, 0, 28, 36);
+        if (ImbuingTableScreenHandler.lowEnchant && !ImbuingTableScreenHandler.bigBook && !ImbuingTableScreenHandler.badEnchant) {
+            Text text;
+            text = TOO_LOW;
+            this.drawTexture(matrices, 226, 81, 176, 0, 36,23);
+            this.textRenderer.drawWithShadow(matrices, text, 155, 40, 0xFF6060);
         }
     }
 }

@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Random;
 
 public class ImbuingTableBlock extends Block {
-    private static final Text TITLE = new LiteralText("Imbue Book");
+    private static final Text TITLE = new LiteralText("Imbue");
 
     public ImbuingTableBlock(Settings settings) {
         super(settings);

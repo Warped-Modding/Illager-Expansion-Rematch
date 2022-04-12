@@ -18,6 +18,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.particle.EmotionParticle;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.render.RenderLayer;
@@ -75,14 +76,14 @@ public class ClientRegistry implements ClientModInitializer {
 
         }
         public void registerPullPredicates(Item item) {
-            FabricModelPredicateProviderRegistry.register(item, new Identifier("pull"), (itemStack, world, livingEntity, i) -> {
+            ModelPredicateProviderRegistry.register(item, new Identifier("pull"), (itemStack, world, livingEntity, i) -> {
                 if (livingEntity == null) {
                     return 0.0F;
                 } else {
                     return livingEntity.getActiveItem() != itemStack ? 0.0F : (float) (itemStack.getMaxUseTime() - livingEntity.getItemUseTimeLeft()) / 20.0F;
                 }
             });
-            FabricModelPredicateProviderRegistry.register(item, new Identifier("pulling"),
+            ModelPredicateProviderRegistry.register(item, new Identifier("pulling"),
                     (itemStack, clientWorld, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F);
         }
 

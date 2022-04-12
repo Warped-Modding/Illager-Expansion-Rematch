@@ -37,7 +37,6 @@ public class HornOfSightItem extends Item {
         if ((double)(f = BowItem.getPullProgress(i = this.getMaxUseTime(stack) - remainingUseTicks)) < 0.1) {
             return;
         }
-        world.playSound(user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_BELL_RESONATE, SoundCategory.PLAYERS, 1.0f, 1.0f, true);
         playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
         playerEntity.getItemCooldownManager().set(this, 30);
     }
@@ -49,7 +48,7 @@ public class HornOfSightItem extends Item {
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
-        return UseAction.BOW;
+        return UseAction.SPYGLASS;
     }
 
     private List<LivingEntity> getTargets(PlayerEntity user) {
@@ -61,7 +60,7 @@ public class HornOfSightItem extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        world.playSound(user.getX(), user.getY(), user.getZ(), SoundRegistry.HORN_OF_SIGHT, SoundCategory.PLAYERS, 1.0f, 1.0f, true);
+        user.playSound(SoundRegistry.HORN_OF_SIGHT, 1.0f, 1.0f);
             ItemStack itemStack = user.getStackInHand(hand);
                 getTargets(user).forEach(this::glow);
                 user.setCurrentHand(hand);
