@@ -93,7 +93,7 @@ public class SorcererEntity
 
     @Override
     public SoundEvent getCelebratingSound() {
-        return SoundRegistry.SORCERER_AMBIENT;
+        return SoundRegistry.SORCERER_CELEBRATE;
     }
 
     @Override

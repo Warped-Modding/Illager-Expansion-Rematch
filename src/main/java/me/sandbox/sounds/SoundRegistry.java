@@ -10,10 +10,9 @@ public class SoundRegistry {
     public static SoundEvent SURRENDERED_HURT = registerSoundEvent("surrendered_hurt");
     public static SoundEvent SURRENDERED_CHARGE = registerSoundEvent("surrendered_charge");
     public static SoundEvent SURRENDERED_DEATH = registerSoundEvent("surrendered_death");
-    public static SoundEvent NECROMANCER_SUMMON = registerSoundEvent("necromancer_summon");
-    public static SoundEvent SORCERER_AMBIENT = registerSoundEvent("sorcerer_ambient");
-    public static SoundEvent SORCERER_HURT = registerSoundEvent("sorcerer_hurt");
-    public static SoundEvent SORCERER_DEATH = registerSoundEvent("sorcerer_death");
+    public static SoundEvent ARCHIVIST_AMBIENT = registerSoundEvent("archivist_ambient");
+    public static SoundEvent ARCHIVIST_HURT = registerSoundEvent("archivist_hurt");
+    public static SoundEvent ARCHIVIST_DEATH = registerSoundEvent("archivist_death");
     public static SoundEvent SORCERER_CAST = registerSoundEvent("sorcerer_cast");
     public static SoundEvent SORCERER_COMPLETE_CAST = registerSoundEvent("sorcerer_complete_cast");
     public static SoundEvent HORN_OF_SIGHT = registerSoundEvent("horn_of_sight");
@@ -42,6 +41,10 @@ public class SoundRegistry {
     public static SoundEvent FIRECALLER_HURT = registerSoundEvent("firecaller_hurt");
     public static SoundEvent FIRECALLER_DEATH = registerSoundEvent("firecaller_death");
     public static SoundEvent FIRECALLER_CAST = registerSoundEvent("firecaller_cast");
+    public static SoundEvent SORCERER_HURT = registerSoundEvent("sorcerer_hurt");
+    public static SoundEvent SORCERER_DEATH = registerSoundEvent("sorcerer_death");
+    public static SoundEvent SORCERER_AMBIENT = registerSoundEvent("sorcerer_idle");
+    public static SoundEvent SORCERER_CELEBRATE = registerSoundEvent("sorcerer_celebrate");
 
 
 

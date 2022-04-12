@@ -1,12 +1,9 @@
 package me.sandbox.entity;
 
-import com.google.common.collect.ImmutableSet;
 import me.sandbox.IllagerExpansion;
 import me.sandbox.entity.projectile.HatchetEntity;
 import me.sandbox.entity.projectile.MagmaEntity;
-import me.sandbox.entity.projectile.SkullboltEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
-import net.minecraft.block.Block;
 import net.minecraft.entity.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -20,9 +17,6 @@ public class EntityRegistry {
     );
     public static final EntityType<InvokerEntity> INVOKER = Registry.register(Registry.ENTITY_TYPE, new Identifier(IllagerExpansion.MOD_ID,"invoker"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, InvokerEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
-    );
-    public static final EntityType<NecromancerEntity> NECROMANCER = Registry.register(Registry.ENTITY_TYPE, new Identifier(IllagerExpansion.MOD_ID,"necromancer"),
-            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, NecromancerEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
     );
     public static final EntityType<BasherEntity> BASHER = Registry.register(Registry.ENTITY_TYPE, new Identifier(IllagerExpansion.MOD_ID,"basher"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, BasherEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.92f)).build()
@@ -47,9 +41,6 @@ public class EntityRegistry {
     );
     public static final EntityType<SurrenderedEntity> SURRENDERED = Registry.register(Registry.ENTITY_TYPE, new Identifier(IllagerExpansion.MOD_ID,"surrendered"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SurrenderedEntity::new).fireImmune().dimensions(EntityDimensions.fixed(0.5f, 1.42f)).build()
-    );
-    public static final EntityType<SkullboltEntity> SKULLBOLT = Registry.register(Registry.ENTITY_TYPE, new Identifier(IllagerExpansion.MOD_ID, "skullbolt"),
-            FabricEntityTypeBuilder.<SkullboltEntity>create(SpawnGroup.MISC, (SkullboltEntity::new)).dimensions(EntityDimensions.fixed(0.3f,0.3f)).trackRangeBlocks(4).trackedUpdateRate(10).build()
     );
     public static final EntityType<HatchetEntity> HATCHET = Registry.register(Registry.ENTITY_TYPE, new Identifier(IllagerExpansion.MOD_ID, "hatchet"),
             FabricEntityTypeBuilder.<HatchetEntity>create(SpawnGroup.MISC, (HatchetEntity::new)).dimensions(EntityDimensions.fixed(0.35f,0.35f)).trackRangeBlocks(4).trackedUpdateRate(10).build()

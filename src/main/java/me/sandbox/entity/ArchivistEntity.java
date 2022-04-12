@@ -83,7 +83,7 @@ public class ArchivistEntity
 
     @Override
     public SoundEvent getCelebratingSound() {
-        return SoundRegistry.SORCERER_AMBIENT;
+        return SoundRegistry.ARCHIVIST_AMBIENT;
     }
 
     @Override
@@ -120,17 +120,17 @@ public class ArchivistEntity
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundRegistry.SORCERER_AMBIENT;
+        return SoundRegistry.ARCHIVIST_AMBIENT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundRegistry.SORCERER_DEATH;
+        return SoundRegistry.ARCHIVIST_DEATH;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundRegistry.SORCERER_HURT;
+        return SoundRegistry.ARCHIVIST_HURT;
     }
 
     void setWololoTarget(@Nullable SheepEntity sheep) {

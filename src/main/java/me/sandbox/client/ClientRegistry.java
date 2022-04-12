@@ -35,8 +35,6 @@ public class ClientRegistry implements ClientModInitializer {
         EntityRendererRegistry.register(EntityRegistry.PROVOKER, ProvokerRender::new);
         EntityRendererRegistry.register(EntityRegistry.INVOKER, InvokerRender::new);
         EntityRendererRegistry.register(EntityRegistry.SURRENDERED, SurrenderedRender::new);
-        EntityRendererRegistry.register(EntityRegistry.NECROMANCER, NecromancerRender::new);
-        EntityRendererRegistry.register(EntityRegistry.SKULLBOLT, SkullboltRender::new);
         EntityRendererRegistry.register(EntityRegistry.BASHER, BasherRender::new);
         EntityRendererRegistry.register(EntityRegistry.SORCERER, SorcererRender::new);
         EntityRendererRegistry.register(EntityRegistry.ARCHIVIST, ArchivistRender::new);
@@ -53,7 +51,6 @@ public class ClientRegistry implements ClientModInitializer {
 
         //particle factory
         ParticleFactoryRegistry.getInstance().register(ParticleRegistry.MAGIC_FLAME, FlameParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(ParticleRegistry.NECROMANCER_BUFF, EmotionParticle.HeartFactory::new);
 
         //pull registry
         registerPullPredicates(ItemRegistry.HORN_OF_SIGHT);
@@ -64,7 +61,6 @@ public class ClientRegistry implements ClientModInitializer {
         //Mob Layers
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.CAPED_ILLAGER, InvokerEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INVOKER_SHIELD, InvokerEntityModel::getTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.NECROMANCER_SHIELD, IllagerEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INVOKER_FANGS, InvokerFangsModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.ARMORED_ILLAGER, ArmoredIllagerEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.HAT_ILLAGER, HatIllagerEntityModel::getTexturedModelData);

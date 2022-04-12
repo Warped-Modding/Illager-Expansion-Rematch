@@ -53,7 +53,6 @@ public class SurrenderedEntity extends SkeletonEntity {
     public SurrenderedEntity(EntityType<? extends SurrenderedEntity> entityType, World world) {
         super((EntityType<? extends SkeletonEntity>)entityType, world);
         this.moveControl = new SurrenderedEntity.VexMoveControl(this);
-        this.experiencePoints = 3;
     }
 
 

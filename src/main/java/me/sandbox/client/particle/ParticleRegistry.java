@@ -12,6 +12,5 @@ public class ParticleRegistry {
 
     public static void registerParticles() {
         Registry.register(Registry.PARTICLE_TYPE, new Identifier(IllagerExpansion.MOD_ID, "magic_flame"), MAGIC_FLAME);
-        Registry.register(Registry.PARTICLE_TYPE, new Identifier(IllagerExpansion.MOD_ID, "necromancer_buff"), NECROMANCER_BUFF);
     }
 }

@@ -20,15 +20,7 @@ import net.minecraft.util.Identifier;
 
         public MarauderRender(EntityRendererFactory.Context context) {
             super(context, new IllagerEntityModel(context.getPart(EntityModelLayers.VINDICATOR)), 0.5f);
-            this.addFeature(new HeldItemFeatureRenderer<MarauderEntity, IllagerEntityModel<MarauderEntity>>((FeatureRendererContext)this){
-
-                @Override
-                public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, MarauderEntity vindicatorEntity, float f, float g, float h, float j, float k, float l) {
-                    if (vindicatorEntity.isAttacking()) {
-                        super.render(matrixStack, vertexConsumerProvider, i, vindicatorEntity, f, g, h, j, k, l);
-                    }
-                }
-            });
+            this.addFeature(new HeldItemFeatureRenderer<MarauderEntity, IllagerEntityModel<MarauderEntity>>((FeatureRendererContext)this));
         }
 
         @Override

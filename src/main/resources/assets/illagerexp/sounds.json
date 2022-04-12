@@ -27,34 +27,28 @@
       "illagerexp:surrendered_death"
     ]
   },
-  "necromancer_summon": {
-    "subtitle": "illagerexp.necromancer_summon",
+  "archivist_ambient": {
+    "subtitle": "illagerexp.archivist.ambient",
     "sounds": [
-      "illagerexp:necroraise"
+      "illagerexp:archivist_idle1",
+      "illagerexp:archivist_idle2",
+      "illagerexp:archivist_idle3"
     ]
   },
-  "sorcerer_ambient": {
-    "subtitle": "illagerexp.sorcerer.ambient",
+  "archivist_hurt": {
+    "subtitle": "illagerexp.archivist.hurt",
     "sounds": [
-      "illagerexp:sorcerer_idle1",
-      "illagerexp:sorcerer_idle2",
-      "illagerexp:sorcerer_idle3"
+      "illagerexp:archivist_hurt1",
+      "illagerexp:archivist_hurt2",
+      "illagerexp:archivist_hurt3"
     ]
   },
-  "sorcerer_hurt": {
-    "subtitle": "illagerexp.sorcerer.hurt",
+  "archivist_death": {
+    "subtitle": "illagerexp.archivist.death",
     "sounds": [
-      "illagerexp:sorcerer_hurt1",
-      "illagerexp:sorcerer_hurt2",
-      "illagerexp:sorcerer_hurt3"
-    ]
-  },
-  "sorcerer_death": {
-    "subtitle": "illagerexp.sorcerer.death",
-    "sounds": [
-      "illagerexp:sorcerer_death1",
-      "illagerexp:sorcerer_death2",
-      "illagerexp:sorcerer_death3"
+      "illagerexp:archivist_death1",
+      "illagerexp:archivist_death2",
+      "illagerexp:archivist_death3"
     ]
   },
   "sorcerer_cast": {
@@ -248,10 +242,33 @@
       "illagerexp:firecaller_hurt3"
     ]
   },
-  "firecaller_cast": {
-    "subtitle": "illagerexp.firecaller_cast",
+  "sorcerer_hurt": {
+    "subtitle": "illagerexp.sorcerer_hurt",
     "sounds": [
-      "illagerexp:firecaller_cast"
+      "illagerexp:sorcerer_hurt1",
+      "illagerexp:sorcerer_hurt2",
+      "illagerexp:sorcerer_hurt3"
+    ]
+  },
+  "sorcerer_idle": {
+    "subtitle": "illagerexp.sorcerer_idle",
+    "sounds": [
+      "illagerexp:sorcerer_idle1",
+      "illagerexp:sorcerer_idle2",
+      "illagerexp:sorcerer_idle3",
+      "illagerexp:sorcerer_idle4"
+    ]
+  },
+  "sorcerer_death": {
+    "subtitle": "illagerexp.sorcerer_death",
+    "sounds": [
+      "illagerexp:sorcerer_death1"
+    ]
+  },
+  "sorcerer_celebrate": {
+    "subtitle": "illagerexp.sorcerer_celebrate",
+    "sounds": [
+      "illagerexp:sorcerer_celebrate"
     ]
   }
 }
