@@ -63,6 +63,12 @@
       "illagerexp:sorcerer_completecast"
     ]
   },
+  "firecaller_cast": {
+    "subtitle": "illagerexp.firecaller_cast",
+    "sounds": [
+      "illagerexp:firecaller_cast"
+    ]
+  },
   "horn_of_sight": {
     "subtitle": "illagerexp.horn_of_sight",
     "sounds": [

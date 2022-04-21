@@ -63,7 +63,7 @@ public class AlchemistEntity extends IllagerEntity implements RangedAttackMob
     private AttributeContainer attributeContainer;
 
     public AlchemistEntity(final EntityType<? extends AlchemistEntity> entityType, final World world) {
-        super((EntityType)entityType, world);
+        super(entityType, world);
         this.inPotionState = false;
         this.inBowState = false;
         this.potionCooldown = 160;
@@ -80,7 +80,7 @@ public class AlchemistEntity extends IllagerEntity implements RangedAttackMob
         this.targetSelector.add(1, (Goal)new RevengeGoal((PathAwareEntity)this, new Class[] { RaiderEntity.class }).setGroupRevenge(new Class[0]));
         this.targetSelector.add(2, (Goal)new ActiveTargetGoal((MobEntity)this, (Class)PlayerEntity.class, true).setMaxTimeWithoutVisibility(300));
         this.targetSelector.add(3, (Goal)new ActiveTargetGoal((MobEntity)this, (Class)MerchantEntity.class, false).setMaxTimeWithoutVisibility(300));
-        this.targetSelector.add(3, (Goal)new ActiveTargetGoal((MobEntity)this, (Class)IronGolemEntity.class, false));
+        this.targetSelector.add(3, new ActiveTargetGoal(this, IronGolemEntity.class, false));
     }
 
     public AttributeContainer getAttributes() {
@@ -132,18 +132,20 @@ public class AlchemistEntity extends IllagerEntity implements RangedAttackMob
     }
 
     private List<AreaEffectCloudEntity> getNearbyClouds() {
-        return (List<AreaEffectCloudEntity>)this.world.getEntitiesByClass((Class)AreaEffectCloudEntity.class, this.getBoundingBox().expand(30.0), Entity::isAlive);
+        return this.world.getEntitiesByClass(AreaEffectCloudEntity.class, this.getBoundingBox().expand(30.0), Entity::isAlive);
     }
 
     private void cancelEffect(final AreaEffectCloudEntity areaEffectCloudEntity, final LivingEntity entity) {
         final Potion potion = areaEffectCloudEntity.getPotion();
         final StatusEffectInstance statusEffectInstance = potion.getEffects().get(0);
         final StatusEffect statusEffect = statusEffectInstance.getEffectType();
-        entity.removeStatusEffect(statusEffect);
+        if (potion.getEffects().size() > 0) {
+            entity.removeStatusEffect(statusEffect);
+        }
     }
 
     private void removeEffectsinCloud(final AreaEffectCloudEntity cloudEntity) {
-        final List<LivingEntity> list = (List<LivingEntity>)this.world.getEntitiesByClass((Class)LivingEntity.class, cloudEntity.getBoundingBox().expand(0.3), Entity::isAlive);
+        final List<LivingEntity> list = this.world.getEntitiesByClass(LivingEntity.class, cloudEntity.getBoundingBox().expand(0.3), Entity::isAlive);
         for (int i = 0; i < list.size(); ++i) {
             final LivingEntity entity = list.get(i);
             if (entity instanceof IllagerEntity) {

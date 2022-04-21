@@ -21,7 +21,6 @@ import java.util.Random;
 public class WoodlandMansionPiecesMixin {
     @Inject(at = @At("HEAD"), cancellable = true, method = "handleMetadata(Ljava/lang/String;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/ServerWorldAccess;Ljava/util/Random;Lnet/minecraft/util/math/BlockBox;)V")
     public void handleDataMarker(String metadata, BlockPos pos, ServerWorldAccess world, Random random, BlockBox boundingBox, CallbackInfo ci) {
-        Boolean canInvokerSpawn = false;
         Random randomValue = new Random();
         int value = randomValue.nextInt(8);
         if (metadata.equals("Provoker")) {

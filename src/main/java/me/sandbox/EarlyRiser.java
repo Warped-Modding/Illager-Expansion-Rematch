@@ -11,6 +11,7 @@ import net.fabricmc.loader.api.MappingResolver;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.village.raid.Raid;
 
 import java.util.Random;
@@ -48,7 +49,6 @@ public class EarlyRiser implements Runnable
                     .addEnum("ALCHEMIST", () -> new Object[]{EntityRegistry.ALCHEMIST, new int[]{0, 0, 0, 1, 2, 1, 2, 2}})
                     .build();
         }
-
         final String SpellcastingIllagerEntity = remapper.mapClassName("intermediary", "net.minecraft.class_1617$class_1618");
         ClassTinkerers.enumBuilder(SpellcastingIllagerEntity, int.class, double.class, double.class, double.class)
                 .addEnum("ENCHANT",6, 0.8, 0.8, 0.2 )

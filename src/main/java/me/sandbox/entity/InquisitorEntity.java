@@ -1,5 +1,6 @@
 package me.sandbox.entity;
 
+import me.sandbox.item.ItemRegistry;
 import me.sandbox.sounds.SoundRegistry;
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.goal.*;
@@ -68,7 +69,7 @@ public class InquisitorEntity extends IllagerEntity
     private static final TrackedData<Boolean> FINAL_ROAR = DataTracker.registerData(InquisitorEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private AttributeContainer attributeContainer;
     static {
-        AXES = Sets.newHashSet(Items.DIAMOND_AXE, Items.STONE_AXE, Items.IRON_AXE, Items.NETHERITE_AXE, Items.WOODEN_AXE, Items.GOLDEN_AXE);
+        AXES = Sets.newHashSet(Items.DIAMOND_AXE, Items.STONE_AXE, Items.IRON_AXE, Items.NETHERITE_AXE, Items.WOODEN_AXE, Items.GOLDEN_AXE, ItemRegistry.PLATINUM_INFUSED_NETHERITE_AXE);
     }
 
     public InquisitorEntity(final EntityType<? extends InquisitorEntity> entityType, final World world) {
