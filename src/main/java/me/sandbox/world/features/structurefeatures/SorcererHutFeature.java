@@ -1,44 +1,23 @@
 package me.sandbox.world.features.structurefeatures;
 
 
-
-import net.minecraft.structure.*;
-import net.minecraft.structure.pool.StructurePoolBasedGenerator;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
+import com.google.common.collect.ImmutableList;
+import com.mojang.datafixers.util.Pair;
+import net.minecraft.structure.pool.StructurePool;
+import net.minecraft.structure.pool.StructurePoolElement;
+import net.minecraft.structure.pool.StructurePools;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.YOffset;
+import net.minecraft.world.gen.heightprovider.ConstantHeightProvider;
 
-import java.util.Optional;
 
+public class SorcererHutFeature extends BaseStructure {
+    public static RegistryEntry<StructurePool> HUT_POOL = StructurePools.register(new StructurePool(new Identifier("illagerexp:sorcerer_hut_pool"), new Identifier("empty"), ImmutableList.of(Pair.of(StructurePoolElement.ofLegacySingle("illagerexp:sorcerer_hut"), 1)), StructurePool.Projection.RIGID));
 
-public class SorcererHutFeature extends StructureFeature<StructurePoolFeatureConfig> {
-
-    public SorcererHutFeature() {
-        super(StructurePoolFeatureConfig.CODEC, SorcererHutFeature::createPiecesGenerator, PostPlacementProcessor.EMPTY);
-    }
-
-    public static boolean isFeatureChunk(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> context) {
-        ChunkPos chunkPos = context.chunkPos();
-
-        return !context.chunkGenerator().method_41053(StructureSetKeys.VILLAGES, context.seed(), chunkPos.x, chunkPos.z, 10);
-    }
-    public static Optional<StructurePiecesGenerator<StructurePoolFeatureConfig>> createPiecesGenerator(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> context) {
-        if (!SorcererHutFeature.isFeatureChunk(context)) {
-            return Optional.empty();
-        }
-        BlockPos blockpos = context.chunkPos().getCenterAtY(0);
-        int topLandY = context.chunkGenerator().getHeightOnGround(blockpos.getX(), blockpos.getZ(), Heightmap.Type.WORLD_SURFACE_WG, context.world());
-
-        Optional<StructurePiecesGenerator<StructurePoolFeatureConfig>> structurePiecesCollector =
-                StructurePoolBasedGenerator.generate(
-                        context,
-                        PoolStructurePiece::new,
-                        blockpos,
-                        false,
-                        false
-                );
-        return structurePiecesCollector;
+    public SorcererHutFeature(Config config) {
+        super(config, HUT_POOL, 6, ConstantHeightProvider.create(YOffset.fixed(0)), Heightmap.Type.WORLD_SURFACE_WG);
     }
 
 }

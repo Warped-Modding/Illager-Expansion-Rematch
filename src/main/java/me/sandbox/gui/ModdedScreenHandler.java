@@ -9,5 +9,5 @@ import net.minecraft.util.Identifier;
 public class ModdedScreenHandler {
     public static ScreenHandlerType<ImbuingTableScreenHandler> IMBUING_TABLE_SCREEN_HANDLER =
             ScreenHandlerRegistry.registerSimple(new Identifier(IllagerExpansion.MOD_ID, "imbuing_table"),
-                    (int syncId, PlayerInventory inventory) -> new ImbuingTableScreenHandler(syncId, inventory));
+                    ImbuingTableScreenHandler::new);
 }
