@@ -4,15 +4,17 @@
   "version": "0.2.0",
 
   "name": "Illager Expansion [Rematch]",
-  "description": "A 1.19 Fabric Mod that focuses on expanding content surrounding the mysterious Illagers in Minecraft!",
+  "description": "A Fabric Mod that focuses on expanding content surrounding the mysterious Illagers in Minecraft! Updated for 1.19+",
   "authors": [
     "Dricky",
+    "Safro",
+    "Tabzlock",
     "All other contributors :)"
   ],
   "contact": {
     "sources": "https://github.com/ZekeSmith/Illager-Expansion-Rematch",
     "issues": "https://github.com/ZekeSmith/Illager-Expansion-Rematch/issues",
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/illager-expansion-fabric"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/illager-expansion-rematch"
   },
 
   "license": "MIT",
