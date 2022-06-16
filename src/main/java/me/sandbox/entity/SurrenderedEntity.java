@@ -31,6 +31,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -216,13 +217,13 @@ public class SurrenderedEntity extends SkeletonEntity {
     @Override
     @Nullable
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-        this.initEquipment(difficulty);
-        this.updateEnchantments(difficulty);
+        this.initEquipment(random, difficulty);
+        this.updateEnchantments(random, difficulty);
         return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
     }
 
     @Override
-    protected void initEquipment(LocalDifficulty difficulty) {
+    protected void initEquipment(Random random, LocalDifficulty difficulty) {
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.AIR));
         this.setEquipmentDropChance(EquipmentSlot.MAINHAND, 0.0f);
     }

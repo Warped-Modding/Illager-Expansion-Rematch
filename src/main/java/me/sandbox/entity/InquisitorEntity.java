@@ -224,8 +224,8 @@ public class InquisitorEntity extends IllagerEntity
     public EntityData initialize(final ServerWorldAccess world, final LocalDifficulty difficulty, final SpawnReason spawnReason, @Nullable final EntityData entityData, @Nullable final NbtCompound entityNbt) {
         final EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
         ((MobNavigation)this.getNavigation()).setCanPathThroughDoors(true);
-        this.initEquipment(difficulty);
-        this.updateEnchantments(difficulty);
+        this.initEquipment(random, difficulty);
+        this.updateEnchantments(random, difficulty);
         return entityData2;
     }
 

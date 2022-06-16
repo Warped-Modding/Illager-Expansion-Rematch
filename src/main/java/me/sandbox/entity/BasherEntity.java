@@ -38,6 +38,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.village.raid.Raid;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
@@ -46,7 +47,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
-import java.util.Random;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -210,13 +210,13 @@ public class BasherEntity
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
         EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
         ((MobNavigation) this.getNavigation()).setCanPathThroughDoors(true);
-        this.initEquipment(difficulty);
-        this.updateEnchantments(difficulty);
+        this.initEquipment(random, difficulty);
+        this.updateEnchantments(random, difficulty);
         return entityData2;
     }
 
     @Override
-    protected void initEquipment(LocalDifficulty difficulty) {
+    protected void initEquipment(Random random, LocalDifficulty difficulty) {
         if (this.getRaid() == null) {
             this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.SHIELD));
         }
