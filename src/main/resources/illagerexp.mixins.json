@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.sandbox.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BrewingRecipeRegistryMixin",
+    "ConfiguredStructureFeaturesAccessor",
+    "IllagerModelMixin",
+    "IllusionerEntityMixin",
+    "MarauderPatrolMixin",
+    "PotionsAccessor",
+    "RaidMixin",
+    "StructureFeatureAccessor",
+    "StructureMixin",
+    "StructureProcessorAccessor",
+    "SurrenderedChargeMixin",
+    "WoodlandMansionPiecesMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "conformVisibility": true
+  }
+}
