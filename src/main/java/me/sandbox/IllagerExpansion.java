@@ -4,6 +4,7 @@ import me.sandbox.block.BlockRegistry;
 import me.sandbox.client.particle.ParticleRegistry;
 import me.sandbox.config.IllagerExpansionConfig;
 import me.sandbox.entity.EntityRegistry;
+import me.sandbox.gui.ModdedScreenHandler;
 import me.sandbox.item.ItemRegistry;
 import me.sandbox.item.potion.PotionRegistry;
 import me.sandbox.sounds.SoundRegistry;
