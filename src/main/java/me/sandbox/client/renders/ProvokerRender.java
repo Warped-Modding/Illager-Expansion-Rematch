@@ -17,7 +17,7 @@ public class ProvokerRender extends IllagerEntityRenderer<ProvokerEntity> {
     public ProvokerRender(EntityRendererFactory.Context context) {
 
         super(context, new IllagerEntityModel(context.getPart(EntityModelLayers.ILLUSIONER)), 0.5f);
-        this.addFeature(new HeldItemFeatureRenderer<ProvokerEntity, IllagerEntityModel<ProvokerEntity>>((FeatureRendererContext)this){
+        this.addFeature(new HeldItemFeatureRenderer<ProvokerEntity, IllagerEntityModel<ProvokerEntity>>((FeatureRendererContext)this, context.getHeldItemRenderer()){
 
             @Override
             public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, ProvokerEntity provokerEntity, float f, float g, float h, float j, float k, float l) {

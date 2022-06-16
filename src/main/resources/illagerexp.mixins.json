@@ -12,7 +12,7 @@
     "PotionsAccessor",
     "RaidMixin",
     "StructureFeatureAccessor",
-    "StructureMixin",
+    "StructureTemplateMixin",
     "StructureProcessorAccessor",
     "SurrenderedChargeMixin",
     "WoodlandMansionPiecesMixin"

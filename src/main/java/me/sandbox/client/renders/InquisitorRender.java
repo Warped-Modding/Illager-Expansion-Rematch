@@ -24,7 +24,7 @@ public class InquisitorRender extends MobEntityRenderer<InquisitorEntity, Armore
 
     public InquisitorRender(final EntityRendererFactory.Context context) {
         super(context, new ArmoredIllagerEntityModel(context.getPart(ModModelLayers.ARMORED_ILLAGER)), 0.5f);
-        this.addFeature(new HeldItemFeatureRenderer(this));
+        this.addFeature(new HeldItemFeatureRenderer(this, context.getHeldItemRenderer()));
         this.model.getHat().visible = false;
     }
 

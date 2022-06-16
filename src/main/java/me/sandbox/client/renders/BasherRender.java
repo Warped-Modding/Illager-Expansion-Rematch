@@ -21,7 +21,7 @@ public class BasherRender
 
     public BasherRender(EntityRendererFactory.Context context) {
         super(context, new IllagerEntityModel(context.getPart(EntityModelLayers.VINDICATOR)), 0.5f);
-        this.addFeature(new HeldItemFeatureRenderer<BasherEntity, IllagerEntityModel<BasherEntity>>((FeatureRendererContext)this){
+        this.addFeature(new HeldItemFeatureRenderer<BasherEntity, IllagerEntityModel<BasherEntity>>((FeatureRendererContext)this, context.getHeldItemRenderer()){
 
             @Override
             public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, BasherEntity vindicatorEntity, float f, float g, float h, float j, float k, float l) {

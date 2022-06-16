@@ -1,11 +1,7 @@
 package me.sandbox.world.features;
 
 import me.sandbox.IllagerExpansion;
-import me.sandbox.config.IllagerExpansionConfig;
-import me.sandbox.mixin.ConfiguredStructureFeaturesAccessor;
-import me.sandbox.mixin.StructureFeatureAccessor;
 import me.sandbox.world.features.structurefeatures.*;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.structure.StructureSet;
 import net.minecraft.structure.StructureSets;
 import net.minecraft.tag.BiomeTags;

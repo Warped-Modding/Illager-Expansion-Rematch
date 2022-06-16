@@ -20,7 +20,7 @@ import net.minecraft.util.Identifier;
 
         public MarauderRender(EntityRendererFactory.Context context) {
             super(context, new IllagerEntityModel(context.getPart(EntityModelLayers.VINDICATOR)), 0.5f);
-            this.addFeature(new HeldItemFeatureRenderer<MarauderEntity, IllagerEntityModel<MarauderEntity>>((FeatureRendererContext)this));
+            this.addFeature(new HeldItemFeatureRenderer<MarauderEntity, IllagerEntityModel<MarauderEntity>>((FeatureRendererContext)this, context.getHeldItemRenderer()));
         }
 
         @Override

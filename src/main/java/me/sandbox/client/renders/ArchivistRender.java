@@ -31,7 +31,7 @@ public class ArchivistRender extends IllagerEntityRenderer<ArchivistEntity> {
     public ArchivistRender(EntityRendererFactory.Context context) {
         super(context, new IllagerEntityModel(context.getPart(EntityModelLayers.EVOKER)), 0.5f);
         book = new BookModel(context.getPart(EntityModelLayers.BOOK));
-        this.addFeature(new HeldItemFeatureRenderer<ArchivistEntity, IllagerEntityModel<ArchivistEntity>>((FeatureRendererContext)this){
+        this.addFeature(new HeldItemFeatureRenderer<ArchivistEntity, IllagerEntityModel<ArchivistEntity>>((FeatureRendererContext)this, context.getHeldItemRenderer()){
             @Override
             public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, ArchivistEntity ArchivistEntity, float f, float g, float h, float j, float k, float l) {
                 if (ArchivistEntity.isSpellcasting()) {

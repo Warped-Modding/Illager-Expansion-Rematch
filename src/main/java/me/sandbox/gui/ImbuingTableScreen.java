@@ -8,17 +8,16 @@ import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 @Environment(value= EnvType.CLIENT)
 public class ImbuingTableScreen
         extends HandledScreen<ImbuingTableScreenHandler> {
-    private static final Text BOOK_BIG = new LiteralText("Book must have 1 enchantment!");
-    private static final Text TOO_LOW = new LiteralText("Book enchantment level is too low!");
-    private static final Text BAD_ENCHANT = new LiteralText("Book enchantment cannot be imbued!");
-    private static final Text BAD_ITEM = new LiteralText("Item cannot have this enchantment!");
+    private static final Text BOOK_BIG = Text.literal("Book must have 1 enchantment!");
+    private static final Text TOO_LOW = Text.literal("Book enchantment level is too low!");
+    private static final Text BAD_ENCHANT = Text.literal("Book enchantment cannot be imbued!");
+    private static final Text BAD_ITEM = Text.literal("Item cannot have this enchantment!");
     private static final Identifier TEXTURE = new Identifier(IllagerExpansion.MOD_ID,"textures/gui/imbue_table.png");
 
     public ImbuingTableScreen(ImbuingTableScreenHandler handler, PlayerInventory inventory, Text title) {
