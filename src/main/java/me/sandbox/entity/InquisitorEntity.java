@@ -12,6 +12,7 @@ import net.minecraft.enchantment.Enchantment;
 import java.util.HashMap;
 
 import net.minecraft.entity.mob.*;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.village.raid.Raid;
 import java.util.Map;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -229,7 +230,7 @@ public class InquisitorEntity extends IllagerEntity
         return entityData2;
     }
 
-    protected void initEquipment(final LocalDifficulty difficulty) {
+    protected void initEquipment(final Random random, LocalDifficulty difficulty) {
         if (this.getRaid() == null) {
             this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
             this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(Items.SHIELD));
