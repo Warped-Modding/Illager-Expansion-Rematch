@@ -26,7 +26,8 @@ public class ItemRegistry {
             new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
     public static final Item PLATINUM_SHEET = registerItem("platinum_sheet",
             new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
-    public static final Item FIRECALLER_BELT = registerItem("firecaller_belt", new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
+    public static final Item FIRECALLER_BELT = registerItem("firecaller_belt",
+            new Item(new FabricItemSettings().fireproof().group(ModItemGroup.SandBoxMisc).maxCount(1)));
 
 
     //TOOLS
