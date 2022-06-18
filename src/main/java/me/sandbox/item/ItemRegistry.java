@@ -16,10 +16,6 @@ public class ItemRegistry {
             new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
     public static final Item ILLUSIONARY_DUST = registerItem("illusionary_dust",
             new IllusionaryDustItem(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
-    public static final Item RAVAGER_HORN = registerItem("ravager_horn",
-            new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
-    public static final Item GILDED_HORN = registerItem("gilded_horn",
-            new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
     public static final Item HORN_OF_SIGHT = registerItem("horn_of_sight",
             new HornOfSightItem(new FabricItemSettings().group(ModItemGroup.SandBoxMisc).maxCount(1)));
     public static final Item HALLOWED_GEM = registerItem("hallowed_gem",
@@ -30,6 +26,7 @@ public class ItemRegistry {
             new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
     public static final Item PLATINUM_SHEET = registerItem("platinum_sheet",
             new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
+    public static final Item FIRECALLER_BELT = registerItem("firecaller_belt", new Item(new FabricItemSettings().group(ModItemGroup.SandBoxMisc)));
 
 
     //TOOLS

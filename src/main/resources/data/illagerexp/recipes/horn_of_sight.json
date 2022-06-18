@@ -1,13 +1,21 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "GHG",
+    " G "
+  ],
+  "key": {
+    "A": {
       "item": "illagerexp:hallowed_gem"
     },
-    {
-      "item": "illagerexp:gilded_horn"
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "H": {
+      "item": "minecraft:goat_horn"
     }
-  ],
+  },
   "result": {
     "item": "illagerexp:horn_of_sight",
     "count": 1

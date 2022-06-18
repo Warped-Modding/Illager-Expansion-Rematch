@@ -13,7 +13,8 @@
     "StructureTemplateMixin",
     "StructureProcessorAccessor",
     "SurrenderedChargeMixin",
-    "WoodlandMansionPiecesMixin"
+    "WoodlandMansionPiecesMixin",
+    "PlayerEntityMixin"
   ],
   "client": [
   ],

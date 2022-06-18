@@ -19,7 +19,7 @@ public class PotionRegistry {
         BERSERKING_LONG = PotionsAccessor.callRegister("berserking_long", new Potion("berserking_long", new StatusEffectInstance(StatusEffects.STRENGTH, 1200, 0), new StatusEffectInstance(StatusEffects.SPEED, 1200, 0)));
         BERSERKING_STRONG = PotionsAccessor.callRegister("berserking_strong", new Potion("berserking_strong", new StatusEffectInstance(StatusEffects.STRENGTH, 300, 2), new StatusEffectInstance(StatusEffects.SPEED, 300, 2)));
 
-        BrewingRecipeRegistryMixin.callRegisterPotionRecipe(Potions.AWKWARD, ItemRegistry.RAVAGER_HORN, PotionRegistry.BERSERKING);
+        BrewingRecipeRegistryMixin.callRegisterPotionRecipe(Potions.AWKWARD, Items.GOAT_HORN, PotionRegistry.BERSERKING);
         BrewingRecipeRegistryMixin.callRegisterPotionRecipe(PotionRegistry.BERSERKING, Items.REDSTONE, PotionRegistry.BERSERKING_LONG);
         BrewingRecipeRegistryMixin.callRegisterPotionRecipe(PotionRegistry.BERSERKING, Items.GLOWSTONE_DUST, PotionRegistry.BERSERKING_STRONG);
     }

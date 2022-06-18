@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "illagerexp:item/ravager_horn"
+    "layer0": "illagerexp:item/firecaller_belt"
   }
 }
