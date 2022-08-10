@@ -7,8 +7,9 @@ import me.sandbox.client.particle.ParticleRegistry;
 import me.sandbox.client.renders.*;
 import me.sandbox.entity.EntityRegistry;
 import me.sandbox.gui.ImbuingTableScreen;
-import me.sandbox.gui.ModdedScreenHandler;
+//import me.sandbox.gui.ModdedScreenHandler;
 import me.sandbox.item.ItemRegistry;
+import me.sandbox.IllagerExpansion;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -68,7 +69,7 @@ public class ClientRegistry implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.BRIM_HAT_ILLAGER, BrimmedHatIllagerEntityModel::getTexturedModelData);
 
         //Screen Renders
-        ScreenRegistry.register(ModdedScreenHandler.IMBUING_TABLE_SCREEN_HANDLER, ImbuingTableScreen::new);
+        ScreenRegistry.register(IllagerExpansion.IMBUING_TABLE_SCREEN_HANDLER, ImbuingTableScreen::new);
 
         }
         public void registerPullPredicates(Item item) {

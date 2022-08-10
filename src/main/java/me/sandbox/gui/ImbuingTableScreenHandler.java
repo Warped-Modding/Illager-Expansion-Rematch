@@ -3,6 +3,7 @@ package me.sandbox.gui;
 import me.sandbox.item.ItemRegistry;
 import me.sandbox.sounds.SoundRegistry;
 import me.sandbox.util.ImbueUtil;
+import me.sandbox.IllagerExpansion;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,7 +37,7 @@ public class ImbuingTableScreenHandler extends ScreenHandler {
     }
 
     public ImbuingTableScreenHandler(int syncId, PlayerInventory playerInventory, final ScreenHandlerContext context) {
-        super(ModdedScreenHandler.IMBUING_TABLE_SCREEN_HANDLER, syncId);
+        super(IllagerExpansion.IMBUING_TABLE_SCREEN_HANDLER, syncId);
         this.context = context;
         int i;
         this.addSlot(new Slot(this.input, 0, 26, 54){

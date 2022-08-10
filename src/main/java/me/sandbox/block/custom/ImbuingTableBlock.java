@@ -8,10 +8,12 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.AnvilScreenHandler;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.world.ServerWorld;
@@ -44,11 +46,14 @@ public class ImbuingTableBlock extends Block {
     }
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (canActivate(pos, world)) {
-            player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
-            return ActionResult.SUCCESS;
-        }
-        return ActionResult.PASS;
+		if (!world.isClient){
+			if (canActivate(pos, world)) {
+				player.openHandledScreen(new Factory(pos));
+				return ActionResult.SUCCESS;
+			}
+			return ActionResult.PASS;
+		}
+		return ActionResult.PASS;
     }
     public boolean canActivate(BlockPos pos, World world) {
         int i = 0;
@@ -67,11 +72,28 @@ public class ImbuingTableBlock extends Block {
         private boolean goodBlock(Block block) {
             return block == Blocks.COPPER_BLOCK || block == Blocks.CUT_COPPER || block == Blocks.WAXED_COPPER_BLOCK || block == Blocks.WAXED_CUT_COPPER;
         }
-    @Override
-    @Nullable
+    
+	private record Factory(BlockPos pos) implements NamedScreenHandlerFactory {
+
+        @Override
+        public Text getDisplayName() {
+            return new LiteralText("Imbue");
+        }
+
+        @Override
+        public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+            return new ImbuingTableScreenHandler(syncId, inv, ScreenHandlerContext.create(player.world, pos));
+        }
+    }
+	
+	/*
+	@Override
+	@Nullable
     public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
         return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new ImbuingTableScreenHandler(syncId, inventory), TITLE);
     }
+	*/
+	
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (canActivate(pos, world)) {
