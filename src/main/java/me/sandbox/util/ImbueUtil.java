@@ -15,6 +15,7 @@ public class ImbueUtil {
         enchants.add("enchantment.minecraft.mending");
         enchants.add("enchantment.minecraft.multishot");
         enchants.add("enchantment.minecraft.silk_touch");
+        enchants.add("enchantment.minecraft.soul_speed");
 
         return enchants;
     }
