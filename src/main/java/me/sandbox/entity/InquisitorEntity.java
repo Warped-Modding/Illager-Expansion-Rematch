@@ -54,7 +54,7 @@ import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.raid.RaiderEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.attribute.AttributeContainer;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.item.Item;
 import java.util.Set;
@@ -68,7 +68,6 @@ public class InquisitorEntity extends IllagerEntity
     public static final Set<Item> AXES;
     private static final TrackedData<Boolean> STUNNED = DataTracker.registerData(InquisitorEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> FINAL_ROAR = DataTracker.registerData(InquisitorEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    private AttributeContainer attributeContainer;
     static {
         AXES = Sets.newHashSet(Items.DIAMOND_AXE, Items.STONE_AXE, Items.IRON_AXE, Items.NETHERITE_AXE, Items.WOODEN_AXE, Items.GOLDEN_AXE, ItemRegistry.PLATINUM_INFUSED_NETHERITE_AXE);
     }
@@ -103,12 +102,9 @@ public class InquisitorEntity extends IllagerEntity
         super.mobTick();
     }
 
-    public AttributeContainer getAttributes() {
-        if (this.attributeContainer == null) {
-            this.attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 80.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.33).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10.0).add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.6).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.8).build());
-        }
-        return this.attributeContainer;
-    }
+	public static DefaultAttributeContainer.Builder createInquisitorAttributes() {
+		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 80.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.33).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10.0).add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.6).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.8);
+	}
 
     public void tickMovement() {
         if (this.horizontalCollision && this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {

@@ -7,7 +7,6 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.control.MoveControl;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -86,18 +85,11 @@ public class SurrenderedEntity extends SkeletonEntity {
         this.targetSelector.add(3, new ActiveTargetGoal<PlayerEntity>((MobEntity)this, PlayerEntity.class, true));
     }
 
-    private AttributeContainer attributeContainer;
-
-    @Override
-    public AttributeContainer getAttributes() {
-        if (attributeContainer == null) {
-            attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes()
+    public static DefaultAttributeContainer.Builder createSurrenderedAttributes() {
+		return HostileEntity.createHostileAttributes()
                     .add(EntityAttributes.GENERIC_MAX_HEALTH, 18.0D)
-                    .add(EntityAttributes.GENERIC_ATTACK_DAMAGE,5.0D)
-                    .build());
-        }
-        return attributeContainer;
-    }
+                    .add(EntityAttributes.GENERIC_ATTACK_DAMAGE,5.0D);
+	}
     @Override
     public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
         return false;

@@ -11,7 +11,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.attribute.AttributeContainer;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
@@ -69,17 +69,11 @@ public class SorcererEntity
         this.targetSelector.add(3, new ActiveTargetGoal<MerchantEntity>((MobEntity)this, MerchantEntity.class, false).setMaxTimeWithoutVisibility(300));
         this.targetSelector.add(3, new ActiveTargetGoal<IronGolemEntity>((MobEntity)this, IronGolemEntity.class, false));
     }
-    private AttributeContainer attributeContainer;
-    @Override
-    public AttributeContainer getAttributes() {
-        if (attributeContainer == null) {
-            attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes()
+    public static DefaultAttributeContainer.Builder createSorcererAttributes() {
+		return HostileEntity.createHostileAttributes()
                     .add(EntityAttributes.GENERIC_MAX_HEALTH, 26.0D)
-                    .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.38D)
-                    .build());
-        }
-        return attributeContainer;
-    }
+                    .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.38D);
+	}
 
     @Override
     protected void initDataTracker() {

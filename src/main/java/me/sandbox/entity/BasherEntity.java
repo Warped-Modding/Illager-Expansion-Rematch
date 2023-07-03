@@ -11,7 +11,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.NavigationConditions;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.MobNavigation;
-import net.minecraft.entity.attribute.AttributeContainer;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -134,25 +134,19 @@ public class BasherEntity
             }
         }
     }
-    private AttributeContainer attributeContainer;
 
     @Override
     protected boolean isImmobile() {
         return super.isImmobile() || this.getStunnedState();
     }
 
-    @Override
-    public AttributeContainer getAttributes() {
-        if (attributeContainer == null) {
-            attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes()
+	public static DefaultAttributeContainer.Builder createBasherAttributes() {
+		return HostileEntity.createHostileAttributes()
                     .add(EntityAttributes.GENERIC_MAX_HEALTH, 28.0D)
                     .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.31D)
                     .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D)
-                    .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK,0.2D)
-                    .build());
-        }
-        return attributeContainer;
-    }
+                    .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK,0.2D);
+	}
 
 
     @Override
