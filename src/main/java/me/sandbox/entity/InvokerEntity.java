@@ -14,7 +14,7 @@ import net.minecraft.client.render.entity.feature.SkinOverlayOwner;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.attribute.AttributeContainer;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
@@ -100,20 +100,14 @@ public class InvokerEntity
         return this.getShieldedState();
     }
 
-    private AttributeContainer attributeContainer;
-
-    @Override
-    public AttributeContainer getAttributes() {
-        if (attributeContainer == null) {
-            attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes()
+	public static DefaultAttributeContainer.Builder createInvokerAttributes() {
+		return HostileEntity.createHostileAttributes()
                     .add(EntityAttributes.GENERIC_MAX_HEALTH, 250.0D)
                     .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.36D)
                     .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.3D)
-                    .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D)
-                    .build());
-        }
-        return attributeContainer;
-    }
+                    .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D);
+	}
+
     @Override
     public boolean tryAttack(Entity target) {
         if (!super.tryAttack(target)) {

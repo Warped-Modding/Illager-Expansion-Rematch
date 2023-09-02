@@ -12,7 +12,7 @@ import net.minecraft.client.render.entity.feature.SkinOverlayOwner;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.attribute.AttributeContainer;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
@@ -46,7 +46,6 @@ public class FirecallerEntity extends SpellcastingIllagerEntity
     private SheepEntity wololoTarget;
     private int cooldown = 160;
     private int aoecooldown = 300;
-    private AttributeContainer attributeContainer;
 
     public FirecallerEntity(final EntityType<? extends FirecallerEntity> entityType, final World world) {
         super(entityType, world);
@@ -70,12 +69,9 @@ public class FirecallerEntity extends SpellcastingIllagerEntity
 
     }
 
-    public AttributeContainer getAttributes() {
-        if (this.attributeContainer == null) {
-            this.attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 32.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.38).build());
-        }
-        return this.attributeContainer;
-    }
+	public static DefaultAttributeContainer.Builder createFirecallerAttributes() {
+		return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 32.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.38);
+	}
 
     protected void initDataTracker() {
         super.initDataTracker();

@@ -6,7 +6,7 @@ import me.sandbox.util.spellutil.EnchantToolUtil;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.attribute.AttributeContainer;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.*;
@@ -59,17 +59,11 @@ public class ArchivistEntity
         this.targetSelector.add(3, new ActiveTargetGoal<MerchantEntity>((MobEntity)this, MerchantEntity.class, false).setMaxTimeWithoutVisibility(300));
         this.targetSelector.add(3, new ActiveTargetGoal<IronGolemEntity>((MobEntity)this, IronGolemEntity.class, false));
     }
-    private AttributeContainer attributeContainer;
-    @Override
-    public AttributeContainer getAttributes() {
-        if (attributeContainer == null) {
-            attributeContainer = new AttributeContainer(HostileEntity.createHostileAttributes()
+    public static DefaultAttributeContainer.Builder createArchivistAttributes() {
+		return HostileEntity.createHostileAttributes()
                     .add(EntityAttributes.GENERIC_MAX_HEALTH, 22.0D)
-                    .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.36D)
-                    .build());
-        }
-        return attributeContainer;
-    }
+                    .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.36D);
+	}
 
     @Override
     protected void initDataTracker() {
